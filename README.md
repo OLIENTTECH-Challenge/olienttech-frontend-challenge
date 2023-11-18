@@ -17,6 +17,7 @@ $ pnpm run dev
 
 ```sh
 $ volta install corepack
+$ corepack enable
 $ pnpm install
 $ pnpm run dev
 ```
