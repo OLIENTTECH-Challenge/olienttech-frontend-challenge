@@ -1,0 +1,20 @@
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: '*.{json,yml,ts,tsx,js,jsx}'
+      run: |
+        pnpm prettier -w {staged_files}
+        git add {staged_files}
+
+    eslint:
+      glob: '*.{ts,tsx,js,jsx,cjs}'
+      run: |
+        pnpm eslint --fix {staged_files}
+        git add {staged_files}
+
+    stylelint:
+      glob: '*.{css,scss,less}'
+      run: |
+        pnpm stylelint --fix {staged_files}
+        git add {staged_files}
