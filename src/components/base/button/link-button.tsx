@@ -6,7 +6,7 @@ type LinkButtonProps = {
   variant?: "filled" | "outlined";
   href: string;
   children: ReactNode;
-};
+}
 
 export const LinkButton = ({
   children,

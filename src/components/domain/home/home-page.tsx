@@ -1,8 +1,8 @@
-import { LinkButton } from "@/components/base/button/link-button";
-import { HomeHeader } from "@/components/common/home-header/home-header";
 import styles from "./home-page.module.css";
+import { LinkButton } from "@/components/base/button/link-button";
 import { LinkCard } from "@/components/base/card/link-card";
 import { FlexibleContainer } from "@/components/case/container/flexible-container";
+import { HomeHeader } from "@/components/common/home-header/home-header";
 
 type Reference = {
   title: string;
@@ -57,9 +57,9 @@ export const HomePage = () => {
             </div>
             <div className={styles.introSubtitle}>
               <p>
-                Used by some of the world's largest companies, Next.js enables
-                you to create full-stack Web applications by extending the
-                latest React features, and integrating powerful Rust-based
+                Used by some of the world&apos;s largest companies, Next.js
+                enables you to create full-stack Web applications by extending
+                the latest React features, and integrating powerful Rust-based
                 JavaScript tooling for the fastest builds.
               </p>
             </div>
@@ -81,8 +81,8 @@ export const HomePage = () => {
               <p>参考リンク集</p>
             </div>
             <div className={styles.referenceContents}>
-              {references.map((reference) => (
-                <LinkCard {...reference} />
+              {references.map((reference, i) => (
+                <LinkCard key={i} {...reference} />
               ))}
             </div>
           </div>

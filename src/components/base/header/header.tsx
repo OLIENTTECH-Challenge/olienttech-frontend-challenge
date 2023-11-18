@@ -4,7 +4,7 @@ import styles from "./header.module.css";
 type HeaderProps = {
   left?: ReactNode;
   right?: ReactNode;
-};
+}
 
 export const Header = ({ left, right }: HeaderProps) => {
   return (

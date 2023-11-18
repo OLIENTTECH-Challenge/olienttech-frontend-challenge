@@ -3,7 +3,7 @@ import styles from "./flexible-container.module.css";
 
 type FlexibleContainerProps = {
   children: ReactNode;
-};
+}
 
 export const FlexibleContainer = ({ children }: FlexibleContainerProps) => {
   return (

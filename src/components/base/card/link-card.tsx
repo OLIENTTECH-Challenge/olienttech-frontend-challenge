@@ -1,5 +1,5 @@
-import { classNames } from "@/libs/utils/clsx";
 import styles from "./link-card.module.css";
+import { classNames } from "@/libs/utils/clsx";
 
 type LinkCardProps = {
   className?: string;
@@ -7,7 +7,7 @@ type LinkCardProps = {
   description?: string;
   href: string;
   external?: boolean;
-};
+}
 
 export const LinkCard = ({
   className,
