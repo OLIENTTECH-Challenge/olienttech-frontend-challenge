@@ -19,6 +19,7 @@
     "format:stylelint": "stylelint '**/*.css' --fix",
     "format:prettier": "prettier . -w",
     "lint": "run-p lint:*",
+    "lint:tsc": "tsc --noEmit",
     "lint:prettier": "prettier . --check",
     "lint:eslint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:stylelint": "stylelint '**/*.css'",
