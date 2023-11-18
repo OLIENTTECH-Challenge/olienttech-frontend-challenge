@@ -13,6 +13,10 @@ pre-commit:
         pnpm eslint --fix {staged_files}
         git add {staged_files}
 
+    tsc:
+      glob: '*.{ts,tsx,js,jsx,cjs}'
+      run: pnpm tsc --noEmit
+
     stylelint:
       glob: '*.{css,scss,less}'
       run: |
