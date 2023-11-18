@@ -2,6 +2,7 @@ import { LinkButton } from "@/components/base/button/link-button";
 import { HomeHeader } from "@/components/common/home-header/home-header";
 import styles from "./home-page.module.css";
 import { LinkCard } from "@/components/base/card/link-card";
+import { FlexibleContainer } from "@/components/case/container/flexible-container";
 
 type Reference = {
   title: string;
@@ -44,47 +45,49 @@ export const HomePage = () => {
   return (
     <>
       <HomeHeader />
-      <main className={styles.main}>
-        <div className={styles.intro}>
-          <div className={styles.introTitle}>
-            <h1>
-              OLIENTTECH
-              <br />
-              Recruitment Challenges
-            </h1>
-          </div>
-          <div className={styles.introSubtitle}>
-            <p>
-              Used by some of the world's largest companies, Next.js enables you
-              to create full-stack Web applications by extending the latest
-              React features, and integrating powerful Rust-based JavaScript
-              tooling for the fastest builds.
-            </p>
-          </div>
-          <div className={styles.introStack}>
-            <div className={styles.introStackButtons}>
-              <LinkButton href="/">Get Started</LinkButton>
-              <LinkButton
-                href="https://github.com/OLIENTTECH/gx-frontend-challenges/blob/main/README.md"
-                variant="outlined"
-              >
-                README
-              </LinkButton>
+      <FlexibleContainer>
+        <main className={styles.main}>
+          <div className={styles.intro}>
+            <div className={styles.introTitle}>
+              <h1>
+                OLIENTTECH
+                <br />
+                Recruitment Challenges
+              </h1>
+            </div>
+            <div className={styles.introSubtitle}>
+              <p>
+                Used by some of the world's largest companies, Next.js enables
+                you to create full-stack Web applications by extending the
+                latest React features, and integrating powerful Rust-based
+                JavaScript tooling for the fastest builds.
+              </p>
+            </div>
+            <div className={styles.introStack}>
+              <div className={styles.introStackButtons}>
+                <LinkButton href="/">Get Started</LinkButton>
+                <LinkButton
+                  href="https://github.com/OLIENTTECH/gx-frontend-challenges/blob/main/README.md"
+                  variant="outlined"
+                >
+                  README
+                </LinkButton>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={styles.reference}>
-          <div className={styles.referenceHeading}>
-            <h3>Reference</h3>
-            <p>参考リンク集</p>
+          <div className={styles.reference}>
+            <div className={styles.referenceHeading}>
+              <h3>Reference</h3>
+              <p>参考リンク集</p>
+            </div>
+            <div className={styles.referenceContents}>
+              {references.map((reference) => (
+                <LinkCard {...reference} />
+              ))}
+            </div>
           </div>
-          <div className={styles.referenceContents}>
-            {references.map((reference) => (
-              <LinkCard {...reference} />
-            ))}
-          </div>
-        </div>
-      </main>
+        </main>
+      </FlexibleContainer>
     </>
   );
 };
