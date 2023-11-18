@@ -72,6 +72,11 @@
     --input: #e3e3e7;
     --ring: #17171b;
     --radius: 0.5rem;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
   }
 
   .dark {

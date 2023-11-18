@@ -37,7 +37,7 @@
 .introStackButtons {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: var(--spacing-md);
 }
 
 .reference {
@@ -56,7 +56,7 @@
 .referenceContents {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: var(--spacing-md);
 
   /* TODO(ohira): media queryを共通化する */
   @media (800px <= width < 1200px) {
