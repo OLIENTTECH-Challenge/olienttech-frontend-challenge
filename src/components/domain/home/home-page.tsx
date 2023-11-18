@@ -1,8 +1,8 @@
-import styles from "./home-page.module.css";
-import { LinkButton } from "@/components/base/button/link-button";
-import { LinkCard } from "@/components/base/card/link-card";
-import { FlexibleContainer } from "@/components/case/container/flexible-container";
-import { HomeHeader } from "@/components/common/home-header/home-header";
+import styles from './home-page.module.css';
+import { LinkButton } from '@/components/base/button/link-button';
+import { LinkCard } from '@/components/base/card/link-card';
+import { FlexibleContainer } from '@/components/case/container/flexible-container';
+import { HomeHeader } from '@/components/common/home-header/home-header';
 
 type Reference = {
   title: string;
@@ -13,31 +13,30 @@ type Reference = {
 
 const references: Reference[] = [
   {
-    title: "What is BCCD Design?",
-    description:
-      "BCCD Designはコンポーネントの意味と性質に基づいて体系的に分類する新しいソフトウェア設計手法です。",
-    href: "https://github.com/OLIENTTECH/gx-frontend-challenges/blob/main/docs/bccd-design.md",
+    title: 'What is BCCD Design?',
+    description: 'BCCD Designはコンポーネントの意味と性質に基づいて体系的に分類する新しいソフトウェア設計手法です。',
+    href: 'https://github.com/OLIENTTECH/gx-frontend-challenges/blob/main/docs/bccd-design.md',
     external: true,
   },
   {
-    title: "Hoge?",
-    description: "hogehoge",
-    href: "/",
+    title: 'Hoge?',
+    description: 'hogehoge',
+    href: '/',
   },
   {
-    title: "Hoge?",
-    description: "hogehoge",
-    href: "/",
+    title: 'Hoge?',
+    description: 'hogehoge',
+    href: '/',
   },
   {
-    title: "Hoge?",
-    description: "hogehoge",
-    href: "/",
+    title: 'Hoge?',
+    description: 'hogehoge',
+    href: '/',
   },
   {
-    title: "Hoge?",
-    description: "hogehoge",
-    href: "/",
+    title: 'Hoge?',
+    description: 'hogehoge',
+    href: '/',
   },
 ];
 
@@ -57,18 +56,17 @@ export const HomePage = () => {
             </div>
             <div className={styles.introSubtitle}>
               <p>
-                Used by some of the world&apos;s largest companies, Next.js
-                enables you to create full-stack Web applications by extending
-                the latest React features, and integrating powerful Rust-based
-                JavaScript tooling for the fastest builds.
+                Used by some of the world&apos;s largest companies, Next.js enables you to create full-stack Web
+                applications by extending the latest React features, and integrating powerful Rust-based JavaScript
+                tooling for the fastest builds.
               </p>
             </div>
             <div className={styles.introStack}>
               <div className={styles.introStackButtons}>
-                <LinkButton href="/">Get Started</LinkButton>
+                <LinkButton href='/'>Get Started</LinkButton>
                 <LinkButton
-                  href="https://github.com/OLIENTTECH/gx-frontend-challenges/blob/main/README.md"
-                  variant="outlined"
+                  href='https://github.com/OLIENTTECH/gx-frontend-challenges/blob/main/README.md'
+                  variant='outlined'
                 >
                   README
                 </LinkButton>

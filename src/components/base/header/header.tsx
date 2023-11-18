@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import styles from "./header.module.css";
+import { ReactNode } from 'react';
+import styles from './header.module.css';
 
 type HeaderProps = {
   left?: ReactNode;
   right?: ReactNode;
-}
+};
 
 export const Header = ({ left, right }: HeaderProps) => {
   return (
