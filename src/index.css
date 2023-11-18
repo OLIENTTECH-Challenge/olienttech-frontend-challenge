@@ -2,39 +2,50 @@
 @layer theme;
 @layer base;
 
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&display=swap");
+
 @layer base {
   body {
+    font-family: "Noto Sans JP", sans-serif;
     background-color: var(--background);
     color: var(--foreground);
     font-size: 16px;
+    font-weight: 400;
   }
 
   h1 {
     font-size: 3em;
+    font-weight: 600;
   }
 
   h2 {
     font-size: 2.5em;
+    font-weight: 600;
   }
 
   h3 {
     font-size: 2.25em;
+    font-weight: 600;
   }
 
   h4 {
     font-size: 2em;
+    font-weight: 600;
   }
 
   h5 {
     font-size: 1.75em;
+    font-weight: 600;
   }
 
   h6 {
     font-size: 1.5em;
+    font-weight: 600;
   }
 
   p {
     font-size: 1em;
+    font-weight: 400;
   }
 }
 
