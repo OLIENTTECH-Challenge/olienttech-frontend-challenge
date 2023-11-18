@@ -13,7 +13,8 @@
     "lint:js": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:css": "stylelint '**/*.css'",
     "preview": "vite preview",
-    "vite-bundle-visualizer": "pnpm dlx vite-bundle-visualizer"
+    "vite-bundle-visualizer": "pnpm dlx vite-bundle-visualizer",
+    "hcm": "hcm 'src/**/*.module.{css,scss,less}'"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -33,6 +34,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "globals": "^13.23.0",
+    "happy-css-modules": "^2.1.2",
+    "postcss": "^8.4.31",
     "prettier": "^3.1.0",
     "stylelint": "^15.11.0",
     "stylelint-config-css-modules": "^4.3.0",
