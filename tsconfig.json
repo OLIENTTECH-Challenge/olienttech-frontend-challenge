@@ -4,7 +4,10 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "composite": true,
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"],
 
     /* Alias */
     "baseUrl": "./",
@@ -26,6 +29,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "./eslint.config.js", "./vite.config.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "./eslint.config.js", "./vite.config.ts"]
 }
