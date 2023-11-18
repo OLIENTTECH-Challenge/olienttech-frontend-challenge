@@ -1,0 +1,17 @@
+.link {
+  text-decoration: none;
+}
+
+.content {
+  padding: 24px;
+  border: var(--border) 1px solid;
+  border-radius: var(--radius);
+
+  &:hover {
+    border-color: var(--border-accent);
+  }
+}
+
+.description {
+  color: var(--mute-foreground);
+}

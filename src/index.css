@@ -57,6 +57,7 @@
     --destructive: #ee4444;
     --destructive-foreground: #f9f9f9;
     --border: #e3e3e7;
+    --border-accent: #cfcfcf;
     --input: #e3e3e7;
     --ring: #17171b;
     --radius: 0.5rem;
@@ -80,6 +81,7 @@
     --destructive: #7f1d1d;
     --destructive-foreground: #f9f9f9;
     --border: #27272a;
+    --border-accent: #45454c;
     --input: #27272a;
     --ring: #d3d3d7;
   }

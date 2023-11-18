@@ -13,8 +13,7 @@
 }
 
 .main {
-  margin-top: 114px;
-  padding: 0 56px;
+  padding: 114px 56px;
 }
 
 .intro {
@@ -39,4 +38,32 @@
   display: flex;
   justify-content: center;
   gap: 12px;
+}
+
+.reference {
+  text-align: center;
+  padding-top: 56px;
+}
+
+.referenceHeading {
+  padding: 24px 0;
+
+  & p {
+    color: var(--muted-foreground);
+  }
+}
+
+.referenceContents {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  /* TODO(ohira): media queryを共通化する */
+  @media (800px <= width < 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width < 800px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
