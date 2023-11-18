@@ -12,7 +12,8 @@
     "build": "tsc && vite build",
     "lint:js": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:css": "stylelint '**/*.css'",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vite-bundle-visualizer": "pnpm dlx vite-bundle-visualizer"
   },
   "dependencies": {
     "react": "^18.2.0",
