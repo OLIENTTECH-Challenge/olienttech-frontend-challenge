@@ -4,7 +4,7 @@
 
 ## 環境構築
 
-### asdfを使う
+### asdfの場合
 
 ```sh
 $ corepack enable
@@ -13,7 +13,7 @@ $ pnpm install
 $ pnpm run dev
 ```
 
-### voltaを使う
+### voltaの場合
 
 ```sh
 $ volta install corepack
