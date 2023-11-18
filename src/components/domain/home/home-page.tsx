@@ -1,18 +1,11 @@
-import { LinkButton } from "../../components/base/button/link-button";
-import styles from "./page.module.css";
+import { LinkButton } from "../../base/button/link-button";
+import { HomeHeader } from "../../common/home-header/home-header";
+import styles from "./home-page.module.css";
 
 export const HomePage = () => {
   return (
     <>
-      <header className={styles.header}>
-        <nav className={styles.navbar}>
-          <img
-            className={styles.logo}
-            src="/olientgx-logo.jpg"
-            alt="Logo of OLIENTTECH"
-          />
-        </nav>
-      </header>
+      <HomeHeader />
       <main className={styles.main}>
         <div className={styles.intro}>
           <div className={styles.introTitle}>
