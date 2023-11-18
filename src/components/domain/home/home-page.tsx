@@ -1,5 +1,5 @@
-import { LinkButton } from "../../base/button/link-button";
-import { HomeHeader } from "../../common/home-header/home-header";
+import { LinkButton } from "@/components/base/button/link-button";
+import { HomeHeader } from "@/components/common/home-header/home-header";
 import styles from "./home-page.module.css";
 
 export const HomePage = () => {
