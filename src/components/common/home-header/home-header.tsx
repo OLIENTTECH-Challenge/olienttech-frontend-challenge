@@ -1,6 +1,6 @@
 import { Header } from "../../base/header/header";
-import { GxCompanyLogo } from "../../case/company-logo/gx-company-logo";
+import { GxCompanyImage } from "../../case/company-image/gx-company-image";
 
 export const HomeHeader = () => {
-  return <Header left={<GxCompanyLogo />} />;
+  return <Header left={<GxCompanyImage />} />;
 };
