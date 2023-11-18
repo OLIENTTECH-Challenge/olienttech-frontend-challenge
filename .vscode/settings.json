@@ -1,0 +1,17 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.experimental.useFlatConfig": true,
+  "prettier.requireConfig": true,
+  "prettier.configPath": "prettier.config.js",
+  "stylelint.configFile": "stylelint.config.cjs",
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.format.enable": true,
+  "stylelint.enable": true,
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
+}
