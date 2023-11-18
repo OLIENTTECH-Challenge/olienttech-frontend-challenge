@@ -1,21 +1,20 @@
-import pluginTypeScript from '@typescript-eslint/eslint-plugin';
-import pluginTypescriptEslintParser from '@typescript-eslint/parser';
-import pluginPrettier from 'eslint-config-prettier';
-import pluginReact from 'eslint-plugin-react';
-import reactConfigRecommended from 'eslint-plugin-react/configs/recommended.js';
-import pluginReactHooks from 'eslint-plugin-react-hooks';
-import pluginReactRefresh from 'eslint-plugin-react-refresh';
-import globals from 'globals';
+import pluginTypeScript from '@typescript-eslint/eslint-plugin'
+import pluginTypescriptEslintParser from '@typescript-eslint/parser'
+import pluginPrettier from 'eslint-config-prettier'
+import pluginReact from 'eslint-plugin-react'
+import reactConfigRecommended from 'eslint-plugin-react/configs/recommended.js'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
+import pluginReactRefresh from 'eslint-plugin-react-refresh'
+import globals from 'globals'
 
-const tsFiles = ['**/*.{ts,mts,cts,tsx}'];
-const jsFiles = ['**/*.{js,mjs,cjs,jsx}'];
+const tsFiles = ['**/*.{ts,mts,cts,tsx}']
+const jsFiles = ['**/*.{js,mjs,cjs,jsx}']
 
 /** @type { import("eslint").Linter.FlatConfig[] } */
 export default [
   // for global
   {
     files: [jsFiles, tsFiles],
-    ignores: ['**/dist/**'],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -76,4 +75,4 @@ export default [
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
-];
+]

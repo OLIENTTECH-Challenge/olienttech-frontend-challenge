@@ -36,13 +36,13 @@
 
 .introStackButtons {
   display: flex;
-  justify-content: center;
   gap: var(--spacing-md);
+  justify-content: center;
 }
 
 .reference {
-  text-align: center;
   padding-top: 56px;
+  text-align: center;
 }
 
 .referenceHeading {

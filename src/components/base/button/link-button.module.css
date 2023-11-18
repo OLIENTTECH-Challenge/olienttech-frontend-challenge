@@ -1,8 +1,8 @@
 .base {
   padding: 12px;
   font-size: 1em;
-  border-radius: var(--radius);
   text-decoration: none;
+  border-radius: var(--radius);
 
   &:hover {
     opacity: 0.8;
@@ -10,11 +10,11 @@
 }
 
 .filled {
-  background-color: var(--primary);
   color: var(--primary-foreground);
+  background-color: var(--primary);
 }
 
 .outlined {
-  border: var(--primary) 1px solid;
   color: var(--primary);
+  border: var(--primary) 1px solid;
 }

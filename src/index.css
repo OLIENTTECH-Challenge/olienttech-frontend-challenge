@@ -7,10 +7,10 @@
 @layer base {
   body {
     font-family: 'Noto Sans JP', sans-serif;
-    background-color: var(--background);
-    color: var(--foreground);
     font-size: 16px;
     font-weight: 400;
+    color: var(--foreground);
+    background-color: var(--background);
   }
 
   h1 {
@@ -51,11 +51,11 @@
 
 @layer theme {
   :root {
-    --background: #ffffff;
+    --background: #fff;
     --foreground: #08080a;
-    --card: #ffffff;
+    --card: #fff;
     --card-foreground: #08080a;
-    --popover: #ffffff;
+    --popover: #fff;
     --popover-foreground: #08080a;
     --primary: #17171b;
     --primary-foreground: #f9f9f9;
@@ -65,7 +65,7 @@
     --muted-foreground: #71717a;
     --accent: #f4f4f5;
     --accent-foreground: #17171b;
-    --destructive: #ee4444;
+    --destructive: #e44;
     --destructive-foreground: #f9f9f9;
     --border: #e3e3e7;
     --border-accent: #cfcfcf;
@@ -108,9 +108,9 @@
   *,
   *::before,
   *::after {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
   }
 
   :where([hidden]:not([hidden='until-found'])) {
@@ -118,9 +118,9 @@
   }
 
   :where(html) {
-    -webkit-text-size-adjust: none;
-    color-scheme: dark light;
     tab-size: 2;
+    color-scheme: dark light;
+    text-size-adjust: none;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -130,8 +130,8 @@
   }
 
   :where(body) {
-    line-height: 1.5;
     font-family: system-ui, sans-serif;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -141,6 +141,7 @@
 
   :where(input, button, textarea, select) {
     font: inherit;
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
     color: inherit;
   }
 
@@ -162,6 +163,7 @@
   }
 
   :where(a) {
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
     color: inherit;
     text-underline-offset: 0.2ex;
   }
@@ -189,29 +191,31 @@
   }
 
   :where(hr) {
+    overflow: visible;
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+    color: inherit;
     border: none;
     border-block-start: 1px solid;
-    color: inherit;
     block-size: 0;
-    overflow: visible;
   }
 
   :where(:focus-visible) {
     outline: 3px solid CanvasText;
-    box-shadow: 0 0 0 5px Canvas;
     outline-offset: 1px;
+    box-shadow: 0 0 0 5px Canvas;
   }
 
   :where(:focus-visible, :target) {
     scroll-margin-block: 8vh;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   :where(.visually-hidden:not(:focus-within, :active)) {
-    clip-path: inset(50%) !important;
-    height: 1px !important;
-    width: 1px !important;
-    overflow: hidden !important;
     position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
     white-space: nowrap !important;
     border: 0 !important;
   }
