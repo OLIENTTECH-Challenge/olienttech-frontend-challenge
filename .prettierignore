@@ -1,2 +1,3 @@
 **/dist/**
 *.module.css.d.ts
+*.md
