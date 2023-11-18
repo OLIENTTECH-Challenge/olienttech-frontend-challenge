@@ -1,49 +1,200 @@
-
+@layer reset;
+@layer theme;
 @layer base;
 
 @layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2.5em;
+  }
+
+  h3 {
+    font-size: 2.25em;
+  }
+
+  h4 {
+    font-size: 2em;
+  }
+
+  h5 {
+    font-size: 1.75em;
+  }
+
+  h6 {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+}
+
+@layer theme {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --background: #ffffff;
+    --foreground: #08080a;
+    --card: #ffffff;
+    --card-foreground: #08080a;
+    --popover: #ffffff;
+    --popover-foreground: #08080a;
+    --primary: #17171b;
+    --primary-foreground: #f9f9f9;
+    --secondary: #f4f4f5;
+    --secondary-foreground: #17171b;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --accent: #f4f4f5;
+    --accent-foreground: #17171b;
+    --destructive: #ee4444;
+    --destructive-foreground: #f9f9f9;
+    --border: #e3e3e7;
+    --input: #e3e3e7;
+    --ring: #17171b;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --background: #08080a;
+    --foreground: #f9f9f9;
+    --card: #08080a;
+    --card-foreground: #f9f9f9;
+    --popover: #08080a;
+    --popover-foreground: #f9f9f9;
+    --primary: #f9f9f9;
+    --primary-foreground: #17171b;
+    --secondary: #27272a;
+    --secondary-foreground: #f9f9f9;
+    --muted: #27272a;
+    --muted-foreground: #a1a1a9;
+    --accent: #27272a;
+    --accent-foreground: #f9f9f9;
+    --destructive: #7f1d1d;
+    --destructive-foreground: #f9f9f9;
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #d3d3d7;
+  }
+}
+
+@layer reset {
+  /* https://github.com/mayank99/reset.css/blob/main/package/index.css */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :where([hidden]:not([hidden="until-found"])) {
+    display: none !important;
+  }
+
+  :where(html) {
+    -webkit-text-size-adjust: none;
+    color-scheme: dark light;
+    tab-size: 2;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html:focus-within) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  :where(body) {
+    line-height: 1.5;
+    font-family: system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :where(button) {
+    all: unset;
+  }
+
+  :where(input, button, textarea, select) {
+    font: inherit;
+    color: inherit;
+  }
+
+  :where(textarea) {
+    resize: vertical;
+    resize: block;
+  }
+
+  :where(button, label, select, summary, [role="button"], [role="option"]) {
+    cursor: pointer;
+  }
+
+  :where(:disabled) {
+    cursor: not-allowed;
+  }
+
+  :where(label:has(> input:disabled), label:has(+ input:disabled)) {
+    cursor: not-allowed;
+  }
+
+  :where(a) {
+    color: inherit;
+    text-underline-offset: 0.2ex;
+  }
+
+  :where(ul, ol) {
+    list-style: none;
+  }
+
+  :where(img, svg, video, canvas, audio, iframe, embed, object) {
+    display: block;
+  }
+
+  :where(img, picture, svg, video) {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+  }
+
+  :where(h1, h2, h3) {
+    line-height: calc(1em + 0.5rem);
+    text-wrap: balance;
+  }
+
+  :where(hr) {
+    border: none;
+    border-block-start: 1px solid;
+    color: inherit;
+    block-size: 0;
+    overflow: visible;
+  }
+
+  :where(:focus-visible) {
+    outline: 3px solid CanvasText;
+    box-shadow: 0 0 0 5px Canvas;
+    outline-offset: 1px;
+  }
+
+  :where(:focus-visible, :target) {
+    scroll-margin-block: 8vh;
+  }
+
+  :where(.visually-hidden:not(:focus-within, :active)) {
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    border: 0 !important;
   }
 }

@@ -1,0 +1,42 @@
+.header {
+  padding: 24px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 200px;
+  height: 38.66px;
+}
+
+.main {
+  margin-top: 114px;
+  padding: 0 56px;
+}
+
+.intro {
+  text-align: center;
+}
+
+.introTitle {
+  padding: 24px;
+}
+
+.introSubtitle {
+  padding: 20px 32px;
+  font-size: 1.25em;
+  color: var(--muted-foreground);
+}
+
+.introStack {
+  padding: 40px;
+}
+
+.introStackButtons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
