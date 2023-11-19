@@ -24,6 +24,15 @@ $ corepack enable
 $ pnpm install
 ```
 
+### Others
+
+```sh
+$ node -v
+20.9.0
+$ corepack enable
+$ pnpm install
+```
+
 ## Running Development Server
 
 To view and interact with your application during development, you'll need to run the development server.
