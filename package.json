@@ -8,15 +8,15 @@
   },
   "packageManager": "pnpm@8.10.5",
   "scripts": {
-    "client": "pnpm -F \"@olienttech/client\"",
-    "dev": "pnpm m run dev",
-    "build": "pnpm m run build",
+    "client": "pnpm -F @olienttech/client",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
     "format": "run-p format:*",
     "format:prettier": "prettier . -w",
     "format:eslint": "eslint . --report-unused-disable-directives --max-warnings 0 --fix",
     "format:stylelint": "stylelint '**/*.css' --fix",
     "lint": "run-p lint:*",
-    "lint:tsc": "pnpm m exec tsc --noEmit",
+    "lint:tsc": "pnpm -F !@olienttech/tsconfig exec tsc --noEmit",
     "lint:prettier": "prettier . --check",
     "lint:eslint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:stylelint": "stylelint '**/*.css'"
@@ -39,6 +39,7 @@
     "stylelint-config-recess-order": "^4.3.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-declaration-strict-value": "^1.9.2",
+    "turbo": "^1.10.16",
     "typescript": "^5.0.2"
   },
   "volta": {
