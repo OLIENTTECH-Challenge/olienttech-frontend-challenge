@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src", ".storybook/*", "vite.config.ts", "./eslint.config.js", "stylelint.config.cjs"],
+  "extends": "@olienttech/tsconfig/react"
+}

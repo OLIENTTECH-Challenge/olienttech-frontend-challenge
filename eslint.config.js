@@ -37,7 +37,7 @@ export default [
     languageOptions: {
       parser: pluginTypescriptEslintParser,
       parserOptions: {
-        project: './tsconfig.json',
+        project: '**/tsconfig.json',
       },
     },
     plugins: {
@@ -58,7 +58,7 @@ export default [
   },
   // for react
   {
-    files: [jsFiles, tsFiles],
+    files: ['packages/client/**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}'],
     settings: {
       react: {
         version: 'detect',

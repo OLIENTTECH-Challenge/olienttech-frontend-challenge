@@ -9,12 +9,6 @@
     "allowSyntheticDefaultImports": true,
     "types": ["node"],
 
-    /* Alias */
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -28,6 +22,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src", ".storybook/*", "./eslint.config.js", "./vite.config.ts", "stylelint.config.cjs"]
+  }
 }
