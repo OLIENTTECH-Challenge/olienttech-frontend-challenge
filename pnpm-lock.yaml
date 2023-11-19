@@ -139,6 +139,9 @@ importers:
         specifier: ^3.10.1
         version: 3.10.1
     devDependencies:
+      '@olienttech/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       tsx:
         specifier: ^3.12.2
         version: 3.14.0

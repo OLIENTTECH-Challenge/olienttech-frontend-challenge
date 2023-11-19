@@ -2,13 +2,15 @@
   "name": "@olienttech/server",
   "private": true,
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsx src/index.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",
     "hono": "^3.10.1"
   },
   "devDependencies": {
-    "tsx": "^3.12.2"
+    "tsx": "^3.12.2",
+    "@olienttech/tsconfig": "workspace:*"
   }
 }
