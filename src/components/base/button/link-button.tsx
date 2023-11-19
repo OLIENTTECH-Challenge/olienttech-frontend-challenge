@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import styles from './link-button.module.css';
-import { classNames } from '@/libs/utils/classNames';
+import { classNames } from '@/libs/utils';
 
 type LinkButtonProps = {
   variant?: 'filled' | 'outlined';

@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  ci:
+  lint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:

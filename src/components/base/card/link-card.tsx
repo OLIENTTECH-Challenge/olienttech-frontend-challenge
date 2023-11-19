@@ -1,5 +1,5 @@
 import styles from './link-card.module.css';
-import { classNames } from '@/libs/utils/classNames';
+import { classNames } from '@/libs/utils';
 
 type LinkCardProps = {
   className?: string;
