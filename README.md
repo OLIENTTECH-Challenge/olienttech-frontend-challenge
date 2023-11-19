@@ -38,7 +38,12 @@ $ pnpm install
 To view and interact with your application during development, you'll need to run the development server.
 
 1. Start the Server: Run `pnpm run dev` from the project root. This will start the development server.
-2. Access the Application: Open your browser and navigate to http://localhost:5173 (or the designated port shown in your terminal) to view the application.
+2. Access the Application: Open your browser and navigate to http://localhost:5173 (or the designated port shown in your terminal) to view the application and Running server on http://localhost:8787.
+
+```sh
+$ open http://localhost:5173
+$ curl http://localhost:8787
+```
 
 ## Formatting and Linting
 
