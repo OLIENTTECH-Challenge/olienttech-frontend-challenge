@@ -29,5 +29,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "./eslint.config.js", "./vite.config.ts", "stylelint.config.cjs"]
+  "include": ["src", ".storybook/*", "./eslint.config.js", "./vite.config.ts", "stylelint.config.cjs"]
 }
