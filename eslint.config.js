@@ -1,10 +1,13 @@
+import { FlatCompat } from '@eslint/eslintrc';
+import globals from 'globals';
 import pluginTypeScript from '@typescript-eslint/eslint-plugin';
 import pluginTypescriptEslintParser from '@typescript-eslint/parser';
 import pluginPrettier from 'eslint-config-prettier';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReactRefresh from 'eslint-plugin-react-refresh';
-import globals from 'globals';
+
+const compat = new FlatCompat({});
 
 const tsFiles = ['**/*.{ts,mts,cts,tsx}'];
 const jsFiles = ['**/*.{js,mjs,cjs,jsx}'];
@@ -74,4 +77,6 @@ export default [
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
+  // storybook
+  ...compat.extends('plugin:storybook/recommended'),
 ];
