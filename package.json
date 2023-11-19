@@ -12,6 +12,7 @@
     "workspace/server": "pnpm -F @olienttech/server",
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "serve": "turbo run serve",
     "format": "run-p format:*",
     "format:prettier": "prettier . -w",
     "format:eslint": "eslint . --report-unused-disable-directives --max-warnings 0 --fix",

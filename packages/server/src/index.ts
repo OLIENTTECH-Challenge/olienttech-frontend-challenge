@@ -4,4 +4,7 @@ import { Hono } from 'hono';
 const app = new Hono();
 app.get('/', (c) => c.text('Hello Hono!'));
 
-serve(app);
+serve({
+  ...app,
+  port: 8787,
+});

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsx src/index.ts"
+    "serve": "tsx src/index.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",
