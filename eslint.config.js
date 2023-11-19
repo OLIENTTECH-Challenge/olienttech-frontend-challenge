@@ -2,7 +2,6 @@ import pluginTypeScript from '@typescript-eslint/eslint-plugin';
 import pluginTypescriptEslintParser from '@typescript-eslint/parser';
 import pluginPrettier from 'eslint-config-prettier';
 import pluginReact from 'eslint-plugin-react';
-import reactConfigRecommended from 'eslint-plugin-react/configs/recommended.js';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
@@ -68,7 +67,7 @@ export default [
       'react-refresh': pluginReactRefresh,
     },
     rules: {
-      ...reactConfigRecommended.rules,
+      ...pluginReact.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
