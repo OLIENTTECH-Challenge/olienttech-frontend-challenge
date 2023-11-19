@@ -6,6 +6,9 @@
     },
     "build": {
       "outputs": ["dist/**"]
+    },
+    "serve": {
+      "dependsOn": ["build"]
     }
   }
 }

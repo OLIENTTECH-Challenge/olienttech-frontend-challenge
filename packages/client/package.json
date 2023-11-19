@@ -8,7 +8,7 @@
     "build": "run-s build:hcm build:vite",
     "build:vite": "tsc && vite build",
     "build:hcm": "hcm 'src/**/*.module.{css,scss,less}'",
-    "preview": "vite preview",
+    "serve": "vite preview",
     "vite-bundle-visualizer": "pnpm dlx vite-bundle-visualizer",
     "storybook": "storybook dev -p 6006 --quiet --no-open",
     "build-storybook": "storybook build"

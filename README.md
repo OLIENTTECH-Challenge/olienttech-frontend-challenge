@@ -38,7 +38,12 @@ $ pnpm install
 To view and interact with your application during development, you'll need to run the development server.
 
 1. Start the Server: Run `pnpm run dev` from the project root. This will start the development server.
-2. Access the Application: Open your browser and navigate to http://localhost:5173 (or the designated port shown in your terminal) to view the application.
+2. Access the Application: Open your browser and navigate to http://localhost:5173 (or the designated port shown in your terminal) to view the application and Running server on http://localhost:8787.
+
+```sh
+$ open http://localhost:5173
+$ curl http://localhost:8787
+```
 
 ## Formatting and Linting
 
@@ -51,7 +56,7 @@ To ensure code consistency and quality, we use specific tools for formatting and
 
 Storybook is an essential tool for developing and testing UI components. To run it:
 
-1. Start Storybook: `pnpm run client storybook`.
+1. Start Storybook: `pnpm run workspace/client storybook`.
 2. Access UI: Open http://localhost:6006 in your browser to view and interact with your UI components.
 
 ## Conclusion
