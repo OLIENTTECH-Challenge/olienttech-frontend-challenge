@@ -1,19 +1,15 @@
 {
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "eslint.experimental.useFlatConfig": true,
-  "prettier.requireConfig": true,
-  "prettier.configPath": "prettier.config.js",
-  "stylelint.configFile": "stylelint.config.cjs",
   "eslint.codeAction.showDocumentation": {
     "enable": true
   },
   "eslint.codeActionsOnSave.mode": "all",
+  "eslint.experimental.useFlatConfig": true,
   "eslint.format.enable": true,
-  "stylelint.enable": true,
-  "[ignore]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "*.module.css": "*.module.css.d.ts, *.module.css.d.ts.map",
@@ -21,5 +17,9 @@
     "prettier.config.js": ".prettierignore",
     "stylelint.config.cjs": ".stylelintignore",
     "tsconfig.json": "tsconfig.tsbuildinfo"
-  }
+  },
+  "prettier.configPath": "prettier.config.js",
+  "prettier.requireConfig": true,
+  "stylelint.configFile": "stylelint.config.cjs",
+  "stylelint.enable": true
 }
