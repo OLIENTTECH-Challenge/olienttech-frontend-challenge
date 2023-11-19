@@ -14,7 +14,7 @@ pre-commit:
         git add {staged_files}
 
     tsc:
-      glob: '*.{ts,tsx,js,jsx,cjs}'
+      glob: '*.{ts,tsx}'
       run: pnpm tsc --noEmit
 
     stylelint:
