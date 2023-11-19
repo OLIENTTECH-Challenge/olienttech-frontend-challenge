@@ -29,7 +29,7 @@ $ pnpm run dev
 To ensure code consistency and quality, we use specific tools for formatting and linting. Here's how to run them:
 
 1. Formatting: Run `pnpm run format` to auto-format your code using our predefined style guides.
-Linting: Execute `pnpm run lint` to identify and fix linting issues in your codebase.
+2. Linting: Execute `pnpm run lint` to identify and fix linting issues in your codebase.
 
 ## Running Storybook
 
