@@ -4,7 +4,9 @@
 
 ## Environment Setup
 
-To get started, you need to set up your development environment. You can do this using either asdf or volta. Here are the steps for each:
+To begin, set up your development environment using either asdf or volta, ensuring that you use Node.js version `20.9.0` for this project.
+
+Here are the steps for each:
 
 ### Using `asdf`
 
@@ -12,7 +14,6 @@ To get started, you need to set up your development environment. You can do this
 $ corepack enable
 $ asdf reshim nodejs
 $ pnpm install
-$ pnpm run dev
 ```
 
 ### Using `volta`
@@ -21,8 +22,14 @@ $ pnpm run dev
 $ volta install corepack
 $ corepack enable
 $ pnpm install
-$ pnpm run dev
 ```
+
+## Running Development Server
+
+To view and interact with your application during development, you'll need to run the development server.
+
+1. Start the Server: Run `pnpm run dev` from the project root. This will start the development server.
+2. Access the Application: Open your browser and navigate to http://localhost:5173 (or the designated port shown in your terminal) to view the application.
 
 ## Formatting and Linting
 
