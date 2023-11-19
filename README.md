@@ -1,4 +1,4 @@
-<img src="public/olientgx-logo.svg" />
+<img src="packages/client/public/olientgx-logo.jpg" />
 
 # OLIENT GX Recruitment Challenges
 
