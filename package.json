@@ -8,7 +8,8 @@
   },
   "packageManager": "pnpm@8.10.5",
   "scripts": {
-    "client": "pnpm -F @olienttech/client",
+    "workspace/client": "pnpm -F @olienttech/client",
+    "workspace/server": "pnpm -F @olienttech/server",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "format": "run-p format:*",

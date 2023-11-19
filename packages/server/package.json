@@ -10,7 +10,8 @@
     "hono": "^3.10.1"
   },
   "devDependencies": {
-    "tsx": "^3.12.2",
-    "@olienttech/tsconfig": "workspace:*"
+    "@olienttech/tsconfig": "workspace:*",
+    "@types/node": "^20.9.1",
+    "tsx": "^3.12.2"
   }
 }

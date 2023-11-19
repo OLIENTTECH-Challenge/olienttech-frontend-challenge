@@ -51,7 +51,7 @@ To ensure code consistency and quality, we use specific tools for formatting and
 
 Storybook is an essential tool for developing and testing UI components. To run it:
 
-1. Start Storybook: `pnpm run client storybook`.
+1. Start Storybook: `pnpm run workspace/client storybook`.
 2. Access UI: Open http://localhost:6006 in your browser to view and interact with your UI components.
 
 ## Conclusion
