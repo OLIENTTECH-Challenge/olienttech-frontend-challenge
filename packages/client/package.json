@@ -1,0 +1,39 @@
+{
+  "name": "client",
+  "private": true,
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:vite": "vite",
+    "dev:hcm": "hcm 'src/**/*.module.{css,scss,less}' -w",
+    "build": "run-s build:hcm build:vite",
+    "build:vite": "tsc && vite build",
+    "build:hcm": "hcm 'src/**/*.module.{css,scss,less}'",
+    "preview": "vite preview",
+    "vite-bundle-visualizer": "pnpm dlx vite-bundle-visualizer",
+    "storybook": "storybook dev -p 6006 --quiet --no-open",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.19.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/react-vite": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
+    "@types/node": "^20.9.1",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "happy-css-modules": "^2.1.2",
+    "postcss": "^8.4.31",
+    "storybook": "^7.5.3",
+    "vite": "^5.0.0"
+  }
+}
