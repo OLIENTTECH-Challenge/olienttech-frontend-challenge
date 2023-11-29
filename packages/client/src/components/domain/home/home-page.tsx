@@ -19,9 +19,9 @@ const references: Reference[] = [
     external: true,
   },
   {
-    title: 'Hoge?',
-    description: 'hogehoge',
-    href: '/',
+    title: '在庫管理一覧ページ',
+    description: '薬局の在庫管理を行うための一覧ページです。',
+    href: '/stocks',
   },
   {
     title: 'Hoge?',
