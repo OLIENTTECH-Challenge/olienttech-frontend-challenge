@@ -1,6 +1,7 @@
 import SelectBox from '@/components/base/select-box/select-box';
 import styles from './stocks.module.css';
 import StockTable from './stock-table/stock-table';
+import { stockItems } from '@/mocks/stocks-item';
 
 const pharmacies = ['マツモトキヨシ', 'スギ薬局', 'ココカラファイン', 'ドラッグストアコスモス'];
 
@@ -22,78 +23,3 @@ export const StocksPage = () => {
     </div>
   );
 };
-
-const stockItems = [
-  {
-    id: '1',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-  {
-    id: '2',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-  {
-    id: '3',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-  {
-    id: '4',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-  {
-    id: '5',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-  {
-    id: '6',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-  {
-    id: '7',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-  {
-    id: '8',
-    name: 'アレグラFX',
-    category: '抗アレルギー薬',
-    manufacturer: '中外製薬',
-    stock: 100,
-    orderQuantity: 0,
-    postShipmentStock: 100,
-  },
-];
