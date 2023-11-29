@@ -4,13 +4,12 @@ import styles from './outlined-button.module.css';
 type OutlinedButtonProps = {
   label: string;
   loadingLabel: string;
-  color: string; // Color prop
+  color: string;
   onClick: () => void | Promise<void>;
 };
 
 const OutlinedButton: React.FC<OutlinedButtonProps> = ({ label, loadingLabel, color, onClick }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const buttonStyle = {
     color: isLoading ? '#ccc' : color,
     borderColor: isLoading ? '#ccc' : color,
@@ -20,19 +19,20 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({ label, loadingLabel, co
   const handleMouseOver = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!isLoading) {
       e.currentTarget.style.backgroundColor = color;
-      e.currentTarget.style.color = 'white'; // Change text color to white on hover
+      e.currentTarget.style.color = 'white';
     }
   };
 
   const handleMouseOut = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!isLoading) {
       e.currentTarget.style.backgroundColor = 'transparent';
-      e.currentTarget.style.color = color; // Revert text color back
+      e.currentTarget.style.color = color;
     }
   };
 
-  const handleClick = async () => {
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true);
+    e.currentTarget.style.backgroundColor = 'transparent';
     await onClick();
     setIsLoading(false);
   };
