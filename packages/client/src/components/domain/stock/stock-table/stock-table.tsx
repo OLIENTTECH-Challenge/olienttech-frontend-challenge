@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from '@/components/base/table/table';
+import FilledButton from '@/components/base/button/outlined-button/outlined-button';
 
 type StockItem = {
   id: string;
@@ -16,10 +17,21 @@ type StockTableProps = {
 };
 
 const StockTable: React.FC<StockTableProps> = ({ data }) => {
+  // 3秒待機してからalertを表示する
+  const handleClick = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    alert('入庫しました');
+  };
+
   const columns = [
     {
-      header: '入庫ボタン',
-      accessor: () => <button>入庫</button>,
+      header: '',
+      accessor: () => (
+        <div>
+          <FilledButton color={'#4CAF50'} label='＋入庫' loadingLabel='入庫中...' onClick={handleClick} />
+          <FilledButton color={'#FF9130'} label='− 出庫' loadingLabel='出庫中...' onClick={handleClick} />
+        </div>
+      ),
     },
     {
       header: '商品ID',
@@ -34,7 +46,7 @@ const StockTable: React.FC<StockTableProps> = ({ data }) => {
       accessor: (item: StockItem) => item.category,
     },
     {
-      header: 'メーカー',
+      header: '製造メーカー',
       accessor: (item: StockItem) => item.manufacturer,
     },
     {

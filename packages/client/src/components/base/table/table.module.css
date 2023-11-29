@@ -1,11 +1,16 @@
+.container {
+  overflow-x: scroll;
+}
+
 .table {
   width: 100%;
+  white-space: nowrap;
   border-collapse: collapse;
 }
 
 .table th, .table td {
-  padding: 8px;
-  text-align: left;
+  padding: 4px;
+  text-align: center;
   border: 1px solid #ddd;
 }
 
@@ -13,4 +18,9 @@
   background-color: #f4f4f4;
 }
 
-/* Additional styles can be added here */
+@media screen and (width <= 800px) {
+  .table {
+    display: block;
+    width: 100%;
+  }
+}
