@@ -10,31 +10,21 @@ type OutlinedButtonProps = {
 
 const OutlinedButton: React.FC<OutlinedButtonProps> = ({ label, loadingLabel, color, onClick }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const buttonStyle = {
-    color: isLoading ? '#ccc' : color,
-    borderColor: isLoading ? '#ccc' : color,
-    backgroundColor: 'transparent',
-  };
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const handleMouseOver = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!isLoading) {
-      e.currentTarget.style.backgroundColor = color;
-      e.currentTarget.style.color = 'white';
-    }
-  };
-
-  const handleMouseOut = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!isLoading) {
-      e.currentTarget.style.backgroundColor = 'transparent';
-      e.currentTarget.style.color = color;
-    }
-  };
-
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async () => {
     setIsLoading(true);
-    e.currentTarget.style.backgroundColor = 'transparent';
-    await onClick();
-    setIsLoading(false);
+    try {
+      await onClick();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const buttonStyle = {
+    color: isLoading ? '#ccc' : isHovered ? 'white' : color,
+    borderColor: isLoading ? '#ccc' : color,
+    backgroundColor: isHovered && !isLoading ? color : 'transparent',
   };
 
   return (
@@ -43,8 +33,8 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({ label, loadingLabel, co
       onClick={handleClick}
       disabled={isLoading}
       style={buttonStyle}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      onMouseOver={() => { setIsHovered(true); }}
+      onMouseOut={() => { setIsHovered(false); }}
     >
       {isLoading ? loadingLabel : label}
     </button>
