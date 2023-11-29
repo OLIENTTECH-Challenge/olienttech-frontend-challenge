@@ -1,5 +1,5 @@
 import styles from './home-page.module.css';
-import { LinkButton } from '@/components/base/button/link-button';
+import { LinkButton } from '@/components/base/button/link-button/link-button';
 import { LinkCard } from '@/components/base/card/link-card';
 import { FlexibleContainer } from '@/components/case/container/flexible-container';
 import { HomeHeader } from '@/components/common/home-header/home-header';
