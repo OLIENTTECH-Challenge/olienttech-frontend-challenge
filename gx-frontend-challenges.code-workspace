@@ -6,7 +6,8 @@
       "editorconfig.editorconfig",
       "foxundermoon.shell-format",
       "naumovs.color-highlight",
-      "Orta.vscode-jest"
+      "Orta.vscode-jest",
+      "Prisma.prisma"
     ]
   },
   "folders": [
