@@ -1,0 +1,66 @@
+{
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "editorconfig.editorconfig",
+      "foxundermoon.shell-format",
+      "naumovs.color-highlight",
+      "Orta.vscode-jest"
+    ]
+  },
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "name": "client",
+      "path": "packages/client"
+    },
+    {
+      "name": "server",
+      "path": "packages/server"
+    }
+  ],
+  "launch": {
+    "configurations": [
+      {
+        "name": "localhost に対して Chrome を起動する",
+        "request": "launch",
+        "type": "chrome",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}"
+      }
+    ],
+    "version": "0.2.0"
+  },
+  "settings": {
+    "[ignore]": {
+      "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "eslint.codeAction.showDocumentation": {
+      "enable": true
+    },
+    "eslint.codeActionsOnSave.mode": "all",
+    "eslint.experimental.useFlatConfig": true,
+    "eslint.format.enable": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.module.css": "*.module.css.d.ts, *.module.css.d.ts.map",
+      "eslint.config.js": ".eslintignore",
+      "prettier.config.js": ".prettierignore",
+      "stylelint.config.cjs": ".stylelintignore",
+      "tsconfig.json": "tsconfig.tsbuildinfo"
+    },
+    "jest.autoRun": "off",
+    "jest.disabledWorkspaceFolders": ["root"],
+    "jest.jestCommandLine": "pnpm run test",
+    "prettier.configPath": "prettier.config.js",
+    "prettier.requireConfig": true,
+    "stylelint.configFile": "stylelint.config.cjs",
+    "stylelint.enable": true
+  }
+}
