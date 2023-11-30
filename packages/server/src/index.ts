@@ -1,15 +1,34 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
+import { jwt } from 'hono/jwt';
+import adminRoute from './resources/admin';
 import manufacturerRoute from './resources/manufacturer';
 import shopRoute from './resources/shop';
+import { JWT_SECRET } from './libs/constants/env';
 
 const app = new Hono();
 app.get('/', async (c) => {
   return c.text('Hello Hono!');
 });
 
-app.route('/shops', shopRoute);
-app.route('/manufacturers', manufacturerRoute);
+const privateRoute = new Hono();
+privateRoute.use(
+  '*',
+  jwt({
+    secret: JWT_SECRET,
+  }),
+);
+
+// 管理者
+app.route('/admin', adminRoute);
+
+// 販売会社
+privateRoute.route('/shops', shopRoute);
+
+// 製薬会社
+privateRoute.route('/manufacturers', manufacturerRoute);
+
+app.route('/', privateRoute);
 
 serve({
   ...app,
