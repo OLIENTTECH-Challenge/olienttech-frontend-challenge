@@ -37,8 +37,14 @@
     "version": "0.2.0"
   },
   "settings": {
+    "[dotenv]": {
+      "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
     "[ignore]": {
       "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[prisma]": {
+      "editor.defaultFormatter": "Prisma.prisma"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
@@ -62,9 +68,6 @@
     "prettier.configPath": "prettier.config.js",
     "prettier.requireConfig": true,
     "stylelint.configFile": "stylelint.config.cjs",
-    "stylelint.enable": true,
-    "[dotenv]": {
-      "editor.defaultFormatter": "foxundermoon.shell-format"
-    }
+    "stylelint.enable": true
   }
 }
