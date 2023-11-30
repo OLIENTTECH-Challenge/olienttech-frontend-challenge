@@ -8,6 +8,7 @@ export type Product = {
   /** 商品名 */
   name: string;
 
+  /** 商品説明 */
   description: string;
 
   /** 商品カテゴリ */
