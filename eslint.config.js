@@ -54,6 +54,7 @@ export default [
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/prefer-nullish-coalescing': 'off',
       '@typescript-eslint/array-type': ['error', { default: 'array' }],
+      '@typescript-eslint/require-await': 'off',
     },
   },
   // for react
