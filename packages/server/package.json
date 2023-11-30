@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@olienttech/tsconfig": "workspace:*",
+    "@olienttech/model": "workspace:*",
     "tsx": "^3.12.2"
   }
 }
