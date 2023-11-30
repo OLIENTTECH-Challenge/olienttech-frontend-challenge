@@ -5,6 +5,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "jest.config.ts"],
   "extends": "@olienttech/tsconfig/hono"
 }
