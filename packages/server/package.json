@@ -1,19 +1,28 @@
 {
   "name": "@olienttech/server",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "serve": "tsx src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "prisma": "prisma",
+    "prisma:migrate": "prisma migrate",
+    "prisma:studio": "prisma studio --browser none"
+  },
+  "prisma": {
+    "seed": "node --loader ts-node/esm prisma/seed.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",
+    "@prisma/client": "5.6.0",
     "hono": "^3.10.1"
   },
   "devDependencies": {
     "@olienttech/model": "workspace:*",
     "@olienttech/tsconfig": "workspace:*",
     "prisma": "^5.6.0",
+    "ts-node": "^10.9.1",
     "tsx": "^3.12.2"
   }
 }
