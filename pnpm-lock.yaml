@@ -130,6 +130,12 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(@types/node@20.9.1)
 
+  packages/model:
+    devDependencies:
+      '@olienttech/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+
   packages/server:
     dependencies:
       '@hono/node-server':
@@ -139,6 +145,9 @@ importers:
         specifier: ^3.10.1
         version: 3.10.1
     devDependencies:
+      '@olienttech/model':
+        specifier: workspace:*
+        version: link:../model
       '@olienttech/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
