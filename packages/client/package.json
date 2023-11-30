@@ -19,6 +19,7 @@
     "react-router-dom": "^6.19.0"
   },
   "devDependencies": {
+    "@olienttech/tsconfig": "workspace:*",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
@@ -27,14 +28,12 @@
     "@storybook/react": "^7.5.3",
     "@storybook/react-vite": "^7.5.3",
     "@storybook/testing-library": "^0.2.2",
-    "@types/node": "^20.9.1",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "happy-css-modules": "^2.1.2",
     "postcss": "^8.4.31",
     "storybook": "^7.5.3",
-    "vite": "^5.0.0",
-    "@olienttech/tsconfig": "workspace:*"
+    "vite": "^5.0.0"
   }
 }
