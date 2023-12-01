@@ -7,7 +7,7 @@ export const AppResponse = {
   success<T>(data: T): SuccessResponse<T> {
     return { data, __typename__: 'SuccessResponse' };
   },
-  failure(message: string, reasonCode: string): ErrorResponse {
+  failure(message: string, reasonCode?: string): ErrorResponse {
     return { message, reasonCode, __typename__: 'ErrorResponse' };
   },
 } as const;
