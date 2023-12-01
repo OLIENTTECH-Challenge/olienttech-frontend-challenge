@@ -65,9 +65,9 @@
     "jest.autoRun": "off",
     "jest.disabledWorkspaceFolders": ["root"],
     "jest.jestCommandLine": "pnpm run test",
-    "prettier.configPath": "prettier.config.js",
+    // "prettier.configPath": "prettier.config.js",
     "prettier.requireConfig": true,
-    "stylelint.configFile": "stylelint.config.cjs",
+    // "stylelint.configFile": "stylelint.config.cjs",
     "stylelint.enable": true
   }
 }
