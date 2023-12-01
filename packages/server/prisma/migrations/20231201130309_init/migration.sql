@@ -1,13 +1,15 @@
 -- CreateTable
 CREATE TABLE "Shop" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "Manufacturer" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -24,7 +26,7 @@ CREATE TABLE "ShopOnManufacturer" (
 CREATE TABLE "Product" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
-    "description" TEXT
+    "description" TEXT NOT NULL
 );
 
 -- CreateTable

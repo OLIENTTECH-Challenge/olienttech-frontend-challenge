@@ -18,6 +18,7 @@ type BuildDataOptions = {
 };
 type ShopFactoryDefineInput = {
   name?: string;
+  description?: string;
   partnerManufacturers?: Prisma.ShopOnManufacturerCreateNestedManyWithoutShopInput;
 };
 type ShopFactoryDefineOptions = {
@@ -51,6 +52,7 @@ export declare function defineShopFactory<TOptions extends ShopFactoryDefineOpti
 ): ShopFactoryInterface<TOptions>;
 type ManufacturerFactoryDefineInput = {
   name?: string;
+  description?: string;
   handlingProducts?: Prisma.ManufacturerHandlingProductsCreateNestedManyWithoutManufacturerInput;
   partnerShops?: Prisma.ShopOnManufacturerCreateNestedManyWithoutManufacturerInput;
 };
@@ -146,7 +148,7 @@ export declare function defineShopOnManufacturerFactory<TOptions extends ShopOnM
 ): ShopOnManufacturerFactoryInterface<TOptions>;
 type ProductFactoryDefineInput = {
   name?: string;
-  description?: string | null;
+  description?: string;
   categories?: Prisma.ProductOnProductCategoryCreateNestedManyWithoutProductInput;
   manufacturers?: Prisma.ManufacturerHandlingProductsCreateNestedManyWithoutProductInput;
 };

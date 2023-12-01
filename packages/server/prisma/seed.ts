@@ -51,23 +51,135 @@ const products = [
 
 const manufacturers = [
   {
-    name: '日本製薬',
+    name: 'オリエントテック製薬',
+    description: '最強の薬物を開発しています',
   },
   {
-    name: 'アサヒ飲料',
+    name: 'オリエントテック飲料',
+    description: '最高にキマる飲料水を数多く取り揃えています',
+  },
+  {
+    name: 'サンライズ製薬',
+    description: '健康と美容のための製品を提供しています',
+  },
+  {
+    name: 'ムーンライト飲料',
+    description: '自然由来の成分を使用した飲料を製造しています',
+  },
+  {
+    name: 'スターダスト製薬',
+    description: '革新的な医薬品を開発しています',
+  },
+  {
+    name: 'ギャラクシー飲料',
+    description: 'エネルギー補給に最適な飲料を提供しています',
+  },
+  {
+    name: 'コスモス製薬',
+    description: '信頼性と効果を兼ね備えた製品を提供しています',
+  },
+  {
+    name: 'プラネット飲料',
+    description: '健康志向の消費者向けに高品質な飲料を製造しています',
+  },
+  {
+    name: 'ユニバース製薬',
+    description: '最新の科学技術を活用した医薬品を開発しています',
+  },
+  {
+    name: 'ソーラーシステム飲料',
+    description: '美味しくて栄養価の高い飲料を提供しています',
+  },
+  {
+    name: 'ミルキーウェイ製薬',
+    description: '人々の健康と幸せを追求する製品を開発しています',
+  },
+  {
+    name: 'アンドロメダ飲料',
+    description: '体に優しい自然素材の飲料を製造しています',
+  },
+  {
+    name: 'ネビュラ製薬',
+    description: '独自の研究に基づいた効果的な医薬品を提供しています',
+  },
+  {
+    name: 'スペースタイム飲料',
+    description: '一日の活力をサポートする飲料を提供しています',
+  },
+  {
+    name: 'ブラックホール製薬',
+    description: '安全性と効果を重視した医薬品を開発しています',
+  },
+  {
+    name: 'ホワイトホール飲料',
+    description: '健康と美味しさを追求した飲料を製造しています',
+  },
+  {
+    name: 'スーパーノヴァ製薬',
+    description: '人々の生活を改善するための新しい医薬品を開発しています',
+  },
+  {
+    name: 'クォーサー飲料',
+    description: 'エネルギーと栄養を提供する飲料を製造しています',
+  },
+  {
+    name: 'ギャラクシークラスター製薬',
+    description: '高品質な医薬品を提供しています',
+  },
+  {
+    name: 'スターフィールド飲料',
+    description: '全ての人々が楽しめる美味しい飲料を提供しています',
   },
 ];
 
 const shops = [
   {
-    name: 'マツモトキヨシ',
+    name: 'ヘルスケアストア',
+    description: 'あなたの健康をサポートする製品を豊富に取り揃えています',
   },
   {
-    name: 'ウエルシア',
+    name: 'ビタミンショップ',
+    description: 'ビタミン製品を中心に、健康食品を提供しています',
+  },
+  {
+    name: 'ナチュラルドラッグ',
+    description: '自然由来の成分を使用した製品を多数取り扱っています',
+  },
+  {
+    name: 'ファミリードラッグ',
+    description: '家族全員の健康を考えた製品を提供しています',
+  },
+  {
+    name: 'エクスプレスファーマシー',
+    description: '忙しいあなたのための便利なドラッグストアです',
+  },
+  {
+    name: 'ウェルネスマーケット',
+    description: '健康と美容のための製品を幅広く取り揃えています',
+  },
+  {
+    name: 'ヘルシーライフ',
+    description: '健康的な生活をサポートする製品を提供しています',
+  },
+  {
+    name: 'メディカルプラザ',
+    description: '医療用品から日用品まで、幅広い製品を取り扱っています',
+  },
+  {
+    name: 'フィットネスドラッグ',
+    description: 'フィットネスをサポートする製品を多数取り揃えています',
+  },
+  {
+    name: 'ビューティーファーマシー',
+    description: '美容に関する製品を豊富に取り揃えています',
   },
 ];
 
 const nonNullable = <T>(value: T): value is NonNullable<T> => value != null;
+
+const getRandomInt = (max: number) => {
+  return Math.floor(Math.random() * max);
+};
 
 const prisma = new PrismaClient();
 async function main() {
@@ -86,7 +198,7 @@ async function main() {
   );
 
   // 商品マスタ
-  await prisma.$transaction(
+  const _products = await prisma.$transaction(
     async (tx) =>
       await Promise.all(
         products.map(async ({ categories, ...v }) => {
@@ -95,13 +207,6 @@ async function main() {
             .filter(nonNullable);
 
           const product = await tx.product.create({
-            include: {
-              categories: {
-                include: {
-                  category: true,
-                },
-              },
-            },
             data: {
               ...v,
               categories: {
@@ -118,7 +223,7 @@ async function main() {
   );
 
   // メーカーマスタ
-  await prisma.$transaction(
+  const _manufacturers = await prisma.$transaction(
     async (tx) =>
       await Promise.all(
         manufacturers.map(
@@ -130,6 +235,29 @@ async function main() {
       ),
   );
 
+  // 在庫データ
+  await prisma.$transaction(
+    async (tx) =>
+      await Promise.all(
+        _manufacturers.map(
+          async ({ id: manufacturerId }) =>
+            await Promise.all(
+              // NOTE: 仮で全商品を登録
+              _products.map(
+                async ({ id: productId }) =>
+                  await tx.manufacturerHandlingProducts.create({
+                    data: {
+                      manufacturerId,
+                      productId,
+                      stock: getRandomInt(100),
+                    },
+                  }),
+              ),
+            ),
+        ),
+      ),
+  );
+
   // 店舗マスタ
   await prisma.$transaction(
     async (tx) =>
@@ -137,7 +265,15 @@ async function main() {
         shops.map(
           async ({ ...v }) =>
             await tx.shop.create({
-              data: v,
+              data: {
+                ...v,
+                partnerManufacturers: {
+                  // NOTE: 仮で全メーカーを登録
+                  create: _manufacturers.map(({ id }) => ({
+                    manufacturerId: id,
+                  })),
+                },
+              },
             }),
         ),
       ),

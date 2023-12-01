@@ -118,6 +118,13 @@ function autoGenerateShopScalarsOrEnums({ seq }) {
       isUnique: false,
       seq,
     }),
+    description: getScalarFieldValueGenerator().String({
+      modelName: 'Shop',
+      fieldName: 'description',
+      isId: false,
+      isUnique: false,
+      seq,
+    }),
   };
 }
 function defineShopFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {
@@ -186,6 +193,13 @@ function autoGenerateManufacturerScalarsOrEnums({ seq }) {
     name: getScalarFieldValueGenerator().String({
       modelName: 'Manufacturer',
       fieldName: 'name',
+      isId: false,
+      isUnique: false,
+      seq,
+    }),
+    description: getScalarFieldValueGenerator().String({
+      modelName: 'Manufacturer',
+      fieldName: 'description',
       isId: false,
       isUnique: false,
       seq,
@@ -342,6 +356,13 @@ function autoGenerateProductScalarsOrEnums({ seq }) {
       fieldName: 'name',
       isId: false,
       isUnique: true,
+      seq,
+    }),
+    description: getScalarFieldValueGenerator().String({
+      modelName: 'Product',
+      fieldName: 'description',
+      isId: false,
+      isUnique: false,
       seq,
     }),
   };
