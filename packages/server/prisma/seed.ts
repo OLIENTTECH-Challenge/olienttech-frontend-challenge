@@ -229,31 +229,17 @@ async function main() {
         manufacturers.map(
           async ({ ...v }) =>
             await tx.manufacturer.create({
-              data: v,
+              data: {
+                ...v,
+                handlingProducts: {
+                  // NOTE: 仮で全商品を登録
+                  create: _products.map(({ id }) => ({
+                    productId: id,
+                    stock: getRandomInt(100),
+                  })),
+                },
+              },
             }),
-        ),
-      ),
-  );
-
-  // 在庫データ
-  await prisma.$transaction(
-    async (tx) =>
-      await Promise.all(
-        _manufacturers.map(
-          async ({ id: manufacturerId }) =>
-            await Promise.all(
-              // NOTE: 仮で全商品を登録
-              _products.map(
-                async ({ id: productId }) =>
-                  await tx.manufacturerHandlingProducts.create({
-                    data: {
-                      manufacturerId,
-                      productId,
-                      stock: getRandomInt(100),
-                    },
-                  }),
-              ),
-            ),
         ),
       ),
   );
