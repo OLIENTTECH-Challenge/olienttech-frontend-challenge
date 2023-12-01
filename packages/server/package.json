@@ -5,10 +5,14 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "serve": "tsx src/index.ts",
-    "test": "jest",
+    "test": "DATABASE_URL='file:./test.db' jest",
     "prisma": "prisma",
-    "prisma:migrate": "prisma migrate",
-    "prisma:studio": "prisma studio --browser none"
+    "prisma:gen": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio --browser none",
+    "prisma:seed": "prisma db seed",
+    "prisma:studio:test": "DATABASE_URL='file:./test.db' prisma studio --browser none",
+    "prisma:reset:test": "DATABASE_URL='file:./test.db' prisma migrate reset --force --skip-seed"
   },
   "prisma": {
     "seed": "node --loader ts-node/esm prisma/seed.ts"
@@ -21,6 +25,7 @@
   "devDependencies": {
     "@olienttech/model": "workspace:*",
     "@olienttech/tsconfig": "workspace:*",
+    "@quramy/prisma-fabbrica": "^2.0.2",
     "prisma": "^5.6.0",
     "ts-node": "^10.9.1",
     "tsx": "^3.12.2"

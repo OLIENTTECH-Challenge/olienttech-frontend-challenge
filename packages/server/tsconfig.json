@@ -6,5 +6,6 @@
     }
   },
   "include": ["src", "jest.config.ts", "prisma/seed.ts"],
+  "exclude": ["src/__generated__"],
   "extends": "@olienttech/tsconfig/hono"
 }
