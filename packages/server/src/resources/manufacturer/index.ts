@@ -1,5 +1,7 @@
 import { Hono } from 'hono';
 import { Manufacturer, Product } from '@olienttech/model';
+import { AppResponse } from '@olienttech/model';
+import { prisma } from '@/libs/prisma';
 
 const app = new Hono();
 
@@ -32,19 +34,20 @@ const dummyProducts: Product[] = [
 ];
 
 app.get('/', async (c) => {
-  return c.json({ data: dummyManufacturers });
+  const products = await prisma.product.findMany();
+  return c.json(AppResponse.success(products));
 });
 
 app.get('/:manufacturerId', async (c) => {
-  return c.json({ data: dummyManufacturers[0] });
+  return c.json(AppResponse.success(dummyManufacturers[0]));
 });
 
 app.get('/:manufacturerId/products', async (c) => {
-  return c.json({ data: dummyProducts });
+  return c.json(AppResponse.success(dummyProducts));
 });
 
 app.get('/:manufacturerId/products/:productId', async (c) => {
-  return c.json({ data: dummyProducts[0] });
+  return c.json(AppResponse.success(dummyProducts[0]));
 });
 
 export default app;

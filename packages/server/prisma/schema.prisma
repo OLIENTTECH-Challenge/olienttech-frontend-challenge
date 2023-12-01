@@ -14,18 +14,64 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+// 販売会社
+model Shop {
+  id                   Int                  @id @default(autoincrement())
+  name                 String
+  partnerManufacturers ShopOnManufacturer[]
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+// 製造会社
+model Manufacturer {
+  id               Int                            @id @default(autoincrement())
+  name             String
+  handlingProducts ManufacturerHandlingProducts[]
+  partnerShops     ShopOnManufacturer[]
+}
+
+// 販売会社-製造会社 中間テーブル
+model ShopOnManufacturer {
+  shop           Shop         @relation(fields: [shopId], references: [id])
+  shopId         Int
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
+  manufacturerId Int
+
+  @@id([shopId, manufacturerId])
+}
+
+// 商品
+model Product {
+  id            Int                            @id @default(autoincrement())
+  name          String                         @unique
+  description   String?
+  image         String
+  categories    ProductOnProductCategory[]
+  manufacturers ManufacturerHandlingProducts[]
+}
+
+// 取り扱い商品（製造会社）
+model ManufacturerHandlingProducts {
+  id             Int          @id @default(autoincrement())
+  stock          Int
+  product        Product      @relation(fields: [productId], references: [id])
+  productId      Int
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
+  manufacturerId Int
+}
+
+// 商品カテゴリ
+model ProductCategory {
+  id       Int                        @id @default(autoincrement())
+  name     String                     @unique
+  products ProductOnProductCategory[]
+}
+
+// 商品-商品カテゴリ 中間テーブル
+model ProductOnProductCategory {
+  product    Product         @relation(fields: [productId], references: [id])
+  productId  Int
+  category   ProductCategory @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  @@id([productId, categoryId])
 }

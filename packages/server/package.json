@@ -11,6 +11,7 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio --browser none",
     "prisma:seed": "prisma db seed",
+    "prisma:reset": "prisma migrate reset --force",
     "prisma:studio:test": "DATABASE_URL='file:./test.db' prisma studio --browser none",
     "prisma:reset:test": "DATABASE_URL='file:./test.db' prisma migrate reset --force --skip-seed"
   },

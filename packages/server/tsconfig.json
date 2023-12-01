@@ -3,7 +3,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "allowJs": true
   },
   "include": ["src", "jest.config.ts", "prisma/seed.ts"],
   "exclude": ["src/__generated__"],

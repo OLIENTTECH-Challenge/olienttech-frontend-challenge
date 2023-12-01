@@ -8,6 +8,9 @@ const jestConfig: JestConfigWithTsJest = {
   roots: ['<rootDir>'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
+  transform: {
+    '^.+\\.(j|t)s?$': 'ts-jest',
+  },
 };
 
 export default jestConfig;

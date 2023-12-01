@@ -1,3 +1,5 @@
+export * from './result';
+
 /**
  * 商品情報
  */
