@@ -51,10 +51,10 @@ const products = [
 
 const manufacturers = [
   {
-    name: 'マツモトキヨシ',
+    name: '日本製薬',
   },
   {
-    name: 'ウエルシア',
+    name: 'アサヒ飲料',
   },
 ];
 
