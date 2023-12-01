@@ -344,13 +344,6 @@ function autoGenerateProductScalarsOrEnums({ seq }) {
       isUnique: true,
       seq,
     }),
-    image: getScalarFieldValueGenerator().String({
-      modelName: 'Product',
-      fieldName: 'image',
-      isId: false,
-      isUnique: false,
-      seq,
-    }),
   };
 }
 function defineProductFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {

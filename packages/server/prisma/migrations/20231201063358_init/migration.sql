@@ -24,8 +24,7 @@ CREATE TABLE "ShopOnManufacturer" (
 CREATE TABLE "Product" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
-    "description" TEXT,
-    "image" TEXT NOT NULL
+    "description" TEXT
 );
 
 -- CreateTable

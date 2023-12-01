@@ -147,7 +147,6 @@ export declare function defineShopOnManufacturerFactory<TOptions extends ShopOnM
 type ProductFactoryDefineInput = {
   name?: string;
   description?: string | null;
-  image?: string;
   categories?: Prisma.ProductOnProductCategoryCreateNestedManyWithoutProductInput;
   manufacturers?: Prisma.ManufacturerHandlingProductsCreateNestedManyWithoutProductInput;
 };
