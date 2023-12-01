@@ -6,10 +6,7 @@ type StockItem = {
   id: string;
   name: string;
   category: string;
-  manufacturer: string;
   stock: number;
-  orderQuantity: number;
-  postShipmentStock: number;
 };
 
 type StockTableProps = {
@@ -46,20 +43,8 @@ const StockTable: React.FC<StockTableProps> = ({ data }) => {
       accessor: (item: StockItem) => item.category,
     },
     {
-      header: '製造メーカー',
-      accessor: (item: StockItem) => item.manufacturer,
-    },
-    {
       header: '在庫数',
       accessor: (item: StockItem) => item.stock,
-    },
-    {
-      header: '発注数',
-      accessor: (item: StockItem) => item.orderQuantity,
-    },
-    {
-      header: '発注後在庫数',
-      accessor: (item: StockItem) => item.postShipmentStock,
     },
   ];
 
