@@ -77,11 +77,9 @@ async function main() {
     async (tx) =>
       await Promise.all(
         productCategories.map(
-          async ({ name }) =>
+          async ({ ...v }) =>
             await tx.productCategory.create({
-              data: {
-                name,
-              },
+              data: v,
             }),
         ),
       ),
@@ -91,7 +89,7 @@ async function main() {
   await prisma.$transaction(
     async (tx) =>
       await Promise.all(
-        products.map(async ({ name, categories }) => {
+        products.map(async ({ categories, ...v }) => {
           const categoryIds = categories
             .map((c) => _productCategories.find((_c) => _c.name === c)?.id ?? null)
             .filter(nonNullable);
@@ -105,7 +103,7 @@ async function main() {
               },
             },
             data: {
-              name,
+              ...v,
               categories: {
                 create: categoryIds.map((id) => ({
                   categoryId: id,
@@ -124,11 +122,9 @@ async function main() {
     async (tx) =>
       await Promise.all(
         manufacturers.map(
-          async ({ name }) =>
+          async ({ ...v }) =>
             await tx.manufacturer.create({
-              data: {
-                name,
-              },
+              data: v,
             }),
         ),
       ),
@@ -139,11 +135,9 @@ async function main() {
     async (tx) =>
       await Promise.all(
         shops.map(
-          async ({ name }) =>
+          async ({ ...v }) =>
             await tx.shop.create({
-              data: {
-                name,
-              },
+              data: v,
             }),
         ),
       ),

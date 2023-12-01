@@ -31,7 +31,7 @@ app.get('/:manufacturerId/products/:productId', async (c) => {
   const product = await prisma.product.findUnique({ where: { id: Number(productId) } });
 
   if (!product) {
-    throw new HTTPException(401, AppResponse.failure('Not found'));
+    throw new HTTPException(401, AppResponse.failure('Not Found'));
   }
 
   return c.json(AppResponse.success(product));
