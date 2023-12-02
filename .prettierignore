@@ -2,3 +2,4 @@
 *.module.css.d.ts
 *.md
 pnpm-lock.yaml
+**/__generated__/**

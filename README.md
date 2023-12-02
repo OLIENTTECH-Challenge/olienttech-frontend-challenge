@@ -14,6 +14,7 @@ Here are the steps for each:
 $ corepack enable
 $ asdf reshim nodejs
 $ pnpm install
+$ pnpm task bootstrap
 ```
 
 ### Using `volta`
@@ -22,6 +23,7 @@ $ pnpm install
 $ volta install corepack
 $ corepack enable
 $ pnpm install
+$ pnpm task bootstrap
 ```
 
 ### Others
@@ -31,6 +33,7 @@ $ node -v
 20.9.0
 $ corepack enable
 $ pnpm install
+$ pnpm task bootstrap
 ```
 
 ## Running Development Server

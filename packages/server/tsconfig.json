@@ -3,8 +3,10 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "allowJs": true
   },
-  "include": ["src"],
+  "include": ["src", "jest.config.ts", "prisma"],
+  "exclude": ["src/__generated__"],
   "extends": "@olienttech/tsconfig/hono"
 }
