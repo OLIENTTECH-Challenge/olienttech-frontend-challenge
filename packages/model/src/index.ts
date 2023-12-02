@@ -45,6 +45,9 @@ export type Manufacturer = {
   description: string;
 };
 
+/**
+ * 製造会社の取り扱い商品
+ */
 export type ManufacturerHandlingProduct = {
   /** ID */
   id: number;
