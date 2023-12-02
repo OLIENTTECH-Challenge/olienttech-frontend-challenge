@@ -18,12 +18,14 @@ type ShopFactoryDefineInput = {
 };
 type ShopFactoryDefineOptions = {
     defaultData?: Resolver<ShopFactoryDefineInput, BuildDataOptions>;
-    traits?: Record<string | symbol, {
+    traits?: {
+        [traitName: string | symbol]: {
             data: Resolver<Partial<ShopFactoryDefineInput>, BuildDataOptions>;
-        }>;
+        };
+    };
 };
 type ShopTraitKeys<TOptions extends ShopFactoryDefineOptions> = keyof TOptions["traits"];
-export type ShopFactoryInterfaceWithoutTraits = {
+export interface ShopFactoryInterfaceWithoutTraits {
     readonly _factoryFor: "Shop";
     build(inputData?: Partial<Prisma.ShopCreateInput>): PromiseLike<Prisma.ShopCreateInput>;
     buildCreateInput(inputData?: Partial<Prisma.ShopCreateInput>): PromiseLike<Prisma.ShopCreateInput>;
@@ -33,9 +35,9 @@ export type ShopFactoryInterfaceWithoutTraits = {
     createList(inputData: number | readonly Partial<Prisma.ShopCreateInput>[]): PromiseLike<Shop[]>;
     createForConnect(inputData?: Partial<Prisma.ShopCreateInput>): PromiseLike<Pick<Shop, "id">>;
 }
-export type ShopFactoryInterface<TOptions extends ShopFactoryDefineOptions = ShopFactoryDefineOptions> = {
+export interface ShopFactoryInterface<TOptions extends ShopFactoryDefineOptions = ShopFactoryDefineOptions> extends ShopFactoryInterfaceWithoutTraits {
     use(name: ShopTraitKeys<TOptions>, ...names: readonly ShopTraitKeys<TOptions>[]): ShopFactoryInterfaceWithoutTraits;
-} & ShopFactoryInterfaceWithoutTraits
+}
 /**
  * Define factory for {@link Shop} model.
  *
@@ -51,12 +53,14 @@ type ManufacturerFactoryDefineInput = {
 };
 type ManufacturerFactoryDefineOptions = {
     defaultData?: Resolver<ManufacturerFactoryDefineInput, BuildDataOptions>;
-    traits?: Record<string | symbol, {
+    traits?: {
+        [traitName: string | symbol]: {
             data: Resolver<Partial<ManufacturerFactoryDefineInput>, BuildDataOptions>;
-        }>;
+        };
+    };
 };
 type ManufacturerTraitKeys<TOptions extends ManufacturerFactoryDefineOptions> = keyof TOptions["traits"];
-export type ManufacturerFactoryInterfaceWithoutTraits = {
+export interface ManufacturerFactoryInterfaceWithoutTraits {
     readonly _factoryFor: "Manufacturer";
     build(inputData?: Partial<Prisma.ManufacturerCreateInput>): PromiseLike<Prisma.ManufacturerCreateInput>;
     buildCreateInput(inputData?: Partial<Prisma.ManufacturerCreateInput>): PromiseLike<Prisma.ManufacturerCreateInput>;
@@ -66,9 +70,9 @@ export type ManufacturerFactoryInterfaceWithoutTraits = {
     createList(inputData: number | readonly Partial<Prisma.ManufacturerCreateInput>[]): PromiseLike<Manufacturer[]>;
     createForConnect(inputData?: Partial<Prisma.ManufacturerCreateInput>): PromiseLike<Pick<Manufacturer, "id">>;
 }
-export type ManufacturerFactoryInterface<TOptions extends ManufacturerFactoryDefineOptions = ManufacturerFactoryDefineOptions> = {
+export interface ManufacturerFactoryInterface<TOptions extends ManufacturerFactoryDefineOptions = ManufacturerFactoryDefineOptions> extends ManufacturerFactoryInterfaceWithoutTraits {
     use(name: ManufacturerTraitKeys<TOptions>, ...names: readonly ManufacturerTraitKeys<TOptions>[]): ManufacturerFactoryInterfaceWithoutTraits;
-} & ManufacturerFactoryInterfaceWithoutTraits
+}
 /**
  * Define factory for {@link Manufacturer} model.
  *
@@ -90,12 +94,14 @@ type ShopOnManufacturerFactoryDefineInput = {
 };
 type ShopOnManufacturerFactoryDefineOptions = {
     defaultData: Resolver<ShopOnManufacturerFactoryDefineInput, BuildDataOptions>;
-    traits?: Record<string | symbol, {
+    traits?: {
+        [traitName: string | symbol]: {
             data: Resolver<Partial<ShopOnManufacturerFactoryDefineInput>, BuildDataOptions>;
-        }>;
+        };
+    };
 };
 type ShopOnManufacturerTraitKeys<TOptions extends ShopOnManufacturerFactoryDefineOptions> = keyof TOptions["traits"];
-export type ShopOnManufacturerFactoryInterfaceWithoutTraits = {
+export interface ShopOnManufacturerFactoryInterfaceWithoutTraits {
     readonly _factoryFor: "ShopOnManufacturer";
     build(inputData?: Partial<Prisma.ShopOnManufacturerCreateInput>): PromiseLike<Prisma.ShopOnManufacturerCreateInput>;
     buildCreateInput(inputData?: Partial<Prisma.ShopOnManufacturerCreateInput>): PromiseLike<Prisma.ShopOnManufacturerCreateInput>;
@@ -105,9 +111,9 @@ export type ShopOnManufacturerFactoryInterfaceWithoutTraits = {
     createList(inputData: number | readonly Partial<Prisma.ShopOnManufacturerCreateInput>[]): PromiseLike<ShopOnManufacturer[]>;
     createForConnect(inputData?: Partial<Prisma.ShopOnManufacturerCreateInput>): PromiseLike<Pick<ShopOnManufacturer, "shopId" | "manufacturerId">>;
 }
-export type ShopOnManufacturerFactoryInterface<TOptions extends ShopOnManufacturerFactoryDefineOptions = ShopOnManufacturerFactoryDefineOptions> = {
+export interface ShopOnManufacturerFactoryInterface<TOptions extends ShopOnManufacturerFactoryDefineOptions = ShopOnManufacturerFactoryDefineOptions> extends ShopOnManufacturerFactoryInterfaceWithoutTraits {
     use(name: ShopOnManufacturerTraitKeys<TOptions>, ...names: readonly ShopOnManufacturerTraitKeys<TOptions>[]): ShopOnManufacturerFactoryInterfaceWithoutTraits;
-} & ShopOnManufacturerFactoryInterfaceWithoutTraits
+}
 /**
  * Define factory for {@link ShopOnManufacturer} model.
  *
@@ -123,12 +129,14 @@ type ProductFactoryDefineInput = {
 };
 type ProductFactoryDefineOptions = {
     defaultData?: Resolver<ProductFactoryDefineInput, BuildDataOptions>;
-    traits?: Record<string | symbol, {
+    traits?: {
+        [traitName: string | symbol]: {
             data: Resolver<Partial<ProductFactoryDefineInput>, BuildDataOptions>;
-        }>;
+        };
+    };
 };
 type ProductTraitKeys<TOptions extends ProductFactoryDefineOptions> = keyof TOptions["traits"];
-export type ProductFactoryInterfaceWithoutTraits = {
+export interface ProductFactoryInterfaceWithoutTraits {
     readonly _factoryFor: "Product";
     build(inputData?: Partial<Prisma.ProductCreateInput>): PromiseLike<Prisma.ProductCreateInput>;
     buildCreateInput(inputData?: Partial<Prisma.ProductCreateInput>): PromiseLike<Prisma.ProductCreateInput>;
@@ -138,9 +146,9 @@ export type ProductFactoryInterfaceWithoutTraits = {
     createList(inputData: number | readonly Partial<Prisma.ProductCreateInput>[]): PromiseLike<Product[]>;
     createForConnect(inputData?: Partial<Prisma.ProductCreateInput>): PromiseLike<Pick<Product, "id">>;
 }
-export type ProductFactoryInterface<TOptions extends ProductFactoryDefineOptions = ProductFactoryDefineOptions> = {
+export interface ProductFactoryInterface<TOptions extends ProductFactoryDefineOptions = ProductFactoryDefineOptions> extends ProductFactoryInterfaceWithoutTraits {
     use(name: ProductTraitKeys<TOptions>, ...names: readonly ProductTraitKeys<TOptions>[]): ProductFactoryInterfaceWithoutTraits;
-} & ProductFactoryInterfaceWithoutTraits
+}
 /**
  * Define factory for {@link Product} model.
  *
@@ -163,12 +171,14 @@ type ManufacturerHandlingProductsFactoryDefineInput = {
 };
 type ManufacturerHandlingProductsFactoryDefineOptions = {
     defaultData: Resolver<ManufacturerHandlingProductsFactoryDefineInput, BuildDataOptions>;
-    traits?: Record<string | symbol, {
+    traits?: {
+        [traitName: string | symbol]: {
             data: Resolver<Partial<ManufacturerHandlingProductsFactoryDefineInput>, BuildDataOptions>;
-        }>;
+        };
+    };
 };
 type ManufacturerHandlingProductsTraitKeys<TOptions extends ManufacturerHandlingProductsFactoryDefineOptions> = keyof TOptions["traits"];
-export type ManufacturerHandlingProductsFactoryInterfaceWithoutTraits = {
+export interface ManufacturerHandlingProductsFactoryInterfaceWithoutTraits {
     readonly _factoryFor: "ManufacturerHandlingProducts";
     build(inputData?: Partial<Prisma.ManufacturerHandlingProductsCreateInput>): PromiseLike<Prisma.ManufacturerHandlingProductsCreateInput>;
     buildCreateInput(inputData?: Partial<Prisma.ManufacturerHandlingProductsCreateInput>): PromiseLike<Prisma.ManufacturerHandlingProductsCreateInput>;
@@ -178,9 +188,9 @@ export type ManufacturerHandlingProductsFactoryInterfaceWithoutTraits = {
     createList(inputData: number | readonly Partial<Prisma.ManufacturerHandlingProductsCreateInput>[]): PromiseLike<ManufacturerHandlingProducts[]>;
     createForConnect(inputData?: Partial<Prisma.ManufacturerHandlingProductsCreateInput>): PromiseLike<Pick<ManufacturerHandlingProducts, "id">>;
 }
-export type ManufacturerHandlingProductsFactoryInterface<TOptions extends ManufacturerHandlingProductsFactoryDefineOptions = ManufacturerHandlingProductsFactoryDefineOptions> = {
+export interface ManufacturerHandlingProductsFactoryInterface<TOptions extends ManufacturerHandlingProductsFactoryDefineOptions = ManufacturerHandlingProductsFactoryDefineOptions> extends ManufacturerHandlingProductsFactoryInterfaceWithoutTraits {
     use(name: ManufacturerHandlingProductsTraitKeys<TOptions>, ...names: readonly ManufacturerHandlingProductsTraitKeys<TOptions>[]): ManufacturerHandlingProductsFactoryInterfaceWithoutTraits;
-} & ManufacturerHandlingProductsFactoryInterfaceWithoutTraits
+}
 /**
  * Define factory for {@link ManufacturerHandlingProducts} model.
  *
@@ -194,12 +204,14 @@ type ProductCategoryFactoryDefineInput = {
 };
 type ProductCategoryFactoryDefineOptions = {
     defaultData?: Resolver<ProductCategoryFactoryDefineInput, BuildDataOptions>;
-    traits?: Record<string | symbol, {
+    traits?: {
+        [traitName: string | symbol]: {
             data: Resolver<Partial<ProductCategoryFactoryDefineInput>, BuildDataOptions>;
-        }>;
+        };
+    };
 };
 type ProductCategoryTraitKeys<TOptions extends ProductCategoryFactoryDefineOptions> = keyof TOptions["traits"];
-export type ProductCategoryFactoryInterfaceWithoutTraits = {
+export interface ProductCategoryFactoryInterfaceWithoutTraits {
     readonly _factoryFor: "ProductCategory";
     build(inputData?: Partial<Prisma.ProductCategoryCreateInput>): PromiseLike<Prisma.ProductCategoryCreateInput>;
     buildCreateInput(inputData?: Partial<Prisma.ProductCategoryCreateInput>): PromiseLike<Prisma.ProductCategoryCreateInput>;
@@ -209,9 +221,9 @@ export type ProductCategoryFactoryInterfaceWithoutTraits = {
     createList(inputData: number | readonly Partial<Prisma.ProductCategoryCreateInput>[]): PromiseLike<ProductCategory[]>;
     createForConnect(inputData?: Partial<Prisma.ProductCategoryCreateInput>): PromiseLike<Pick<ProductCategory, "id">>;
 }
-export type ProductCategoryFactoryInterface<TOptions extends ProductCategoryFactoryDefineOptions = ProductCategoryFactoryDefineOptions> = {
+export interface ProductCategoryFactoryInterface<TOptions extends ProductCategoryFactoryDefineOptions = ProductCategoryFactoryDefineOptions> extends ProductCategoryFactoryInterfaceWithoutTraits {
     use(name: ProductCategoryTraitKeys<TOptions>, ...names: readonly ProductCategoryTraitKeys<TOptions>[]): ProductCategoryFactoryInterfaceWithoutTraits;
-} & ProductCategoryFactoryInterfaceWithoutTraits
+}
 /**
  * Define factory for {@link ProductCategory} model.
  *
@@ -233,12 +245,14 @@ type ProductOnProductCategoryFactoryDefineInput = {
 };
 type ProductOnProductCategoryFactoryDefineOptions = {
     defaultData: Resolver<ProductOnProductCategoryFactoryDefineInput, BuildDataOptions>;
-    traits?: Record<string | symbol, {
+    traits?: {
+        [traitName: string | symbol]: {
             data: Resolver<Partial<ProductOnProductCategoryFactoryDefineInput>, BuildDataOptions>;
-        }>;
+        };
+    };
 };
 type ProductOnProductCategoryTraitKeys<TOptions extends ProductOnProductCategoryFactoryDefineOptions> = keyof TOptions["traits"];
-export type ProductOnProductCategoryFactoryInterfaceWithoutTraits = {
+export interface ProductOnProductCategoryFactoryInterfaceWithoutTraits {
     readonly _factoryFor: "ProductOnProductCategory";
     build(inputData?: Partial<Prisma.ProductOnProductCategoryCreateInput>): PromiseLike<Prisma.ProductOnProductCategoryCreateInput>;
     buildCreateInput(inputData?: Partial<Prisma.ProductOnProductCategoryCreateInput>): PromiseLike<Prisma.ProductOnProductCategoryCreateInput>;
@@ -248,9 +262,9 @@ export type ProductOnProductCategoryFactoryInterfaceWithoutTraits = {
     createList(inputData: number | readonly Partial<Prisma.ProductOnProductCategoryCreateInput>[]): PromiseLike<ProductOnProductCategory[]>;
     createForConnect(inputData?: Partial<Prisma.ProductOnProductCategoryCreateInput>): PromiseLike<Pick<ProductOnProductCategory, "productId" | "categoryId">>;
 }
-export type ProductOnProductCategoryFactoryInterface<TOptions extends ProductOnProductCategoryFactoryDefineOptions = ProductOnProductCategoryFactoryDefineOptions> = {
+export interface ProductOnProductCategoryFactoryInterface<TOptions extends ProductOnProductCategoryFactoryDefineOptions = ProductOnProductCategoryFactoryDefineOptions> extends ProductOnProductCategoryFactoryInterfaceWithoutTraits {
     use(name: ProductOnProductCategoryTraitKeys<TOptions>, ...names: readonly ProductOnProductCategoryTraitKeys<TOptions>[]): ProductOnProductCategoryFactoryInterfaceWithoutTraits;
-} & ProductOnProductCategoryFactoryInterfaceWithoutTraits
+}
 /**
  * Define factory for {@link ProductOnProductCategory} model.
  *

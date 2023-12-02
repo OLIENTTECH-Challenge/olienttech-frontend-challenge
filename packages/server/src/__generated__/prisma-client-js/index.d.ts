@@ -65,7 +65,7 @@ export type ProductOnProductCategory = $Result.DefaultSelection<Prisma.$ProductO
  */
 export class PrismaClient<
   T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof T ? T['log'] extends (Prisma.LogLevel | Prisma.LogDefinition)[] ? Prisma.GetEvents<T['log']> : never : never,
+  U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -321,7 +321,7 @@ export namespace Prisma {
    * From https://github.com/sindresorhus/type-fest/
    * Matches a JSON array.
    */
-  export type JsonArray = {} & JsonValue[]
+  export interface JsonArray extends Array<JsonValue> {}
 
   /**
    * From https://github.com/sindresorhus/type-fest/
@@ -339,7 +339,7 @@ export namespace Prisma {
    * Matches a JSON array.
    * Unlike `JsonArray`, readonly arrays are assignable to this type.
    */
-  export type InputJsonArray = {} & readonly (InputJsonValue | null)[]
+  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
 
   /**
    * Matches any valid value that can be used as an input for operations like
@@ -443,7 +443,7 @@ export namespace Prisma {
   };
 
 
-  export type Enumerable<T> = T | T[];
+  export type Enumerable<T> = T | Array<T>;
 
   export type RequiredKeys<T> = {
     [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
@@ -500,13 +500,13 @@ export namespace Prisma {
   /**
    * Is T a Record?
    */
-  type IsObject<T extends any> = T extends any[]
+  type IsObject<T extends any> = T extends Array<any>
   ? False
   : T extends Date
   ? False
   : T extends Uint8Array
   ? False
-  : T extends bigint
+  : T extends BigInt
   ? False
   : T extends object
   ? True
@@ -516,7 +516,7 @@ export namespace Prisma {
   /**
    * If it's T[], return T
    */
-  export type UnEnumerate<T extends unknown> = T extends (infer U)[] ? U : T
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
 
   /**
    * From ts-toolbelt
@@ -535,7 +535,7 @@ export namespace Prisma {
   type _Either<
     O extends object,
     K extends Key,
-    strict extends boolean
+    strict extends Boolean
   > = {
     1: EitherStrict<O, K>
     0: EitherLoose<O, K>
@@ -544,7 +544,7 @@ export namespace Prisma {
   type Either<
     O extends object,
     K extends Key,
-    strict extends boolean = 1
+    strict extends Boolean = 1
   > = O extends unknown ? _Either<O, K, strict> : never
 
   export type Union = any
@@ -572,7 +572,7 @@ export namespace Prisma {
   type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
   type AtStrict<O extends object, K extends Key> = O[K & keyof O];
   type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
-  export type At<O extends object, K extends Key, strict extends boolean = 1> = {
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
       1: AtStrict<O, K>;
       0: AtLoose<O, K>;
   }[strict];
@@ -621,7 +621,7 @@ export namespace Prisma {
   */
   export type False = 0
 
-  export type Not<B extends boolean> = {
+  export type Not<B extends Boolean> = {
     0: 1
     1: 0
   }[B]
@@ -636,7 +636,7 @@ export namespace Prisma {
     Extends<Exclude<U1, U>, U1>
   >
 
-  export type Or<B1 extends boolean, B2 extends boolean> = {
+  export type Or<B1 extends Boolean, B2 extends Boolean> = {
     0: {
       0: 0
       1: 1
@@ -727,9 +727,9 @@ export namespace Prisma {
   }
 
 
-  type TypeMapCb = {
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>> {
     returns: Prisma.TypeMap<this['params']['extArgs']>
-  } & $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>>
+  }
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
@@ -1198,7 +1198,7 @@ export namespace Prisma {
   export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
-  export type PrismaClientOptions = {
+  export interface PrismaClientOptions {
     /**
      * Overwrites the datasource url from your schema.prisma file
      */
@@ -1238,7 +1238,7 @@ export namespace Prisma {
   }
 
   export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends (LogLevel | LogDefinition)[] ?
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
     GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
     : never
 
@@ -1299,7 +1299,7 @@ export namespace Prisma {
   ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
-  export function getLogLevel(log: (LogLevel | LogDefinition)[]): LogLevel | undefined;
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
 
   /**
    * `PrismaClient` proxy available in interactive transactions.
@@ -1640,14 +1640,16 @@ export namespace Prisma {
   }
 
   type GetShopGroupByPayload<T extends ShopGroupByArgs> = Prisma.PrismaPromise<
-    (PickEnumerable<ShopGroupByOutputType, T['by']> &
+    Array<
+      PickEnumerable<ShopGroupByOutputType, T['by']> &
         {
           [P in ((keyof T) & (keyof ShopGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ShopGroupByOutputType[P]>
             : GetScalarType<T[P], ShopGroupByOutputType[P]>
-        })[]
+        }
+      >
     >
 
 
@@ -1692,7 +1694,7 @@ export namespace Prisma {
       select?: ShopCountAggregateInputType | true
     }
 
-  export type ShopDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface ShopDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Shop'], meta: { name: 'Shop' } }
     /**
      * Find zero or one Shop that matches the filter.
@@ -1723,7 +1725,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends ShopFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ShopFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ShopClient<$Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T>, never, ExtArgs>
+    ): Prisma__ShopClient<$Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Shop that matches the filter.
@@ -2026,7 +2028,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type Prisma__ShopClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__ShopClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     partnerManufacturers<T extends Shop$partnerManufacturersArgs<ExtArgs> = {}>(args?: Subset<T, Shop$partnerManufacturersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShopOnManufacturerPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -2051,14 +2053,14 @@ export namespace Prisma {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  } & Prisma.PrismaPromise<T>
+  }
 
 
 
   /**
    * Fields of the Shop model
    */ 
-  type ShopFieldRefs = {
+  interface ShopFieldRefs {
     readonly id: FieldRef<"Shop", 'Int'>
     readonly name: FieldRef<"Shop", 'String'>
     readonly description: FieldRef<"Shop", 'String'>
@@ -2563,14 +2565,16 @@ export namespace Prisma {
   }
 
   type GetManufacturerGroupByPayload<T extends ManufacturerGroupByArgs> = Prisma.PrismaPromise<
-    (PickEnumerable<ManufacturerGroupByOutputType, T['by']> &
+    Array<
+      PickEnumerable<ManufacturerGroupByOutputType, T['by']> &
         {
           [P in ((keyof T) & (keyof ManufacturerGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ManufacturerGroupByOutputType[P]>
             : GetScalarType<T[P], ManufacturerGroupByOutputType[P]>
-        })[]
+        }
+      >
     >
 
 
@@ -2618,7 +2622,7 @@ export namespace Prisma {
       select?: ManufacturerCountAggregateInputType | true
     }
 
-  export type ManufacturerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface ManufacturerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Manufacturer'], meta: { name: 'Manufacturer' } }
     /**
      * Find zero or one Manufacturer that matches the filter.
@@ -2649,7 +2653,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends ManufacturerFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ManufacturerFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ManufacturerClient<$Result.GetResult<Prisma.$ManufacturerPayload<ExtArgs>, T>, never, ExtArgs>
+    ): Prisma__ManufacturerClient<$Result.GetResult<Prisma.$ManufacturerPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Manufacturer that matches the filter.
@@ -2952,7 +2956,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type Prisma__ManufacturerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__ManufacturerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     handlingProducts<T extends Manufacturer$handlingProductsArgs<ExtArgs> = {}>(args?: Subset<T, Manufacturer$handlingProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ManufacturerHandlingProductsPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -2979,14 +2983,14 @@ export namespace Prisma {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  } & Prisma.PrismaPromise<T>
+  }
 
 
 
   /**
    * Fields of the Manufacturer model
    */ 
-  type ManufacturerFieldRefs = {
+  interface ManufacturerFieldRefs {
     readonly id: FieldRef<"Manufacturer", 'Int'>
     readonly name: FieldRef<"Manufacturer", 'String'>
     readonly description: FieldRef<"Manufacturer", 'String'>
@@ -3509,14 +3513,16 @@ export namespace Prisma {
   }
 
   type GetShopOnManufacturerGroupByPayload<T extends ShopOnManufacturerGroupByArgs> = Prisma.PrismaPromise<
-    (PickEnumerable<ShopOnManufacturerGroupByOutputType, T['by']> &
+    Array<
+      PickEnumerable<ShopOnManufacturerGroupByOutputType, T['by']> &
         {
           [P in ((keyof T) & (keyof ShopOnManufacturerGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ShopOnManufacturerGroupByOutputType[P]>
             : GetScalarType<T[P], ShopOnManufacturerGroupByOutputType[P]>
-        })[]
+        }
+      >
     >
 
 
@@ -3559,7 +3565,7 @@ export namespace Prisma {
       select?: ShopOnManufacturerCountAggregateInputType | true
     }
 
-  export type ShopOnManufacturerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface ShopOnManufacturerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ShopOnManufacturer'], meta: { name: 'ShopOnManufacturer' } }
     /**
      * Find zero or one ShopOnManufacturer that matches the filter.
@@ -3590,7 +3596,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends ShopOnManufacturerFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ShopOnManufacturerFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ShopOnManufacturerClient<$Result.GetResult<Prisma.$ShopOnManufacturerPayload<ExtArgs>, T>, never, ExtArgs>
+    ): Prisma__ShopOnManufacturerClient<$Result.GetResult<Prisma.$ShopOnManufacturerPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first ShopOnManufacturer that matches the filter.
@@ -3893,12 +3899,12 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type Prisma__ShopOnManufacturerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__ShopOnManufacturerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    shop<T extends ShopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShopDefaultArgs<ExtArgs>>): Prisma__ShopClient<$Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T> | Null, Null, ExtArgs>;
+    shop<T extends ShopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShopDefaultArgs<ExtArgs>>): Prisma__ShopClient<$Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    manufacturer<T extends ManufacturerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ManufacturerDefaultArgs<ExtArgs>>): Prisma__ManufacturerClient<$Result.GetResult<Prisma.$ManufacturerPayload<ExtArgs>, T> | Null, Null, ExtArgs>;
+    manufacturer<T extends ManufacturerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ManufacturerDefaultArgs<ExtArgs>>): Prisma__ManufacturerClient<$Result.GetResult<Prisma.$ManufacturerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3920,14 +3926,14 @@ export namespace Prisma {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  } & Prisma.PrismaPromise<T>
+  }
 
 
 
   /**
    * Fields of the ShopOnManufacturer model
    */ 
-  type ShopOnManufacturerFieldRefs = {
+  interface ShopOnManufacturerFieldRefs {
     readonly shopId: FieldRef<"ShopOnManufacturer", 'Int'>
     readonly manufacturerId: FieldRef<"ShopOnManufacturer", 'Int'>
   }
@@ -4410,14 +4416,16 @@ export namespace Prisma {
   }
 
   type GetProductGroupByPayload<T extends ProductGroupByArgs> = Prisma.PrismaPromise<
-    (PickEnumerable<ProductGroupByOutputType, T['by']> &
+    Array<
+      PickEnumerable<ProductGroupByOutputType, T['by']> &
         {
           [P in ((keyof T) & (keyof ProductGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ProductGroupByOutputType[P]>
             : GetScalarType<T[P], ProductGroupByOutputType[P]>
-        })[]
+        }
+      >
     >
 
 
@@ -4465,7 +4473,7 @@ export namespace Prisma {
       select?: ProductCountAggregateInputType | true
     }
 
-  export type ProductDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface ProductDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Product'], meta: { name: 'Product' } }
     /**
      * Find zero or one Product that matches the filter.
@@ -4496,7 +4504,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends ProductFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ProductFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T>, never, ExtArgs>
+    ): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Product that matches the filter.
@@ -4799,7 +4807,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     categories<T extends Product$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Product$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductOnProductCategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -4826,14 +4834,14 @@ export namespace Prisma {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  } & Prisma.PrismaPromise<T>
+  }
 
 
 
   /**
    * Fields of the Product model
    */ 
-  type ProductFieldRefs = {
+  interface ProductFieldRefs {
     readonly id: FieldRef<"Product", 'Int'>
     readonly name: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
@@ -5378,14 +5386,16 @@ export namespace Prisma {
   }
 
   type GetManufacturerHandlingProductsGroupByPayload<T extends ManufacturerHandlingProductsGroupByArgs> = Prisma.PrismaPromise<
-    (PickEnumerable<ManufacturerHandlingProductsGroupByOutputType, T['by']> &
+    Array<
+      PickEnumerable<ManufacturerHandlingProductsGroupByOutputType, T['by']> &
         {
           [P in ((keyof T) & (keyof ManufacturerHandlingProductsGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ManufacturerHandlingProductsGroupByOutputType[P]>
             : GetScalarType<T[P], ManufacturerHandlingProductsGroupByOutputType[P]>
-        })[]
+        }
+      >
     >
 
 
@@ -5434,7 +5444,7 @@ export namespace Prisma {
       select?: ManufacturerHandlingProductsCountAggregateInputType | true
     }
 
-  export type ManufacturerHandlingProductsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface ManufacturerHandlingProductsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ManufacturerHandlingProducts'], meta: { name: 'ManufacturerHandlingProducts' } }
     /**
      * Find zero or one ManufacturerHandlingProducts that matches the filter.
@@ -5465,7 +5475,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends ManufacturerHandlingProductsFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ManufacturerHandlingProductsFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ManufacturerHandlingProductsClient<$Result.GetResult<Prisma.$ManufacturerHandlingProductsPayload<ExtArgs>, T>, never, ExtArgs>
+    ): Prisma__ManufacturerHandlingProductsClient<$Result.GetResult<Prisma.$ManufacturerHandlingProductsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first ManufacturerHandlingProducts that matches the filter.
@@ -5768,12 +5778,12 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type Prisma__ManufacturerHandlingProductsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__ManufacturerHandlingProductsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T> | Null, Null, ExtArgs>;
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    manufacturer<T extends ManufacturerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ManufacturerDefaultArgs<ExtArgs>>): Prisma__ManufacturerClient<$Result.GetResult<Prisma.$ManufacturerPayload<ExtArgs>, T> | Null, Null, ExtArgs>;
+    manufacturer<T extends ManufacturerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ManufacturerDefaultArgs<ExtArgs>>): Prisma__ManufacturerClient<$Result.GetResult<Prisma.$ManufacturerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5795,14 +5805,14 @@ export namespace Prisma {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  } & Prisma.PrismaPromise<T>
+  }
 
 
 
   /**
    * Fields of the ManufacturerHandlingProducts model
    */ 
-  type ManufacturerHandlingProductsFieldRefs = {
+  interface ManufacturerHandlingProductsFieldRefs {
     readonly id: FieldRef<"ManufacturerHandlingProducts", 'Int'>
     readonly stock: FieldRef<"ManufacturerHandlingProducts", 'Int'>
     readonly productId: FieldRef<"ManufacturerHandlingProducts", 'Int'>
@@ -6280,14 +6290,16 @@ export namespace Prisma {
   }
 
   type GetProductCategoryGroupByPayload<T extends ProductCategoryGroupByArgs> = Prisma.PrismaPromise<
-    (PickEnumerable<ProductCategoryGroupByOutputType, T['by']> &
+    Array<
+      PickEnumerable<ProductCategoryGroupByOutputType, T['by']> &
         {
           [P in ((keyof T) & (keyof ProductCategoryGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ProductCategoryGroupByOutputType[P]>
             : GetScalarType<T[P], ProductCategoryGroupByOutputType[P]>
-        })[]
+        }
+      >
     >
 
 
@@ -6329,7 +6341,7 @@ export namespace Prisma {
       select?: ProductCategoryCountAggregateInputType | true
     }
 
-  export type ProductCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface ProductCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductCategory'], meta: { name: 'ProductCategory' } }
     /**
      * Find zero or one ProductCategory that matches the filter.
@@ -6360,7 +6372,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends ProductCategoryFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ProductCategoryFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ProductCategoryClient<$Result.GetResult<Prisma.$ProductCategoryPayload<ExtArgs>, T>, never, ExtArgs>
+    ): Prisma__ProductCategoryClient<$Result.GetResult<Prisma.$ProductCategoryPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first ProductCategory that matches the filter.
@@ -6663,7 +6675,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type Prisma__ProductCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__ProductCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     products<T extends ProductCategory$productsArgs<ExtArgs> = {}>(args?: Subset<T, ProductCategory$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductOnProductCategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -6688,14 +6700,14 @@ export namespace Prisma {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  } & Prisma.PrismaPromise<T>
+  }
 
 
 
   /**
    * Fields of the ProductCategory model
    */ 
-  type ProductCategoryFieldRefs = {
+  interface ProductCategoryFieldRefs {
     readonly id: FieldRef<"ProductCategory", 'Int'>
     readonly name: FieldRef<"ProductCategory", 'String'>
   }
@@ -7196,14 +7208,16 @@ export namespace Prisma {
   }
 
   type GetProductOnProductCategoryGroupByPayload<T extends ProductOnProductCategoryGroupByArgs> = Prisma.PrismaPromise<
-    (PickEnumerable<ProductOnProductCategoryGroupByOutputType, T['by']> &
+    Array<
+      PickEnumerable<ProductOnProductCategoryGroupByOutputType, T['by']> &
         {
           [P in ((keyof T) & (keyof ProductOnProductCategoryGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ProductOnProductCategoryGroupByOutputType[P]>
             : GetScalarType<T[P], ProductOnProductCategoryGroupByOutputType[P]>
-        })[]
+        }
+      >
     >
 
 
@@ -7246,7 +7260,7 @@ export namespace Prisma {
       select?: ProductOnProductCategoryCountAggregateInputType | true
     }
 
-  export type ProductOnProductCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface ProductOnProductCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductOnProductCategory'], meta: { name: 'ProductOnProductCategory' } }
     /**
      * Find zero or one ProductOnProductCategory that matches the filter.
@@ -7277,7 +7291,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends ProductOnProductCategoryFindUniqueOrThrowArgs<ExtArgs>>(
       args?: SelectSubset<T, ProductOnProductCategoryFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ProductOnProductCategoryClient<$Result.GetResult<Prisma.$ProductOnProductCategoryPayload<ExtArgs>, T>, never, ExtArgs>
+    ): Prisma__ProductOnProductCategoryClient<$Result.GetResult<Prisma.$ProductOnProductCategoryPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first ProductOnProductCategory that matches the filter.
@@ -7580,12 +7594,12 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type Prisma__ProductOnProductCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__ProductOnProductCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T> | Null, Null, ExtArgs>;
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    category<T extends ProductCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductCategoryDefaultArgs<ExtArgs>>): Prisma__ProductCategoryClient<$Result.GetResult<Prisma.$ProductCategoryPayload<ExtArgs>, T> | Null, Null, ExtArgs>;
+    category<T extends ProductCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductCategoryDefaultArgs<ExtArgs>>): Prisma__ProductCategoryClient<$Result.GetResult<Prisma.$ProductCategoryPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7607,14 +7621,14 @@ export namespace Prisma {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  } & Prisma.PrismaPromise<T>
+  }
 
 
 
   /**
    * Fields of the ProductOnProductCategory model
    */ 
-  type ProductOnProductCategoryFieldRefs = {
+  interface ProductOnProductCategoryFieldRefs {
     readonly productId: FieldRef<"ProductOnProductCategory", 'Int'>
     readonly categoryId: FieldRef<"ProductOnProductCategory", 'Int'>
   }
