@@ -23,10 +23,12 @@ privateRoute.use(
 app.route('/admin', adminRoute);
 
 // 販売会社
-privateRoute.route('/shops', shopRoute);
+// privateRoute.route('/shops', shopRoute);
+app.route('/shops', shopRoute);
 
 // 製薬会社
-privateRoute.route('/manufacturers', manufacturerRoute);
+// privateRoute.route('/manufacturers', manufacturerRoute);
+app.route('/manufacturers', manufacturerRoute);
 
 app.route('/', privateRoute);
 
