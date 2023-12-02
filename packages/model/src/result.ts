@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type AppResponse<T = any> = SuccessResponse<T> | ErrorResponse;
