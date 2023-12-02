@@ -45,6 +45,17 @@ export type Manufacturer = {
   description: string;
 };
 
+export type ManufacturerHandlingProduct = {
+  /** ID */
+  id: number;
+
+  /** 在庫数 */
+  stock: number;
+
+  /** 商品情報 */
+  product: Product;
+};
+
 /**
  * 販売会社
  */

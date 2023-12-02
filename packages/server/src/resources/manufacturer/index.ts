@@ -1,10 +1,11 @@
 import { Hono } from 'hono';
-import { AppResponse, Manufacturer, Product } from '@olienttech/model';
+import { AppResponse, Manufacturer, ManufacturerHandlingProduct } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
 import { HTTPException } from 'hono/http-exception';
 
 const app = new Hono();
 
+// NOTE: 管理者のみアクセスできるようにする
 app.get('/', async (c) => {
   const manufacturersOnPrisma = await prisma.manufacturer.findMany();
   const manufacturers: Manufacturer[] = manufacturersOnPrisma.map((manufacturer) => {
@@ -25,7 +26,7 @@ app.get('/:manufacturerId', async (c) => {
   });
 
   if (!manufacturerOnPrisma) {
-    throw new HTTPException(401, AppResponse.failure('Not found'));
+    throw new HTTPException(404, AppResponse.failure('Not found'));
   }
 
   const manufacturer: Manufacturer = {
@@ -37,62 +38,49 @@ app.get('/:manufacturerId', async (c) => {
   return c.json(AppResponse.success(manufacturer));
 });
 
-app.get('/:manufacturerId/products', async (c) => {
-  const productsOnPrisma = await prisma.product.findMany({
+app.get('/:manufacturerId/handling-products', async (c) => {
+  const { manufacturerId } = c.req.param();
+  const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
+    where: { id: Number(manufacturerId) },
     include: {
-      categories: {
+      handlingProducts: {
         include: {
-          category: true,
+          product: {
+            include: {
+              categories: {
+                include: {
+                  category: true,
+                },
+              },
+            },
+          },
         },
       },
     },
   });
 
-  const products: Product[] = productsOnPrisma.map((product) => ({
-    id: product.id,
-    name: product.name,
-    description: product.description,
-    categories: product.categories.map(({ category }) => ({
-      id: category.id,
-      name: category.name,
-    })),
-    image: 'https://github.com/Alesion30',
-  }));
-
-  return c.json(AppResponse.success(products));
-});
-
-app.get('/:manufacturerId/products/:productId', async (c) => {
-  const { productId } = c.req.param();
-  const productOnPrisma = await prisma.product.findUnique({
-    where: {
-      id: Number(productId),
-    },
-    include: {
-      categories: {
-        include: {
-          category: true,
-        },
-      },
-    },
-  });
-
-  if (!productOnPrisma) {
-    throw new HTTPException(401, AppResponse.failure('Not Found'));
+  if (!manufacturerOnPrisma) {
+    throw new HTTPException(404, AppResponse.failure('Not found'));
   }
 
-  const product: Product = {
-    id: productOnPrisma.id,
-    name: productOnPrisma.name,
-    description: productOnPrisma.description,
-    categories: productOnPrisma.categories.map(({ category }) => ({
-      id: category.id,
-      name: category.name,
-    })),
-    image: 'https://github.com/Alesion30',
-  };
+  const handlingProducts: ManufacturerHandlingProduct[] = manufacturerOnPrisma.handlingProducts.map(
+    ({ id, stock, product }) => ({
+      id,
+      stock,
+      product: {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        categories: product.categories.map(({ category }) => ({
+          id: category.id,
+          name: category.name,
+        })),
+        image: 'https://github.com/Alesion30',
+      },
+    }),
+  );
 
-  return c.json(AppResponse.success(product));
+  return c.json(AppResponse.success(handlingProducts));
 });
 
 export default app;
