@@ -1,12 +1,11 @@
 import { cleanupTestDB } from '@/libs/utils/prisma';
 import { beforeEach, describe, test, expect } from '@jest/globals';
 import app from '..';
-import { PrismaClient } from '@prisma/client';
 import { initialize, defineManufacturerFactory } from '@/__generated__/fabbrica';
 import { isSuccessResponse } from '@olienttech/model';
+import { prisma } from '@/libs/prisma';
 
 beforeEach(async () => {
-  const prisma = new PrismaClient();
   initialize({ prisma });
 
   await cleanupTestDB();
