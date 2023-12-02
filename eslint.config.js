@@ -80,4 +80,8 @@ export default [
   },
   // storybook
   ...compat.extends('plugin:storybook/recommended'),
+  // ignore
+  {
+    ignores: ['**/dist/**', '*.module.css.d.ts', '**/__generated__/**'],
+  },
 ];
