@@ -1,25 +1,39 @@
-import { Shop } from '@olienttech/model';
+import { prisma } from '@/libs/prisma';
+import { AppResponse, Shop } from '@olienttech/model';
 import { Hono } from 'hono';
+import { HTTPException } from 'hono/http-exception';
 
 const app = new Hono();
 
-const dummyShops: Shop[] = [
-  {
-    id: '1',
-    name: 'XXX薬局',
-  },
-  {
-    id: '2',
-    name: 'YYY薬局',
-  },
-];
-
 app.get('/', async (c) => {
-  return c.json({ data: dummyShops });
+  const shopOnPrisma = await prisma.shop.findMany();
+
+  const shops: Shop[] = shopOnPrisma.map((shop) => ({
+    id: shop.id,
+    name: shop.name,
+    description: shop.description,
+  }));
+
+  return c.json(AppResponse.success(shops));
 });
 
 app.get('/:shopId', async (c) => {
-  return c.json({ data: dummyShops[0] });
+  const { shopId } = c.req.param();
+  const shopOnPrisma = await prisma.shop.findUnique({
+    where: { id: Number(shopId) },
+  });
+
+  if (!shopOnPrisma) {
+    throw new HTTPException(404, AppResponse.failure('Not found'));
+  }
+
+  const shop: Shop = {
+    id: shopOnPrisma.id,
+    name: shopOnPrisma.name,
+    description: shopOnPrisma.description,
+  };
+
+  return c.json(AppResponse.success(shop));
 });
 
 export default app;
