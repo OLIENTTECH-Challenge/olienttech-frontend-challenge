@@ -1,16 +1,10 @@
 import React from 'react';
 import Table from '@/components/base/table/table';
 import FilledButton from '@/components/base/button/outlined-button/outlined-button';
-
-type StockItem = {
-  id: string;
-  name: string;
-  category: string;
-  stock: number;
-};
+import { ManufacturerHandlingProduct } from '@olienttech/model';
 
 type StockTableProps = {
-  data: StockItem[];
+  data: ManufacturerHandlingProduct[];
 };
 
 const StockTable: React.FC<StockTableProps> = ({ data }) => {
@@ -32,19 +26,20 @@ const StockTable: React.FC<StockTableProps> = ({ data }) => {
     },
     {
       header: '商品ID',
-      accessor: (item: StockItem) => item.id,
+      accessor: (item: ManufacturerHandlingProduct) => item.product.id,
     },
     {
       header: '商品名',
-      accessor: (item: StockItem) => item.name,
+      accessor: (item: ManufacturerHandlingProduct) => item.product.name,
     },
     {
       header: 'カテゴリ',
-      accessor: (item: StockItem) => item.category,
+      accessor: (item: ManufacturerHandlingProduct) =>
+        item.product.categories.map((category) => category.name).join('、'),
     },
     {
       header: '在庫数',
-      accessor: (item: StockItem) => item.stock,
+      accessor: (item: ManufacturerHandlingProduct) => item.stock,
     },
   ];
 
