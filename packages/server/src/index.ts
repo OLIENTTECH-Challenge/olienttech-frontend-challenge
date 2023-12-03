@@ -1,7 +1,7 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { jwt } from 'hono/jwt';
-import adminRoute from './resources/admin';
+import authRoute from './resources/auth';
 import manufacturerRoute from './resources/manufacturer';
 import shopRoute from './resources/shop';
 import productRoute from './resources/product';
@@ -21,7 +21,7 @@ privateRoute.use(
 );
 
 // 管理者
-app.route('/admin', adminRoute);
+app.route('/auth', authRoute);
 
 // 販売会社
 // privateRoute.route('/shops', shopRoute);
@@ -34,7 +34,7 @@ app.route('/manufacturers', manufacturerRoute);
 // 商品
 app.route('/products', productRoute);
 
-app.route('/', privateRoute);
+// app.route('/', privateRoute);
 
 serve({
   ...app,

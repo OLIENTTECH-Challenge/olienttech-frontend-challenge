@@ -22,7 +22,7 @@ export type ErrorResponse = {
   reasonCode?: string;
 };
 
-export const isSuccessResponse = (response: unknown): response is SuccessResponse => {
+export const isSuccessResponse = <T = any>(response: unknown): response is SuccessResponse<T> => {
   return (
     typeof response === 'object' &&
     response !== null &&

@@ -7,7 +7,6 @@ import { prisma } from '@/libs/prisma';
 
 beforeEach(async () => {
   initialize({ prisma });
-
   await cleanupTestDB();
 });
 

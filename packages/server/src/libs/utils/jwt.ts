@@ -2,8 +2,8 @@ import { sign as honoJwtSign, verify as honoJwtVerify } from 'hono/jwt';
 import { JWT_SECRET } from '../constants/env';
 
 export type JwtPayload = {
-  sub: string;
-  role: string;
+  id: number;
+  role: 'manufacturer' | 'shop';
 };
 
 export const sign = (payload: JwtPayload) => honoJwtSign(payload, JWT_SECRET);
