@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages';
 import SamplePage from './pages/sample';
-import StocksPage from './pages/stocks';
+import LoginPage from './pages/manufacturer/login';
+import StocksPage from './pages/manufacturer/stocks';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,11 @@ const router = createBrowserRouter([
     element: <SamplePage />,
   },
   {
-    path: '/stocks',
+    path: '/manufacturer/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/manufacturer/stocks/:manufacturerId',
     element: <StocksPage />,
   },
 ]);
