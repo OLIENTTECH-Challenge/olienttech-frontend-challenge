@@ -19,6 +19,7 @@
     "react-router-dom": "^6.19.0"
   },
   "devDependencies": {
+    "@olienttech/model": "workspace:*",
     "@olienttech/tsconfig": "workspace:*",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
