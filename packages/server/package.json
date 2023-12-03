@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "serve": "tsx src/index.ts",
-    "test": "DATABASE_URL='file:./test.db' jest",
+    "test": "DATABASE_URL='file:./test.db' jest --runInBand",
     "prisma": "prisma",
     "prisma:gen": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
@@ -24,11 +24,13 @@
     "hono": "^3.10.1"
   },
   "devDependencies": {
+    "@hono/zod-validator": "^0.1.11",
     "@olienttech/model": "workspace:*",
     "@olienttech/tsconfig": "workspace:*",
     "@quramy/prisma-fabbrica": "^2.0.2",
     "prisma": "^5.6.0",
     "ts-node": "^10.9.1",
-    "tsx": "^3.12.2"
+    "tsx": "^3.12.2",
+    "zod": "^3.22.4"
   }
 }
