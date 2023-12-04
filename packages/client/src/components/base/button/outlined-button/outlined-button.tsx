@@ -5,7 +5,7 @@ type OutlinedButtonProps = {
   label: string;
   loadingLabel: string;
   color: string;
-  onClick: () => void | Promise<void>;
+  onClick: () => Promise<void>;
 };
 
 export const OutlinedButton = ({ label, loadingLabel, color, onClick }: OutlinedButtonProps) => {
