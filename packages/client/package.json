@@ -11,7 +11,8 @@
     "serve": "vite preview",
     "vite-bundle-visualizer": "pnpm dlx vite-bundle-visualizer",
     "storybook": "storybook dev -p 6006 --quiet --no-open",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -34,6 +35,7 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "happy-css-modules": "^2.1.2",
     "postcss": "^8.4.31",
+    "prettier": "^3.1.0",
     "storybook": "^7.5.3",
     "vite": "^5.0.0"
   }
