@@ -18,7 +18,6 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    //idをクエリパラメータにする
     path: '/manufacturer/stocks',
     element: <StocksPage />,
   },
