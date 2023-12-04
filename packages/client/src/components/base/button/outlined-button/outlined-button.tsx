@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './outlined-button.module.css';
 
 type OutlinedButtonProps = {
@@ -8,7 +8,7 @@ type OutlinedButtonProps = {
   onClick: () => void | Promise<void>;
 };
 
-const OutlinedButton: React.FC<OutlinedButtonProps> = ({ label, loadingLabel, color, onClick }) => {
+export const OutlinedButton = ({ label, loadingLabel, color, onClick }: OutlinedButtonProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
@@ -33,8 +33,12 @@ const OutlinedButton: React.FC<OutlinedButtonProps> = ({ label, loadingLabel, co
       onClick={handleClick}
       disabled={isLoading}
       style={buttonStyle}
-      onMouseOver={() => { setIsHovered(true); }}
-      onMouseOut={() => { setIsHovered(false); }}
+      onMouseOver={() => {
+        setIsHovered(true);
+      }}
+      onMouseOut={() => {
+        setIsHovered(false);
+      }}
     >
       {isLoading ? loadingLabel : label}
     </button>

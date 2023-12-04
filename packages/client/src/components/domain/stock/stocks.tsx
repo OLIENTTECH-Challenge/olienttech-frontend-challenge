@@ -1,5 +1,5 @@
 import styles from './stocks.module.css';
-import StockTable from './stock-table';
+import { StockTable } from './stock-table';
 import { useSearchParams } from 'react-router-dom';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
 import { HomeHeader } from '@/components/common/home-header/home-header';

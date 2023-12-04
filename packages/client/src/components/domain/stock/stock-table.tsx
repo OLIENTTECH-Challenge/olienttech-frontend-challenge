@@ -1,13 +1,12 @@
-import React from 'react';
-import Table from '@/components/base/table/table';
-import FilledButton from '@/components/base/button/outlined-button/outlined-button';
+import { Table } from '@/components/base/table/table';
+import { OutlinedButton } from '@/components/base/button/outlined-button/outlined-button';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
 
 type StockTableProps = {
   data: ManufacturerHandlingProduct[];
 };
 
-const StockTable: React.FC<StockTableProps> = ({ data }) => {
+export const StockTable = ({ data }: StockTableProps) => {
   // 3秒待機してからalertを表示する
   const handleClick = async () => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -19,8 +18,8 @@ const StockTable: React.FC<StockTableProps> = ({ data }) => {
       header: '',
       accessor: () => (
         <div>
-          <FilledButton color={'#4CAF50'} label='＋入庫' loadingLabel='入庫中...' onClick={handleClick} />
-          <FilledButton color={'#FF9130'} label='− 出庫' loadingLabel='出庫中...' onClick={handleClick} />
+          <OutlinedButton color={'#4CAF50'} label='＋入庫' loadingLabel='入庫中...' onClick={handleClick} />
+          <OutlinedButton color={'#FF9130'} label='− 出庫' loadingLabel='出庫中...' onClick={handleClick} />
         </div>
       ),
     },
@@ -45,5 +44,3 @@ const StockTable: React.FC<StockTableProps> = ({ data }) => {
 
   return <Table columns={columns} data={data} />;
 };
-
-export default StockTable;

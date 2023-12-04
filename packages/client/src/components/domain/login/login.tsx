@@ -1,7 +1,7 @@
 //todo: basic認証をかける
 
 import { useState } from 'react';
-import SelectBox from '@/components/base/select-box/select-box';
+import { SelectBox } from '@/components/base/select-box/select-box';
 import { Manufacturer } from '@olienttech/model';
 import styles from './login.module.css';
 import { LinkButton } from '@/components/base/button/link-button/link-button';

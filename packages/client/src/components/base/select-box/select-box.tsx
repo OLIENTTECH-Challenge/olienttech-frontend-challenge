@@ -7,7 +7,7 @@ type SelectBoxProps = {
   onSelect: (selectedValue: string) => void;
 };
 
-const SelectBox = ({ options, label, onSelect }: SelectBoxProps) => {
+export const SelectBox = ({ options, label, onSelect }: SelectBoxProps) => {
   const [selectedValue, setSelectedValue] = useState(options[0] || '');
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -28,5 +28,3 @@ const SelectBox = ({ options, label, onSelect }: SelectBoxProps) => {
     </div>
   );
 };
-
-export default SelectBox;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './table.module.css';
-import Pagination from './pagination';
+import { Pagination } from './pagination';
 
 type TableColumn = {
   header: string;
@@ -12,7 +12,7 @@ type TableProps = {
   data: any[];
 };
 
-const Table: React.FC<TableProps> = ({ columns, data }) => {
+export const Table = ({ columns, data }: TableProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const rowsPerPage = 10;
   const startIndex = currentPage * rowsPerPage;
@@ -48,5 +48,3 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     </div>
   );
 };
-
-export default Table;
