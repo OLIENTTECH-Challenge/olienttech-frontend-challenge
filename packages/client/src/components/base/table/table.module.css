@@ -1,4 +1,5 @@
 .container {
+  margin-bottom: var(--spacing-2xl);
   overflow-x: scroll;
 }
 
@@ -24,24 +25,4 @@
     display: block;
     width: 100%;
   }
-}
-
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.pagination button {
-  padding: 5px 10px;
-  margin: 0 5px;
-  cursor: pointer;
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
-}
-
-.pagination button:disabled {
-  cursor: default;
-  background-color: #eee;
 }
