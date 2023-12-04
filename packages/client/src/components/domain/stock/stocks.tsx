@@ -2,6 +2,7 @@ import styles from './stocks.module.css';
 import StockTable from './stock-table';
 import { useParams } from 'react-router-dom';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
+import { HomeHeader } from '@/components/common/home-header/home-header';
 
 export const StocksPage = () => {
   const { manufacturerId } = useParams();
@@ -9,11 +10,14 @@ export const StocksPage = () => {
   console.log(manufacturerId);
 
   return (
-    <div className={styles.main}>
-      <h3>在庫管理一覧ページ</h3>
-      <div className={styles.spacer}></div>
-      <StockTable data={mockData} />
-    </div>
+    <>
+      <HomeHeader />
+      <div className={styles.main}>
+        <h5>在庫管理一覧ページ</h5>
+        <div className={styles.spacer}></div>
+        <StockTable data={mockData} />
+      </div>
+    </>
   );
 };
 
