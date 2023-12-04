@@ -9,6 +9,7 @@
 }
 
 .table th, .table td {
+  min-width: 100px;
   padding: 4px;
   text-align: center;
   border: 1px solid #ddd;

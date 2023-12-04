@@ -1,5 +1,4 @@
 declare const styles:
-  & Readonly<{ "container": string }>
   & Readonly<{ "label": string }>
   & Readonly<{ "selectBox": string }>
 ;

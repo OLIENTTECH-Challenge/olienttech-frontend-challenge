@@ -16,8 +16,8 @@ const SelectBox = ({ options, label, onSelect }: SelectBoxProps) => {
   };
 
   return (
-    <div className={styles.container}>
-      <label className={styles.label}>{label}</label>
+    <div>
+      <p className={styles.label}>{label}</p>
       <select className={styles.selectBox} value={selectedValue} onChange={handleChange}>
         {options.map((option, index) => (
           <option key={index} value={option}>
