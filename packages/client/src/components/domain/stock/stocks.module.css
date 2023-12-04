@@ -1,7 +1,7 @@
 .main {
-  padding: 60px 56px;
+  padding: 16px 56px;
 }
 
 .spacer {
-  height: var(--spacing-2xl);
+  height: var(--spacing-xl);
 }

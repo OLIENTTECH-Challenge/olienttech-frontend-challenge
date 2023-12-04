@@ -1,19 +1,21 @@
 import styles from './stocks.module.css';
 import StockTable from './stock-table';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
 import { HomeHeader } from '@/components/common/home-header/home-header';
+import { manufacturers } from '../login/login';
 
 export const StocksPage = () => {
-  const { manufacturerId } = useParams();
-  // manufactureIdをクエリパラメータとしてAPIを叩く
-  console.log(manufacturerId);
+  const [searchParams] = useSearchParams();
+  const manufacturerId = searchParams.get('id');
+  //TODO manufactureIdをクエリパラメータとしてAPIを叩く
+  const manufacturer = manufacturers.find((manufacturer) => manufacturer.id === Number(manufacturerId));
 
   return (
     <>
       <HomeHeader />
       <div className={styles.main}>
-        <h5>在庫管理一覧ページ</h5>
+        <h5>{manufacturer ? manufacturer.name : ''}</h5>
         <div className={styles.spacer}></div>
         <StockTable data={mockData} />
       </div>
