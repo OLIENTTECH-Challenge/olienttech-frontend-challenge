@@ -13,11 +13,11 @@
   min-width: 100px;
   padding: 4px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid var(--table-border);
 }
 
 .table th {
-  background-color: #f4f4f4;
+  background-color: var(--table-header);
 }
 
 @media screen and (width <= 800px) {

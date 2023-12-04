@@ -10,23 +10,23 @@
   padding: 5px 10px;
   margin: 0 5px;
   cursor: pointer;
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .pagination button:hover {
-  background-color: #e4e4e4;
+  background-color: var(--secondary-hover);
   transform: scale(1.05);
 }
 
 .pagination button:disabled, .pagination .activePage {
   cursor: default;
-  background-color: #fff;
+  background-color: var(--background);
 }
 
 .pagination button:disabled:hover, .pagination .activePage:hover {
-  background-color: #fff;
+  background-color: var(--background);
   transform: none;
 }
