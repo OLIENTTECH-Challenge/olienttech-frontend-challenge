@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SelectBox } from './select-box';
+import { Selectbox } from './selectbox';
 
-const meta: Meta<typeof SelectBox> = {
-  component: SelectBox,
+const meta: Meta<typeof Selectbox> = {
+  component: Selectbox,
   tags: ['autodocs'],
   args: {
     label: '製造会社',
@@ -10,11 +10,11 @@ const meta: Meta<typeof SelectBox> = {
   },
 };
 
-type Story = StoryObj<typeof SelectBox>;
+type Story = StoryObj<typeof Selectbox>;
 
 export const Default: Story = {
   render: (args) => {
-    return <SelectBox {...args} />;
+    return <Selectbox {...args} />;
   },
 };
 

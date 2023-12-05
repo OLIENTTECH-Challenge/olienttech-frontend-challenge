@@ -1,7 +1,7 @@
 //todo: basic認証をかける
 
 import { useState } from 'react';
-import { SelectBox } from '@/components/base/select-box/select-box';
+import { Selectbox } from '@/components/base/selectbox/selectbox';
 import { Manufacturer } from '@olienttech/model';
 import styles from './login.module.css';
 import { LinkButton } from '@/components/base/button/link-button/link-button';
@@ -31,7 +31,7 @@ export const LoginPage = () => {
       <div className={styles.main}>
         <h5 className={styles.title}>製造会社を選択</h5>
         <div className={styles.card}>
-          <SelectBox
+          <Selectbox
             label='製造会社'
             options={manufacturers.map((manufacturer) => manufacturer.name)}
             onSelect={handleSelectManufacturer}

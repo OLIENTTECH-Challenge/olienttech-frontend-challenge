@@ -3,11 +3,11 @@
   font-weight: 100;
 }
 
-.selectBox {
+.selectbox {
   min-width: 300px;
   padding: 10px;
   font-size: 16px;
   background-color: var(--background);
   border: 2px solid var(--border);
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
