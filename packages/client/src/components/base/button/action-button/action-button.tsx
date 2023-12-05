@@ -4,7 +4,7 @@ import styles from './action-button.module.css';
 type ActionButtonProps = {
   children: ReactNode;
   variant: 'outlined' | 'filled';
-  onClick: () => Promise<void>;
+  onClick: () => void;
 };
 
 export const ActionButton = ({ children, variant, onClick }: ActionButtonProps) => {
