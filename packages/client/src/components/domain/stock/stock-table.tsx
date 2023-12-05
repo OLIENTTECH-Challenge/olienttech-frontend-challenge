@@ -1,13 +1,24 @@
-import { Table } from '@/components/base/table/table';
+import { useState } from 'react';
+import { Pagination } from '@/components/base/table/pagination';
 import { OutlinedButton } from '@/components/base/button/outlined-button/outlined-button';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
+import styles from './stock-table.module.css';
 
 type StockTableProps = {
   data: ManufacturerHandlingProduct[];
 };
 
 export const StockTable = ({ data }: StockTableProps) => {
-  // 3秒待機してからalertを表示する
+  const [currentPage, setCurrentPage] = useState(0);
+  const rowsPerPage = 10;
+  const startIndex = currentPage * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentData = data.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(data.length / rowsPerPage);
+
+  const goToPage = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
   const handleClick = async () => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     alert('入庫しました');
@@ -42,5 +53,27 @@ export const StockTable = ({ data }: StockTableProps) => {
     },
   ];
 
-  return <Table columns={columns} data={data} />;
+  return (
+    <div className={styles.container}>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            {columns.map((column, index) => (
+              <th key={index}>{column.header}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {currentData.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {columns.map((column, columnIndex) => (
+                <td key={columnIndex}>{column.accessor(row)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <Pagination currentPage={currentPage} pageCount={pageCount} onPageChange={goToPage} />
+    </div>
+  );
 };

@@ -7,4 +7,4 @@ declare const styles:
   & Readonly<{ "table": string }>
 ;
 export default styles;
-//# sourceMappingURL=./table.module.css.d.ts.map
+//# sourceMappingURL=./stock-table.module.css.d.ts.map
