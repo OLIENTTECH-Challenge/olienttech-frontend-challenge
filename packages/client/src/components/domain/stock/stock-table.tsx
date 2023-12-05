@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pagination } from '@/components/base/table/pagination';
+import { Pagination } from '@/components/base/pagination/pagination';
 import { OutlinedButton } from '@/components/base/button/outlined-button/outlined-button';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
 import styles from './stock-table.module.css';
