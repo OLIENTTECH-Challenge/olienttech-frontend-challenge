@@ -1,0 +1,31 @@
+.button {
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  border: var(--primary) 2px solid;
+  border-radius: var(--radius);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+
+  &:hover {
+    color: var(--secondary-foreground);
+    background-color: var(--secondary);
+  }
+}
+
+.outlined {
+  color: var(--primary);
+  background-color: var(--transparent);
+}
+
+.filled {
+  color: var(--primary-foreground);
+  background-color: var(--primary);
+}
+
+.loading {
+  color: var(--secondary-foreground);
+  cursor: wait;
+  background-color: var(--secondary);
+}

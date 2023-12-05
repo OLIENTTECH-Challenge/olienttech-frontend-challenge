@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Pagination } from '@/components/base/pagination/pagination';
-import { OutlinedButton } from '@/components/base/button/outlined-button/outlined-button';
+import { ActionButton } from '@/components/base/button/action-button/action-button';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
 import styles from './stock-table.module.css';
 
@@ -29,8 +29,12 @@ export const StockTable = ({ data }: StockTableProps) => {
       header: '',
       accessor: () => (
         <div>
-          <OutlinedButton color={'#4CAF50'} label='＋入庫' loadingLabel='入庫中...' onClick={handleClick} />
-          <OutlinedButton color={'#FF9130'} label='− 出庫' loadingLabel='出庫中...' onClick={handleClick} />
+          <ActionButton variant='outlined' onClick={handleClick}>
+            入庫
+          </ActionButton>
+          <ActionButton variant='outlined' onClick={handleClick}>
+            出庫
+          </ActionButton>
         </div>
       ),
     },

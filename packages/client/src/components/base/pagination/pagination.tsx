@@ -14,7 +14,9 @@ export const Pagination = ({ currentPage, pageCount, onPageChange }: PaginationP
       {pages.map((page) => (
         <button
           key={page}
-          onClick={() => { onPageChange(page - 1); }}
+          onClick={() => {
+            onPageChange(page - 1);
+          }}
           className={currentPage === page - 1 ? styles.activePage : ''}
         >
           {page}

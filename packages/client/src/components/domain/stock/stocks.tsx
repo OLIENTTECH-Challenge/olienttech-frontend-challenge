@@ -3,7 +3,7 @@ import { StockTable } from './stock-table';
 import { useSearchParams } from 'react-router-dom';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
 import { HomeHeader } from '@/components/common/home-header/home-header';
-import { manufacturers } from '../login/login';
+import { manufacturers } from '@/mocks/manufactures';
 
 export const StocksPage = () => {
   const [searchParams] = useSearchParams();
