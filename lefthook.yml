@@ -4,17 +4,17 @@ pre-commit:
     prettier:
       glob: '*.{json,yml,ts,tsx,js,jsx}'
       run: |
-        pnpm prettier -w {staged_files}
+        pnpm prettier -w {staged_files} || exit 1
         git add {staged_files}
 
     eslint:
       glob: '*.{ts,tsx,js,jsx,cjs}'
       run: |
-        pnpm eslint --fix {staged_files}
+        pnpm eslint --fix {staged_files} || exit 1
         git add {staged_files}
 
     stylelint:
       glob: '*.{css,scss,less}'
       run: |
-        pnpm stylelint --fix {staged_files}
+        pnpm stylelint --fix {staged_files} || exit 1
         git add {staged_files}
