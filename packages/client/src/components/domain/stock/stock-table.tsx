@@ -19,9 +19,14 @@ export const StockTable = ({ data }: StockTableProps) => {
   const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
-  const handleClick = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    alert('入庫しました');
+  const handleClick = async (action: string) => {
+    await new Promise((resolve) => setTimeout(resolve, 3000))
+      .then(() => {
+        alert(`${action}しました`); // actionをメッセージに反映
+      })
+      .catch(() => {
+        alert(`${action}に失敗しました`); // actionをメッセージに反映
+      });
   };
 
   const columns = [
@@ -29,10 +34,10 @@ export const StockTable = ({ data }: StockTableProps) => {
       header: '',
       accessor: () => (
         <div>
-          <ActionButton variant='outlined' onClick={handleClick}>
+          <ActionButton variant='outlined' onClick={() => void handleClick('入庫')}>
             入庫
           </ActionButton>
-          <ActionButton variant='outlined' onClick={handleClick}>
+          <ActionButton variant='outlined' onClick={() => void handleClick('出庫')}>
             出庫
           </ActionButton>
         </div>
