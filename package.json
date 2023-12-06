@@ -8,6 +8,7 @@
   },
   "packageManager": "pnpm@8.10.5",
   "scripts": {
+    "postinstall": "lefthook install",
     "task": "task",
     "workspace/client": "pnpm -F @olienttech/client",
     "workspace/server": "pnpm -F @olienttech/server",
