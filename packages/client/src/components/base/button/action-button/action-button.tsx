@@ -4,7 +4,7 @@ import styles from './action-button.module.css';
 type ActionButtonProps = {
   children: ReactNode;
   variant: 'outlined' | 'filled';
-  onClick: () => void;
+  onClick: () => Promise<void>;
 };
 
 export const ActionButton = ({ children, variant, onClick }: ActionButtonProps) => {
@@ -22,7 +22,7 @@ export const ActionButton = ({ children, variant, onClick }: ActionButtonProps) 
   const buttonClass = isLoading ? `${styles.button} ${styles['loading']}` : styles.button;
 
   return (
-    <button className={`${buttonClass} ${styles[variant]}`} onClick={handleClick} disabled={isLoading}>
+    <button className={`${buttonClass} ${styles[variant]}`} onClick={() => handleClick()} disabled={isLoading}>
       {children}
     </button>
   );

@@ -7,8 +7,7 @@ type PaginationProps = {
 };
 
 export const Pagination = ({ currentPage, pageCount, onPageChange }: PaginationProps) => {
-  const pages = [...new Array(pageCount)].map((_, i) => i + 1);
-
+  const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
   return (
     <div className={styles.pagination}>
       {pages.map((page) => (
