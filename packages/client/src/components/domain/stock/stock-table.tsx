@@ -115,7 +115,7 @@ export const StockTable = ({ data }: StockTableProps) => {
             </div>
           </PopupContent>
           <PopupFooter>
-            <ActionButton variant={'filled'} onClick={saveStock}>
+            <ActionButton variant='filled' onClick={saveStock}>
               保存
             </ActionButton>
           </PopupFooter>

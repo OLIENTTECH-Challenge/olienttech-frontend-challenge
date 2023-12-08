@@ -61,7 +61,6 @@
     --primary-foreground: #f9f9f9;
     --secondary: #f4f4f5;
     --secondary-foreground: #17171b;
-    --secondary-hover: #e3e3e7;
     --muted: #f4f4f5;
     --muted-foreground: #71717a;
     --accent: #f4f4f5;
@@ -104,8 +103,6 @@
     --destructive-foreground: #f9f9f9;
     --border: #27272a;
     --border-accent: #45454c;
-    --table-header: #27272a;
-    --table-border: #45454c;
     --input: #27272a;
     --ring: #d3d3d7;
   }

@@ -15,11 +15,10 @@
   transition:
     background-color 0.3s,
     transform 0.3s;
-}
 
-.pagination button:hover {
-  background-color: var(--secondary-hover);
-  transform: scale(1.05);
+  &hover {
+    opacity: 0.8;
+  }
 }
 
 .pagination button:disabled,
