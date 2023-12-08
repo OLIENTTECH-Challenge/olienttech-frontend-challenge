@@ -73,6 +73,8 @@
     --input: #e3e3e7;
     --ring: #17171b;
     --transparent: transparent;
+    --z-index-overlay: 50;
+    --z-index-popup: 100;
     --radius: 0.5rem;
     --spacing-xs: 4px;
     --spacing-sm: 8px;
