@@ -1,5 +1,6 @@
 import React, { useState, MouseEvent } from 'react';
 import styles from './action-button.module.css';
+import { classNames } from '@/libs/utils';
 
 type HTMLButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -20,7 +21,7 @@ export const ActionButton = ({ children, variant, onClick }: ActionButtonProps) 
   const buttonClass = isLoading ? `${styles.button} ${styles['loading']}` : styles.button;
 
   return (
-    <button className={`${buttonClass} ${styles[variant]}`} onClick={handleClick} disabled={isLoading}>
+    <button className={classNames(buttonClass, styles[variant])} onClick={handleClick} disabled={isLoading}>
       {children}
     </button>
   );
