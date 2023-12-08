@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CiEdit } from 'react-icons/ci';
 import { Pagination } from '@/components/base/pagination/pagination';
 import { ActionButton } from '@/components/base/button/action-button/action-button';
 import { ManufacturerHandlingProduct } from '@olienttech/model';
@@ -59,6 +60,14 @@ export const StockTable = ({ data }: StockTableProps) => {
     {
       header: '在庫数',
       accessor: (item: ManufacturerHandlingProduct) => item.stock,
+    },
+    {
+      header: '',
+      accessor: (item: ManufacturerHandlingProduct) => (
+        <div className={styles.icon}>
+          <CiEdit size={30} onClick={() => openPopup(item)} />
+        </div>
+      ),
     },
   ];
 
