@@ -77,50 +77,52 @@ export const StockTable = ({ data }: StockTableProps) => {
   ];
 
   return (
-    <div className={styles.container}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            {columns.map((column, index) => (
-              <th key={index}>{column.header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {currentData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {columns.map((column, columnIndex) => (
-                <td key={columnIndex}>{column.accessor(row)}</td>
+    <>
+      <div className={styles.container}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              {columns.map((column, index) => (
+                <th key={index}>{column.header}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currentData.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {columns.map((column, columnIndex) => (
+                  <td key={columnIndex}>{column.accessor(row)}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {isPopupOpen && selectedProduct && (
+          <Popup onClose={closePopup}>
+            <PopupHeader onClose={closePopup} />
+            <PopupContent>
+              <p className={styles.name}>{selectedProduct.product.name}</p>
+              <div className={styles.inputContainer}>
+                <p>在庫数</p>
+                <input
+                  className={styles.input}
+                  type='number'
+                  value={newStock}
+                  onChange={(e) => {
+                    setNewStock(parseInt(e.target.value, 10));
+                  }}
+                />
+              </div>
+            </PopupContent>
+            <PopupFooter>
+              <ActionButton variant='filled' onClick={saveStock}>
+                保存
+              </ActionButton>
+            </PopupFooter>
+          </Popup>
+        )}
+      </div>
       <Pagination currentPage={currentPage} pageCount={pageCount} onPageChange={goToPage} />
-      {isPopupOpen && selectedProduct && (
-        <Popup onClose={closePopup}>
-          <PopupHeader onClose={closePopup} />
-          <PopupContent>
-            <p className={styles.name}>{selectedProduct.product.name}</p>
-            <div className={styles.inputContainer}>
-              <p>在庫数</p>
-              <input
-                className={styles.input}
-                type='number'
-                value={newStock}
-                onChange={(e) => {
-                  setNewStock(parseInt(e.target.value, 10));
-                }}
-              />
-            </div>
-          </PopupContent>
-          <PopupFooter>
-            <ActionButton variant='filled' onClick={saveStock}>
-              保存
-            </ActionButton>
-          </PopupFooter>
-        </Popup>
-      )}
-    </div>
+    </>
   );
 };
