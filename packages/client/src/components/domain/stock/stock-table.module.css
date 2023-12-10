@@ -1,12 +1,23 @@
 .container {
   margin-bottom: var(--spacing-2xl);
   overflow-x: scroll;
+
+  @media screen and (width >= 1600px) {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+  }
 }
 
 .table {
   width: 100%;
   white-space: nowrap;
   border-collapse: collapse;
+
+  @media screen and (width >= 1600px) {
+    display: inline-table;
+    width: auto;
+  }
 }
 
 .table th,
@@ -52,20 +63,19 @@
 }
 
 .input {
+  box-sizing: border-box;
   width: 60px;
+  height: 32px;
+  padding-right: 4px;
   padding-left: 8px;
   margin-left: 8px;
-}
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 
-@media screen and (width >= 1600px) {
-  .container {
-    display: flex;
-    justify-content: center; /* コンテナを中央に配置 */
-    overflow-x: hidden; /* スクロールバーを無効にする */
-  }
-
-  .table {
-    display: inline-table; /* テーブルを中央に配置するために必要 */
-    width: auto;
+  &:focus,
+  &:hover {
+    border-color: var(--primary);
+    outline: none;
   }
 }

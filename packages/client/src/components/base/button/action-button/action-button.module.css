@@ -11,8 +11,7 @@
     color 0.3s;
 
   &:hover {
-    color: var(--secondary-foreground);
-    background-color: var(--secondary);
+    opacity: 0.8;
   }
 }
 
