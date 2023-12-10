@@ -17,17 +17,18 @@ export const LoginPage = () => {
     }
   };
 
+  // Selectboxに渡すための変換
+  const manufacturerOptions = manufacturers.map((manufacturer) => ({
+    label: manufacturer.name,
+    value: manufacturer.id.toString(),
+  }));
   return (
     <>
       <HomeHeader />
       <div className={styles.main}>
         <h5 className={styles.title}>製造会社を選択</h5>
         <div className={styles.card}>
-          <Selectbox
-            label='製造会社'
-            options={manufacturers.map((manufacturer) => manufacturer.name)}
-            onSelect={handleSelectManufacturer}
-          />
+          <Selectbox label='製造会社' options={manufacturerOptions} onSelect={handleSelectManufacturer} />
           <div className={styles.spacer}></div>
           <LinkButton href={`/manufacturer/stocks?id=${selectedManufacturerId}`}>次へ進む</LinkButton>
         </div>
