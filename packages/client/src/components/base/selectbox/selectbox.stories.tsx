@@ -6,7 +6,11 @@ const meta: Meta<typeof Selectbox> = {
   tags: ['autodocs'],
   args: {
     label: '製造会社',
-    options: ['オリエント製薬', 'アレジオン製薬', 'ハイハイ製薬', 'テクノ製薬'],
+    options: [
+      { label: '株式会社オリエントテック', value: '1' },
+      { label: 'オリエントテック', value: '2' },
+      { label: 'OLIENT TECH', value: '3' },
+    ],
   },
 };
 
