@@ -5,3 +5,9 @@
 .spacer {
   height: var(--spacing-xl);
 }
+
+@media screen and (width >= 1600px) {
+  .main h5 {
+    text-align: center;
+  }
+}
