@@ -1,13 +1,13 @@
 import styles from './selectbox.module.css';
 import { useState, ChangeEvent } from 'react';
 
-type OptionType = {
+type Option = {
   label: string;
   value: string;
 };
 
 type SelectboxProps = {
-  options: OptionType[];
+  options: Option[];
   label: string;
   onSelect: (selectedValue: string) => void;
 };
