@@ -1,5 +1,5 @@
 import styles from './stocks.module.css';
-import { StockTable } from './stock-table';
+import { StockManager } from './stock-manager';
 import { useSearchParams } from 'react-router-dom';
 import { Manufacturer } from '@olienttech/model';
 import { HomeHeader } from '@/components/common/home-header/home-header';
@@ -19,7 +19,7 @@ export const StocksPage = () => {
       <div className={styles.main}>
         <h5>{manufacturer ? manufacturer.name : ''}</h5>
         <div className={styles.spacer}></div>
-        <StockTable data={mockData} />
+        <StockManager data={mockData} />
       </div>
     </>
   );
