@@ -1,0 +1,34 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+
+  &hover {
+    opacity: 0.8;
+  }
+}
+
+.pagination button:disabled,
+.pagination .activePage {
+  cursor: default;
+  background-color: var(--background);
+}
+
+.pagination button:disabled:hover,
+.pagination .activePage:hover {
+  background-color: var(--background);
+  transform: none;
+}

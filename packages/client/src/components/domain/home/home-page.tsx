@@ -1,5 +1,5 @@
 import styles from './home-page.module.css';
-import { LinkButton } from '@/components/base/button/link-button';
+import { LinkButton } from '@/components/base/button/link-button/link-button';
 import { LinkCard } from '@/components/base/card/link-card';
 import { FlexibleContainer } from '@/components/case/container/flexible-container';
 import { HomeHeader } from '@/components/common/home-header/home-header';
@@ -19,9 +19,9 @@ const references: Reference[] = [
     external: true,
   },
   {
-    title: 'Hoge?',
-    description: 'hogehoge',
-    href: '/',
+    title: '在庫管理一覧ページ',
+    description: '薬局の在庫管理を行うための一覧ページです。',
+    href: '/manufacturer/login',
   },
   {
     title: 'Hoge?',

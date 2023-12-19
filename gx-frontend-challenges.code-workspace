@@ -7,7 +7,8 @@
       "foxundermoon.shell-format",
       "naumovs.color-highlight",
       "Orta.vscode-jest",
-      "Prisma.prisma"
+      "Prisma.prisma",
+      "streetsidesoftware.code-spell-checker"
     ]
   },
   "folders": [
@@ -68,6 +69,7 @@
     // "prettier.configPath": "prettier.config.js",
     "prettier.requireConfig": true,
     // "stylelint.configFile": "stylelint.config.cjs",
-    "stylelint.enable": true
+    "stylelint.enable": true,
+    "cSpell.words": ["selectbox"]
   }
 }

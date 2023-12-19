@@ -71,12 +71,16 @@
     --border-accent: #cfcfcf;
     --input: #e3e3e7;
     --ring: #17171b;
+    --transparent: transparent;
+    --z-index-overlay: 50;
+    --z-index-popup: 100;
     --radius: 0.5rem;
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
+    --spacing-2xl: 64px;
   }
 
   .dark {
@@ -90,6 +94,7 @@
     --primary-foreground: #17171b;
     --secondary: #27272a;
     --secondary-foreground: #f9f9f9;
+    --secondary-hover: #45454c;
     --muted: #27272a;
     --muted-foreground: #a1a1a9;
     --accent: #27272a;
