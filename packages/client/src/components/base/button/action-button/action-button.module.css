@@ -26,7 +26,33 @@
 }
 
 .loading {
-  color: var(--secondary-foreground);
-  cursor: wait;
-  background-color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-foreground);
+  background-color: var(--primary);
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--transparent);
+  border-top: 4px solid var(--secondary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

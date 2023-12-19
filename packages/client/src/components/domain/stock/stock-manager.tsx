@@ -21,7 +21,6 @@ export const StockManager = ({ data }: StockManagerProps) => {
   const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ManufacturerHandlingProduct | null>(null);
   const [newStock, setNewStock] = useState(0);
@@ -36,10 +35,17 @@ export const StockManager = ({ data }: StockManagerProps) => {
     setSelectedProduct(null);
   };
 
+  // ローディング状態の制御
+  const [isLoading, setIsLoading] = useState(false);
+
   const saveStock = () => {
+    setIsLoading(true);
     //TODO: 在庫数の更新処理をここに追加
-    alert('在庫数を更新しました');
-    closePopup();
+    setTimeout(() => {
+      setIsLoading(false);
+      closePopup();
+      alert('保存しました');
+    }, 2000);
   };
 
   return (
@@ -63,7 +69,7 @@ export const StockManager = ({ data }: StockManagerProps) => {
             </div>
           </PopupContent>
           <PopupFooter>
-            <ActionButton variant='filled' onClick={saveStock}>
+            <ActionButton variant='filled' onClick={saveStock} isLoading={isLoading}>
               保存
             </ActionButton>
           </PopupFooter>
