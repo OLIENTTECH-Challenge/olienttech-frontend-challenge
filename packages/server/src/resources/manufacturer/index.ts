@@ -2,7 +2,7 @@ import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
 import { AppResponse, ManufacturerHandlingProduct } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
 import { HTTPException } from 'hono/http-exception';
-import { Role, verify } from '@/libs/utils/jwt';
+import { Role, sign, verify } from '@/libs/utils/jwt';
 import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
 
 const app = new OpenAPIHono({
@@ -12,6 +12,78 @@ const app = new OpenAPIHono({
     }
   },
 });
+
+app.openapi(
+  createRoute({
+    method: 'post',
+    description: '製造会社でログインする',
+    path: '/signin',
+    request: {
+      body: {
+        content: {
+          'application/json': {
+            schema: z.object({
+              id: z.string(),
+              password: z.string(),
+            }),
+          },
+        },
+      },
+    },
+    responses: {
+      200: {
+        description: 'OK',
+        content: {
+          'application/json': {
+            schema: SuccessResponseSchema(
+              z.object({
+                token: z.string(),
+              }),
+            ),
+          },
+        },
+      },
+      401: {
+        description: 'Unauthorized',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
+          },
+        },
+      },
+      404: {
+        description: 'Not found',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
+          },
+        },
+      },
+    },
+  }),
+  async (c) => {
+    const { id, password } = c.req.valid('json');
+
+    const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
+      where: { id },
+    });
+    if (manufacturerOnPrisma === null) {
+      throw new HTTPException(404, AppResponse.failure('Not found'));
+    }
+
+    // NOTE: 一旦パスワードは固定
+    if (password !== 'hoge') {
+      throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+    }
+
+    const token = await sign({
+      id,
+      role: Role.Manufacturer,
+    });
+
+    return c.jsonT(AppResponse.success({ token }));
+  },
+);
 
 /**
  * 製造会社情報を取得するミドルウェア
