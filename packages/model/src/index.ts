@@ -5,7 +5,7 @@ export * from './result';
  */
 export type Product = {
   /** 商品ID */
-  id: number;
+  id: string;
 
   /** 商品名 */
   name: string;
@@ -25,7 +25,7 @@ export type Product = {
  */
 export type ProductCategory = {
   /** 商品カテゴリID */
-  id: number;
+  id: string;
 
   /** カテゴリ名 */
   name: string;
@@ -36,7 +36,7 @@ export type ProductCategory = {
  */
 export type Manufacturer = {
   /** メーカーID */
-  id: number;
+  id: string;
 
   /** メーカー名 */
   name: string;
@@ -64,7 +64,7 @@ export type ManufacturerHandlingProduct = {
  */
 export type Shop = {
   /** 店舗ID */
-  id: number;
+  id: string;
 
   /** 店舗名 */
   name: string;

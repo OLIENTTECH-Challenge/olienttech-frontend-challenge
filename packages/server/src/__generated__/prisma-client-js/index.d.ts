@@ -1481,28 +1481,18 @@ export namespace Prisma {
 
   export type AggregateShop = {
     _count: ShopCountAggregateOutputType | null
-    _avg: ShopAvgAggregateOutputType | null
-    _sum: ShopSumAggregateOutputType | null
     _min: ShopMinAggregateOutputType | null
     _max: ShopMaxAggregateOutputType | null
   }
 
-  export type ShopAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type ShopSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type ShopMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
   }
 
   export type ShopMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
   }
@@ -1514,14 +1504,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type ShopAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type ShopSumAggregateInputType = {
-    id?: true
-  }
 
   export type ShopMinAggregateInputType = {
     id?: true
@@ -1580,18 +1562,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ShopAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ShopSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ShopMinAggregateInputType
@@ -1622,19 +1592,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ShopCountAggregateInputType | true
-    _avg?: ShopAvgAggregateInputType
-    _sum?: ShopSumAggregateInputType
     _min?: ShopMinAggregateInputType
     _max?: ShopMaxAggregateInputType
   }
 
   export type ShopGroupByOutputType = {
-    id: number
+    id: string
     name: string
     description: string
     _count: ShopCountAggregateOutputType | null
-    _avg: ShopAvgAggregateOutputType | null
-    _sum: ShopSumAggregateOutputType | null
     _min: ShopMinAggregateOutputType | null
     _max: ShopMaxAggregateOutputType | null
   }
@@ -1679,7 +1645,7 @@ export namespace Prisma {
       partnerManufacturers: Prisma.$ShopOnManufacturerPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
       description: string
     }, ExtArgs["result"]["shop"]>
@@ -2061,7 +2027,7 @@ export namespace Prisma {
    * Fields of the Shop model
    */ 
   interface ShopFieldRefs {
-    readonly id: FieldRef<"Shop", 'Int'>
+    readonly id: FieldRef<"Shop", 'String'>
     readonly name: FieldRef<"Shop", 'String'>
     readonly description: FieldRef<"Shop", 'String'>
   }
@@ -2406,28 +2372,18 @@ export namespace Prisma {
 
   export type AggregateManufacturer = {
     _count: ManufacturerCountAggregateOutputType | null
-    _avg: ManufacturerAvgAggregateOutputType | null
-    _sum: ManufacturerSumAggregateOutputType | null
     _min: ManufacturerMinAggregateOutputType | null
     _max: ManufacturerMaxAggregateOutputType | null
   }
 
-  export type ManufacturerAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type ManufacturerSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type ManufacturerMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
   }
 
   export type ManufacturerMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
   }
@@ -2439,14 +2395,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type ManufacturerAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type ManufacturerSumAggregateInputType = {
-    id?: true
-  }
 
   export type ManufacturerMinAggregateInputType = {
     id?: true
@@ -2505,18 +2453,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ManufacturerAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ManufacturerSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ManufacturerMinAggregateInputType
@@ -2547,19 +2483,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ManufacturerCountAggregateInputType | true
-    _avg?: ManufacturerAvgAggregateInputType
-    _sum?: ManufacturerSumAggregateInputType
     _min?: ManufacturerMinAggregateInputType
     _max?: ManufacturerMaxAggregateInputType
   }
 
   export type ManufacturerGroupByOutputType = {
-    id: number
+    id: string
     name: string
     description: string
     _count: ManufacturerCountAggregateOutputType | null
-    _avg: ManufacturerAvgAggregateOutputType | null
-    _sum: ManufacturerSumAggregateOutputType | null
     _min: ManufacturerMinAggregateOutputType | null
     _max: ManufacturerMaxAggregateOutputType | null
   }
@@ -2607,7 +2539,7 @@ export namespace Prisma {
       partnerShops: Prisma.$ShopOnManufacturerPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
       description: string
     }, ExtArgs["result"]["manufacturer"]>
@@ -2991,7 +2923,7 @@ export namespace Prisma {
    * Fields of the Manufacturer model
    */ 
   interface ManufacturerFieldRefs {
-    readonly id: FieldRef<"Manufacturer", 'Int'>
+    readonly id: FieldRef<"Manufacturer", 'String'>
     readonly name: FieldRef<"Manufacturer", 'String'>
     readonly description: FieldRef<"Manufacturer", 'String'>
   }
@@ -3357,30 +3289,18 @@ export namespace Prisma {
 
   export type AggregateShopOnManufacturer = {
     _count: ShopOnManufacturerCountAggregateOutputType | null
-    _avg: ShopOnManufacturerAvgAggregateOutputType | null
-    _sum: ShopOnManufacturerSumAggregateOutputType | null
     _min: ShopOnManufacturerMinAggregateOutputType | null
     _max: ShopOnManufacturerMaxAggregateOutputType | null
   }
 
-  export type ShopOnManufacturerAvgAggregateOutputType = {
-    shopId: number | null
-    manufacturerId: number | null
-  }
-
-  export type ShopOnManufacturerSumAggregateOutputType = {
-    shopId: number | null
-    manufacturerId: number | null
-  }
-
   export type ShopOnManufacturerMinAggregateOutputType = {
-    shopId: number | null
-    manufacturerId: number | null
+    shopId: string | null
+    manufacturerId: string | null
   }
 
   export type ShopOnManufacturerMaxAggregateOutputType = {
-    shopId: number | null
-    manufacturerId: number | null
+    shopId: string | null
+    manufacturerId: string | null
   }
 
   export type ShopOnManufacturerCountAggregateOutputType = {
@@ -3389,16 +3309,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type ShopOnManufacturerAvgAggregateInputType = {
-    shopId?: true
-    manufacturerId?: true
-  }
-
-  export type ShopOnManufacturerSumAggregateInputType = {
-    shopId?: true
-    manufacturerId?: true
-  }
 
   export type ShopOnManufacturerMinAggregateInputType = {
     shopId?: true
@@ -3454,18 +3364,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ShopOnManufacturerAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ShopOnManufacturerSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ShopOnManufacturerMinAggregateInputType
@@ -3496,18 +3394,14 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ShopOnManufacturerCountAggregateInputType | true
-    _avg?: ShopOnManufacturerAvgAggregateInputType
-    _sum?: ShopOnManufacturerSumAggregateInputType
     _min?: ShopOnManufacturerMinAggregateInputType
     _max?: ShopOnManufacturerMaxAggregateInputType
   }
 
   export type ShopOnManufacturerGroupByOutputType = {
-    shopId: number
-    manufacturerId: number
+    shopId: string
+    manufacturerId: string
     _count: ShopOnManufacturerCountAggregateOutputType | null
-    _avg: ShopOnManufacturerAvgAggregateOutputType | null
-    _sum: ShopOnManufacturerSumAggregateOutputType | null
     _min: ShopOnManufacturerMinAggregateOutputType | null
     _max: ShopOnManufacturerMaxAggregateOutputType | null
   }
@@ -3551,8 +3445,8 @@ export namespace Prisma {
       manufacturer: Prisma.$ManufacturerPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      shopId: number
-      manufacturerId: number
+      shopId: string
+      manufacturerId: string
     }, ExtArgs["result"]["shopOnManufacturer"]>
     composites: {}
   }
@@ -3934,8 +3828,8 @@ export namespace Prisma {
    * Fields of the ShopOnManufacturer model
    */ 
   interface ShopOnManufacturerFieldRefs {
-    readonly shopId: FieldRef<"ShopOnManufacturer", 'Int'>
-    readonly manufacturerId: FieldRef<"ShopOnManufacturer", 'Int'>
+    readonly shopId: FieldRef<"ShopOnManufacturer", 'String'>
+    readonly manufacturerId: FieldRef<"ShopOnManufacturer", 'String'>
   }
     
 
@@ -4257,28 +4151,18 @@ export namespace Prisma {
 
   export type AggregateProduct = {
     _count: ProductCountAggregateOutputType | null
-    _avg: ProductAvgAggregateOutputType | null
-    _sum: ProductSumAggregateOutputType | null
     _min: ProductMinAggregateOutputType | null
     _max: ProductMaxAggregateOutputType | null
   }
 
-  export type ProductAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type ProductSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type ProductMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
   }
 
   export type ProductMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     description: string | null
   }
@@ -4290,14 +4174,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type ProductAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type ProductSumAggregateInputType = {
-    id?: true
-  }
 
   export type ProductMinAggregateInputType = {
     id?: true
@@ -4356,18 +4232,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ProductAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ProductSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProductMinAggregateInputType
@@ -4398,19 +4262,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProductCountAggregateInputType | true
-    _avg?: ProductAvgAggregateInputType
-    _sum?: ProductSumAggregateInputType
     _min?: ProductMinAggregateInputType
     _max?: ProductMaxAggregateInputType
   }
 
   export type ProductGroupByOutputType = {
-    id: number
+    id: string
     name: string
     description: string
     _count: ProductCountAggregateOutputType | null
-    _avg: ProductAvgAggregateOutputType | null
-    _sum: ProductSumAggregateOutputType | null
     _min: ProductMinAggregateOutputType | null
     _max: ProductMaxAggregateOutputType | null
   }
@@ -4458,7 +4318,7 @@ export namespace Prisma {
       manufacturers: Prisma.$ManufacturerHandlingProductsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
       description: string
     }, ExtArgs["result"]["product"]>
@@ -4842,7 +4702,7 @@ export namespace Prisma {
    * Fields of the Product model
    */ 
   interface ProductFieldRefs {
-    readonly id: FieldRef<"Product", 'Int'>
+    readonly id: FieldRef<"Product", 'String'>
     readonly name: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
   }
@@ -5217,29 +5077,25 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsAvgAggregateOutputType = {
     id: number | null
     stock: number | null
-    productId: number | null
-    manufacturerId: number | null
   }
 
   export type ManufacturerHandlingProductsSumAggregateOutputType = {
     id: number | null
     stock: number | null
-    productId: number | null
-    manufacturerId: number | null
   }
 
   export type ManufacturerHandlingProductsMinAggregateOutputType = {
     id: number | null
     stock: number | null
-    productId: number | null
-    manufacturerId: number | null
+    productId: string | null
+    manufacturerId: string | null
   }
 
   export type ManufacturerHandlingProductsMaxAggregateOutputType = {
     id: number | null
     stock: number | null
-    productId: number | null
-    manufacturerId: number | null
+    productId: string | null
+    manufacturerId: string | null
   }
 
   export type ManufacturerHandlingProductsCountAggregateOutputType = {
@@ -5254,15 +5110,11 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsAvgAggregateInputType = {
     id?: true
     stock?: true
-    productId?: true
-    manufacturerId?: true
   }
 
   export type ManufacturerHandlingProductsSumAggregateInputType = {
     id?: true
     stock?: true
-    productId?: true
-    manufacturerId?: true
   }
 
   export type ManufacturerHandlingProductsMinAggregateInputType = {
@@ -5376,8 +5228,8 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsGroupByOutputType = {
     id: number
     stock: number
-    productId: number
-    manufacturerId: number
+    productId: string
+    manufacturerId: string
     _count: ManufacturerHandlingProductsCountAggregateOutputType | null
     _avg: ManufacturerHandlingProductsAvgAggregateOutputType | null
     _sum: ManufacturerHandlingProductsSumAggregateOutputType | null
@@ -5430,8 +5282,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       stock: number
-      productId: number
-      manufacturerId: number
+      productId: string
+      manufacturerId: string
     }, ExtArgs["result"]["manufacturerHandlingProducts"]>
     composites: {}
   }
@@ -5815,8 +5667,8 @@ export namespace Prisma {
   interface ManufacturerHandlingProductsFieldRefs {
     readonly id: FieldRef<"ManufacturerHandlingProducts", 'Int'>
     readonly stock: FieldRef<"ManufacturerHandlingProducts", 'Int'>
-    readonly productId: FieldRef<"ManufacturerHandlingProducts", 'Int'>
-    readonly manufacturerId: FieldRef<"ManufacturerHandlingProducts", 'Int'>
+    readonly productId: FieldRef<"ManufacturerHandlingProducts", 'String'>
+    readonly manufacturerId: FieldRef<"ManufacturerHandlingProducts", 'String'>
   }
     
 
@@ -6138,27 +5990,17 @@ export namespace Prisma {
 
   export type AggregateProductCategory = {
     _count: ProductCategoryCountAggregateOutputType | null
-    _avg: ProductCategoryAvgAggregateOutputType | null
-    _sum: ProductCategorySumAggregateOutputType | null
     _min: ProductCategoryMinAggregateOutputType | null
     _max: ProductCategoryMaxAggregateOutputType | null
   }
 
-  export type ProductCategoryAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type ProductCategorySumAggregateOutputType = {
-    id: number | null
-  }
-
   export type ProductCategoryMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
   }
 
   export type ProductCategoryMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
   }
 
@@ -6168,14 +6010,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type ProductCategoryAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type ProductCategorySumAggregateInputType = {
-    id?: true
-  }
 
   export type ProductCategoryMinAggregateInputType = {
     id?: true
@@ -6231,18 +6065,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ProductCategoryAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ProductCategorySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProductCategoryMinAggregateInputType
@@ -6273,18 +6095,14 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProductCategoryCountAggregateInputType | true
-    _avg?: ProductCategoryAvgAggregateInputType
-    _sum?: ProductCategorySumAggregateInputType
     _min?: ProductCategoryMinAggregateInputType
     _max?: ProductCategoryMaxAggregateInputType
   }
 
   export type ProductCategoryGroupByOutputType = {
-    id: number
+    id: string
     name: string
     _count: ProductCategoryCountAggregateOutputType | null
-    _avg: ProductCategoryAvgAggregateOutputType | null
-    _sum: ProductCategorySumAggregateOutputType | null
     _min: ProductCategoryMinAggregateOutputType | null
     _max: ProductCategoryMaxAggregateOutputType | null
   }
@@ -6327,7 +6145,7 @@ export namespace Prisma {
       products: Prisma.$ProductOnProductCategoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
     }, ExtArgs["result"]["productCategory"]>
     composites: {}
@@ -6708,7 +6526,7 @@ export namespace Prisma {
    * Fields of the ProductCategory model
    */ 
   interface ProductCategoryFieldRefs {
-    readonly id: FieldRef<"ProductCategory", 'Int'>
+    readonly id: FieldRef<"ProductCategory", 'String'>
     readonly name: FieldRef<"ProductCategory", 'String'>
   }
     
@@ -7052,30 +6870,18 @@ export namespace Prisma {
 
   export type AggregateProductOnProductCategory = {
     _count: ProductOnProductCategoryCountAggregateOutputType | null
-    _avg: ProductOnProductCategoryAvgAggregateOutputType | null
-    _sum: ProductOnProductCategorySumAggregateOutputType | null
     _min: ProductOnProductCategoryMinAggregateOutputType | null
     _max: ProductOnProductCategoryMaxAggregateOutputType | null
   }
 
-  export type ProductOnProductCategoryAvgAggregateOutputType = {
-    productId: number | null
-    categoryId: number | null
-  }
-
-  export type ProductOnProductCategorySumAggregateOutputType = {
-    productId: number | null
-    categoryId: number | null
-  }
-
   export type ProductOnProductCategoryMinAggregateOutputType = {
-    productId: number | null
-    categoryId: number | null
+    productId: string | null
+    categoryId: string | null
   }
 
   export type ProductOnProductCategoryMaxAggregateOutputType = {
-    productId: number | null
-    categoryId: number | null
+    productId: string | null
+    categoryId: string | null
   }
 
   export type ProductOnProductCategoryCountAggregateOutputType = {
@@ -7084,16 +6890,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type ProductOnProductCategoryAvgAggregateInputType = {
-    productId?: true
-    categoryId?: true
-  }
-
-  export type ProductOnProductCategorySumAggregateInputType = {
-    productId?: true
-    categoryId?: true
-  }
 
   export type ProductOnProductCategoryMinAggregateInputType = {
     productId?: true
@@ -7149,18 +6945,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ProductOnProductCategoryAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ProductOnProductCategorySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProductOnProductCategoryMinAggregateInputType
@@ -7191,18 +6975,14 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProductOnProductCategoryCountAggregateInputType | true
-    _avg?: ProductOnProductCategoryAvgAggregateInputType
-    _sum?: ProductOnProductCategorySumAggregateInputType
     _min?: ProductOnProductCategoryMinAggregateInputType
     _max?: ProductOnProductCategoryMaxAggregateInputType
   }
 
   export type ProductOnProductCategoryGroupByOutputType = {
-    productId: number
-    categoryId: number
+    productId: string
+    categoryId: string
     _count: ProductOnProductCategoryCountAggregateOutputType | null
-    _avg: ProductOnProductCategoryAvgAggregateOutputType | null
-    _sum: ProductOnProductCategorySumAggregateOutputType | null
     _min: ProductOnProductCategoryMinAggregateOutputType | null
     _max: ProductOnProductCategoryMaxAggregateOutputType | null
   }
@@ -7246,8 +7026,8 @@ export namespace Prisma {
       category: Prisma.$ProductCategoryPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      productId: number
-      categoryId: number
+      productId: string
+      categoryId: string
     }, ExtArgs["result"]["productOnProductCategory"]>
     composites: {}
   }
@@ -7629,8 +7409,8 @@ export namespace Prisma {
    * Fields of the ProductOnProductCategory model
    */ 
   interface ProductOnProductCategoryFieldRefs {
-    readonly productId: FieldRef<"ProductOnProductCategory", 'Int'>
-    readonly categoryId: FieldRef<"ProductOnProductCategory", 'Int'>
+    readonly productId: FieldRef<"ProductOnProductCategory", 'String'>
+    readonly categoryId: FieldRef<"ProductOnProductCategory", 'String'>
   }
     
 
@@ -8032,16 +7812,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'String'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'Int'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
@@ -8059,7 +7839,7 @@ export namespace Prisma {
     AND?: ShopWhereInput | ShopWhereInput[]
     OR?: ShopWhereInput[]
     NOT?: ShopWhereInput | ShopWhereInput[]
-    id?: IntFilter<"Shop"> | number
+    id?: StringFilter<"Shop"> | string
     name?: StringFilter<"Shop"> | string
     description?: StringFilter<"Shop"> | string
     partnerManufacturers?: ShopOnManufacturerListRelationFilter
@@ -8073,7 +7853,7 @@ export namespace Prisma {
   }
 
   export type ShopWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: ShopWhereInput | ShopWhereInput[]
     OR?: ShopWhereInput[]
     NOT?: ShopWhereInput | ShopWhereInput[]
@@ -8087,17 +7867,15 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     _count?: ShopCountOrderByAggregateInput
-    _avg?: ShopAvgOrderByAggregateInput
     _max?: ShopMaxOrderByAggregateInput
     _min?: ShopMinOrderByAggregateInput
-    _sum?: ShopSumOrderByAggregateInput
   }
 
   export type ShopScalarWhereWithAggregatesInput = {
     AND?: ShopScalarWhereWithAggregatesInput | ShopScalarWhereWithAggregatesInput[]
     OR?: ShopScalarWhereWithAggregatesInput[]
     NOT?: ShopScalarWhereWithAggregatesInput | ShopScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Shop"> | number
+    id?: StringWithAggregatesFilter<"Shop"> | string
     name?: StringWithAggregatesFilter<"Shop"> | string
     description?: StringWithAggregatesFilter<"Shop"> | string
   }
@@ -8106,7 +7884,7 @@ export namespace Prisma {
     AND?: ManufacturerWhereInput | ManufacturerWhereInput[]
     OR?: ManufacturerWhereInput[]
     NOT?: ManufacturerWhereInput | ManufacturerWhereInput[]
-    id?: IntFilter<"Manufacturer"> | number
+    id?: StringFilter<"Manufacturer"> | string
     name?: StringFilter<"Manufacturer"> | string
     description?: StringFilter<"Manufacturer"> | string
     handlingProducts?: ManufacturerHandlingProductsListRelationFilter
@@ -8122,7 +7900,7 @@ export namespace Prisma {
   }
 
   export type ManufacturerWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: ManufacturerWhereInput | ManufacturerWhereInput[]
     OR?: ManufacturerWhereInput[]
     NOT?: ManufacturerWhereInput | ManufacturerWhereInput[]
@@ -8137,17 +7915,15 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     _count?: ManufacturerCountOrderByAggregateInput
-    _avg?: ManufacturerAvgOrderByAggregateInput
     _max?: ManufacturerMaxOrderByAggregateInput
     _min?: ManufacturerMinOrderByAggregateInput
-    _sum?: ManufacturerSumOrderByAggregateInput
   }
 
   export type ManufacturerScalarWhereWithAggregatesInput = {
     AND?: ManufacturerScalarWhereWithAggregatesInput | ManufacturerScalarWhereWithAggregatesInput[]
     OR?: ManufacturerScalarWhereWithAggregatesInput[]
     NOT?: ManufacturerScalarWhereWithAggregatesInput | ManufacturerScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Manufacturer"> | number
+    id?: StringWithAggregatesFilter<"Manufacturer"> | string
     name?: StringWithAggregatesFilter<"Manufacturer"> | string
     description?: StringWithAggregatesFilter<"Manufacturer"> | string
   }
@@ -8156,8 +7932,8 @@ export namespace Prisma {
     AND?: ShopOnManufacturerWhereInput | ShopOnManufacturerWhereInput[]
     OR?: ShopOnManufacturerWhereInput[]
     NOT?: ShopOnManufacturerWhereInput | ShopOnManufacturerWhereInput[]
-    shopId?: IntFilter<"ShopOnManufacturer"> | number
-    manufacturerId?: IntFilter<"ShopOnManufacturer"> | number
+    shopId?: StringFilter<"ShopOnManufacturer"> | string
+    manufacturerId?: StringFilter<"ShopOnManufacturer"> | string
     shop?: XOR<ShopRelationFilter, ShopWhereInput>
     manufacturer?: XOR<ManufacturerRelationFilter, ManufacturerWhereInput>
   }
@@ -8174,8 +7950,8 @@ export namespace Prisma {
     AND?: ShopOnManufacturerWhereInput | ShopOnManufacturerWhereInput[]
     OR?: ShopOnManufacturerWhereInput[]
     NOT?: ShopOnManufacturerWhereInput | ShopOnManufacturerWhereInput[]
-    shopId?: IntFilter<"ShopOnManufacturer"> | number
-    manufacturerId?: IntFilter<"ShopOnManufacturer"> | number
+    shopId?: StringFilter<"ShopOnManufacturer"> | string
+    manufacturerId?: StringFilter<"ShopOnManufacturer"> | string
     shop?: XOR<ShopRelationFilter, ShopWhereInput>
     manufacturer?: XOR<ManufacturerRelationFilter, ManufacturerWhereInput>
   }, "shopId_manufacturerId">
@@ -8184,25 +7960,23 @@ export namespace Prisma {
     shopId?: SortOrder
     manufacturerId?: SortOrder
     _count?: ShopOnManufacturerCountOrderByAggregateInput
-    _avg?: ShopOnManufacturerAvgOrderByAggregateInput
     _max?: ShopOnManufacturerMaxOrderByAggregateInput
     _min?: ShopOnManufacturerMinOrderByAggregateInput
-    _sum?: ShopOnManufacturerSumOrderByAggregateInput
   }
 
   export type ShopOnManufacturerScalarWhereWithAggregatesInput = {
     AND?: ShopOnManufacturerScalarWhereWithAggregatesInput | ShopOnManufacturerScalarWhereWithAggregatesInput[]
     OR?: ShopOnManufacturerScalarWhereWithAggregatesInput[]
     NOT?: ShopOnManufacturerScalarWhereWithAggregatesInput | ShopOnManufacturerScalarWhereWithAggregatesInput[]
-    shopId?: IntWithAggregatesFilter<"ShopOnManufacturer"> | number
-    manufacturerId?: IntWithAggregatesFilter<"ShopOnManufacturer"> | number
+    shopId?: StringWithAggregatesFilter<"ShopOnManufacturer"> | string
+    manufacturerId?: StringWithAggregatesFilter<"ShopOnManufacturer"> | string
   }
 
   export type ProductWhereInput = {
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
-    id?: IntFilter<"Product"> | number
+    id?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     categories?: ProductOnProductCategoryListRelationFilter
@@ -8218,7 +7992,7 @@ export namespace Prisma {
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     name?: string
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
@@ -8233,17 +8007,15 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     _count?: ProductCountOrderByAggregateInput
-    _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
     _min?: ProductMinOrderByAggregateInput
-    _sum?: ProductSumOrderByAggregateInput
   }
 
   export type ProductScalarWhereWithAggregatesInput = {
     AND?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
     OR?: ProductScalarWhereWithAggregatesInput[]
     NOT?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Product"> | number
+    id?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
   }
@@ -8254,8 +8026,8 @@ export namespace Prisma {
     NOT?: ManufacturerHandlingProductsWhereInput | ManufacturerHandlingProductsWhereInput[]
     id?: IntFilter<"ManufacturerHandlingProducts"> | number
     stock?: IntFilter<"ManufacturerHandlingProducts"> | number
-    productId?: IntFilter<"ManufacturerHandlingProducts"> | number
-    manufacturerId?: IntFilter<"ManufacturerHandlingProducts"> | number
+    productId?: StringFilter<"ManufacturerHandlingProducts"> | string
+    manufacturerId?: StringFilter<"ManufacturerHandlingProducts"> | string
     product?: XOR<ProductRelationFilter, ProductWhereInput>
     manufacturer?: XOR<ManufacturerRelationFilter, ManufacturerWhereInput>
   }
@@ -8275,8 +8047,8 @@ export namespace Prisma {
     OR?: ManufacturerHandlingProductsWhereInput[]
     NOT?: ManufacturerHandlingProductsWhereInput | ManufacturerHandlingProductsWhereInput[]
     stock?: IntFilter<"ManufacturerHandlingProducts"> | number
-    productId?: IntFilter<"ManufacturerHandlingProducts"> | number
-    manufacturerId?: IntFilter<"ManufacturerHandlingProducts"> | number
+    productId?: StringFilter<"ManufacturerHandlingProducts"> | string
+    manufacturerId?: StringFilter<"ManufacturerHandlingProducts"> | string
     product?: XOR<ProductRelationFilter, ProductWhereInput>
     manufacturer?: XOR<ManufacturerRelationFilter, ManufacturerWhereInput>
   }, "id">
@@ -8299,15 +8071,15 @@ export namespace Prisma {
     NOT?: ManufacturerHandlingProductsScalarWhereWithAggregatesInput | ManufacturerHandlingProductsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"ManufacturerHandlingProducts"> | number
     stock?: IntWithAggregatesFilter<"ManufacturerHandlingProducts"> | number
-    productId?: IntWithAggregatesFilter<"ManufacturerHandlingProducts"> | number
-    manufacturerId?: IntWithAggregatesFilter<"ManufacturerHandlingProducts"> | number
+    productId?: StringWithAggregatesFilter<"ManufacturerHandlingProducts"> | string
+    manufacturerId?: StringWithAggregatesFilter<"ManufacturerHandlingProducts"> | string
   }
 
   export type ProductCategoryWhereInput = {
     AND?: ProductCategoryWhereInput | ProductCategoryWhereInput[]
     OR?: ProductCategoryWhereInput[]
     NOT?: ProductCategoryWhereInput | ProductCategoryWhereInput[]
-    id?: IntFilter<"ProductCategory"> | number
+    id?: StringFilter<"ProductCategory"> | string
     name?: StringFilter<"ProductCategory"> | string
     products?: ProductOnProductCategoryListRelationFilter
   }
@@ -8319,7 +8091,7 @@ export namespace Prisma {
   }
 
   export type ProductCategoryWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     name?: string
     AND?: ProductCategoryWhereInput | ProductCategoryWhereInput[]
     OR?: ProductCategoryWhereInput[]
@@ -8331,17 +8103,15 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     _count?: ProductCategoryCountOrderByAggregateInput
-    _avg?: ProductCategoryAvgOrderByAggregateInput
     _max?: ProductCategoryMaxOrderByAggregateInput
     _min?: ProductCategoryMinOrderByAggregateInput
-    _sum?: ProductCategorySumOrderByAggregateInput
   }
 
   export type ProductCategoryScalarWhereWithAggregatesInput = {
     AND?: ProductCategoryScalarWhereWithAggregatesInput | ProductCategoryScalarWhereWithAggregatesInput[]
     OR?: ProductCategoryScalarWhereWithAggregatesInput[]
     NOT?: ProductCategoryScalarWhereWithAggregatesInput | ProductCategoryScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"ProductCategory"> | number
+    id?: StringWithAggregatesFilter<"ProductCategory"> | string
     name?: StringWithAggregatesFilter<"ProductCategory"> | string
   }
 
@@ -8349,8 +8119,8 @@ export namespace Prisma {
     AND?: ProductOnProductCategoryWhereInput | ProductOnProductCategoryWhereInput[]
     OR?: ProductOnProductCategoryWhereInput[]
     NOT?: ProductOnProductCategoryWhereInput | ProductOnProductCategoryWhereInput[]
-    productId?: IntFilter<"ProductOnProductCategory"> | number
-    categoryId?: IntFilter<"ProductOnProductCategory"> | number
+    productId?: StringFilter<"ProductOnProductCategory"> | string
+    categoryId?: StringFilter<"ProductOnProductCategory"> | string
     product?: XOR<ProductRelationFilter, ProductWhereInput>
     category?: XOR<ProductCategoryRelationFilter, ProductCategoryWhereInput>
   }
@@ -8367,8 +8137,8 @@ export namespace Prisma {
     AND?: ProductOnProductCategoryWhereInput | ProductOnProductCategoryWhereInput[]
     OR?: ProductOnProductCategoryWhereInput[]
     NOT?: ProductOnProductCategoryWhereInput | ProductOnProductCategoryWhereInput[]
-    productId?: IntFilter<"ProductOnProductCategory"> | number
-    categoryId?: IntFilter<"ProductOnProductCategory"> | number
+    productId?: StringFilter<"ProductOnProductCategory"> | string
+    categoryId?: StringFilter<"ProductOnProductCategory"> | string
     product?: XOR<ProductRelationFilter, ProductWhereInput>
     category?: XOR<ProductCategoryRelationFilter, ProductCategoryWhereInput>
   }, "productId_categoryId">
@@ -8377,58 +8147,60 @@ export namespace Prisma {
     productId?: SortOrder
     categoryId?: SortOrder
     _count?: ProductOnProductCategoryCountOrderByAggregateInput
-    _avg?: ProductOnProductCategoryAvgOrderByAggregateInput
     _max?: ProductOnProductCategoryMaxOrderByAggregateInput
     _min?: ProductOnProductCategoryMinOrderByAggregateInput
-    _sum?: ProductOnProductCategorySumOrderByAggregateInput
   }
 
   export type ProductOnProductCategoryScalarWhereWithAggregatesInput = {
     AND?: ProductOnProductCategoryScalarWhereWithAggregatesInput | ProductOnProductCategoryScalarWhereWithAggregatesInput[]
     OR?: ProductOnProductCategoryScalarWhereWithAggregatesInput[]
     NOT?: ProductOnProductCategoryScalarWhereWithAggregatesInput | ProductOnProductCategoryScalarWhereWithAggregatesInput[]
-    productId?: IntWithAggregatesFilter<"ProductOnProductCategory"> | number
-    categoryId?: IntWithAggregatesFilter<"ProductOnProductCategory"> | number
+    productId?: StringWithAggregatesFilter<"ProductOnProductCategory"> | string
+    categoryId?: StringWithAggregatesFilter<"ProductOnProductCategory"> | string
   }
 
   export type ShopCreateInput = {
+    id?: string
     name: string
     description: string
     partnerManufacturers?: ShopOnManufacturerCreateNestedManyWithoutShopInput
   }
 
   export type ShopUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     description: string
     partnerManufacturers?: ShopOnManufacturerUncheckedCreateNestedManyWithoutShopInput
   }
 
   export type ShopUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerManufacturers?: ShopOnManufacturerUpdateManyWithoutShopNestedInput
   }
 
   export type ShopUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerManufacturers?: ShopOnManufacturerUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type ShopUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShopUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerCreateInput = {
+    id?: string
     name: string
     description: string
     handlingProducts?: ManufacturerHandlingProductsCreateNestedManyWithoutManufacturerInput
@@ -8436,7 +8208,7 @@ export namespace Prisma {
   }
 
   export type ManufacturerUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     description: string
     handlingProducts?: ManufacturerHandlingProductsUncheckedCreateNestedManyWithoutManufacturerInput
@@ -8444,6 +8216,7 @@ export namespace Prisma {
   }
 
   export type ManufacturerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUpdateManyWithoutManufacturerNestedInput
@@ -8451,7 +8224,7 @@ export namespace Prisma {
   }
 
   export type ManufacturerUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUncheckedUpdateManyWithoutManufacturerNestedInput
@@ -8459,12 +8232,13 @@ export namespace Prisma {
   }
 
   export type ManufacturerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
@@ -8475,8 +8249,8 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerUncheckedCreateInput = {
-    shopId: number
-    manufacturerId: number
+    shopId: string
+    manufacturerId: string
   }
 
   export type ShopOnManufacturerUpdateInput = {
@@ -8485,8 +8259,8 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerUncheckedUpdateInput = {
-    shopId?: IntFieldUpdateOperationsInput | number
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    shopId?: StringFieldUpdateOperationsInput | string
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShopOnManufacturerUpdateManyMutationInput = {
@@ -8494,11 +8268,12 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerUncheckedUpdateManyInput = {
-    shopId?: IntFieldUpdateOperationsInput | number
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    shopId?: StringFieldUpdateOperationsInput | string
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductCreateInput = {
+    id?: string
     name: string
     description: string
     categories?: ProductOnProductCategoryCreateNestedManyWithoutProductInput
@@ -8506,7 +8281,7 @@ export namespace Prisma {
   }
 
   export type ProductUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     description: string
     categories?: ProductOnProductCategoryUncheckedCreateNestedManyWithoutProductInput
@@ -8514,6 +8289,7 @@ export namespace Prisma {
   }
 
   export type ProductUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     categories?: ProductOnProductCategoryUpdateManyWithoutProductNestedInput
@@ -8521,7 +8297,7 @@ export namespace Prisma {
   }
 
   export type ProductUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     categories?: ProductOnProductCategoryUncheckedUpdateManyWithoutProductNestedInput
@@ -8529,12 +8305,13 @@ export namespace Prisma {
   }
 
   export type ProductUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
@@ -8548,8 +8325,8 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedCreateInput = {
     id?: number
     stock: number
-    productId: number
-    manufacturerId: number
+    productId: string
+    manufacturerId: string
   }
 
   export type ManufacturerHandlingProductsUpdateInput = {
@@ -8561,8 +8338,8 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
-    productId?: IntFieldUpdateOperationsInput | number
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUpdateManyMutationInput = {
@@ -8572,38 +8349,41 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
-    productId?: IntFieldUpdateOperationsInput | number
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductCategoryCreateInput = {
+    id?: string
     name: string
     products?: ProductOnProductCategoryCreateNestedManyWithoutCategoryInput
   }
 
   export type ProductCategoryUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     products?: ProductOnProductCategoryUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type ProductCategoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     products?: ProductOnProductCategoryUpdateManyWithoutCategoryNestedInput
   }
 
   export type ProductCategoryUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     products?: ProductOnProductCategoryUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type ProductCategoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductCategoryUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
@@ -8613,8 +8393,8 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryUncheckedCreateInput = {
-    productId: number
-    categoryId: number
+    productId: string
+    categoryId: string
   }
 
   export type ProductOnProductCategoryUpdateInput = {
@@ -8623,8 +8403,8 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryUncheckedUpdateInput = {
-    productId?: IntFieldUpdateOperationsInput | number
-    categoryId?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductOnProductCategoryUpdateManyMutationInput = {
@@ -8632,19 +8412,8 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryUncheckedUpdateManyInput = {
-    productId?: IntFieldUpdateOperationsInput | number
-    categoryId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    productId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -8677,10 +8446,6 @@ export namespace Prisma {
     description?: SortOrder
   }
 
-  export type ShopAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type ShopMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -8691,26 +8456,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-  }
-
-  export type ShopSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -8746,10 +8491,6 @@ export namespace Prisma {
     description?: SortOrder
   }
 
-  export type ManufacturerAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type ManufacturerMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -8760,10 +8501,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-  }
-
-  export type ManufacturerSumOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type ShopRelationFilter = {
@@ -8777,16 +8514,11 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerShopIdManufacturerIdCompoundUniqueInput = {
-    shopId: number
-    manufacturerId: number
+    shopId: string
+    manufacturerId: string
   }
 
   export type ShopOnManufacturerCountOrderByAggregateInput = {
-    shopId?: SortOrder
-    manufacturerId?: SortOrder
-  }
-
-  export type ShopOnManufacturerAvgOrderByAggregateInput = {
     shopId?: SortOrder
     manufacturerId?: SortOrder
   }
@@ -8797,11 +8529,6 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerMinOrderByAggregateInput = {
-    shopId?: SortOrder
-    manufacturerId?: SortOrder
-  }
-
-  export type ShopOnManufacturerSumOrderByAggregateInput = {
     shopId?: SortOrder
     manufacturerId?: SortOrder
   }
@@ -8822,10 +8549,6 @@ export namespace Prisma {
     description?: SortOrder
   }
 
-  export type ProductAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -8838,8 +8561,15 @@ export namespace Prisma {
     description?: SortOrder
   }
 
-  export type ProductSumOrderByAggregateInput = {
-    id?: SortOrder
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type ProductRelationFilter = {
@@ -8857,8 +8587,6 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsAvgOrderByAggregateInput = {
     id?: SortOrder
     stock?: SortOrder
-    productId?: SortOrder
-    manufacturerId?: SortOrder
   }
 
   export type ManufacturerHandlingProductsMaxOrderByAggregateInput = {
@@ -8878,17 +8606,27 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsSumOrderByAggregateInput = {
     id?: SortOrder
     stock?: SortOrder
-    productId?: SortOrder
-    manufacturerId?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type ProductCategoryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-  }
-
-  export type ProductCategoryAvgOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type ProductCategoryMaxOrderByAggregateInput = {
@@ -8901,26 +8639,17 @@ export namespace Prisma {
     name?: SortOrder
   }
 
-  export type ProductCategorySumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type ProductCategoryRelationFilter = {
     is?: ProductCategoryWhereInput
     isNot?: ProductCategoryWhereInput
   }
 
   export type ProductOnProductCategoryProductIdCategoryIdCompoundUniqueInput = {
-    productId: number
-    categoryId: number
+    productId: string
+    categoryId: string
   }
 
   export type ProductOnProductCategoryCountOrderByAggregateInput = {
-    productId?: SortOrder
-    categoryId?: SortOrder
-  }
-
-  export type ProductOnProductCategoryAvgOrderByAggregateInput = {
     productId?: SortOrder
     categoryId?: SortOrder
   }
@@ -8931,11 +8660,6 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryMinOrderByAggregateInput = {
-    productId?: SortOrder
-    categoryId?: SortOrder
-  }
-
-  export type ProductOnProductCategorySumOrderByAggregateInput = {
     productId?: SortOrder
     categoryId?: SortOrder
   }
@@ -8967,14 +8691,6 @@ export namespace Prisma {
     update?: ShopOnManufacturerUpdateWithWhereUniqueWithoutShopInput | ShopOnManufacturerUpdateWithWhereUniqueWithoutShopInput[]
     updateMany?: ShopOnManufacturerUpdateManyWithWhereWithoutShopInput | ShopOnManufacturerUpdateManyWithWhereWithoutShopInput[]
     deleteMany?: ShopOnManufacturerScalarWhereInput | ShopOnManufacturerScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type ShopOnManufacturerUncheckedUpdateManyWithoutShopNestedInput = {
@@ -9182,6 +8898,14 @@ export namespace Prisma {
     connect?: ManufacturerWhereUniqueInput
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type ProductUpdateOneRequiredWithoutManufacturersNestedInput = {
     create?: XOR<ProductCreateWithoutManufacturersInput, ProductUncheckedCreateWithoutManufacturersInput>
     connectOrCreate?: ProductCreateOrConnectWithoutManufacturersInput
@@ -9264,17 +8988,6 @@ export namespace Prisma {
     update?: XOR<XOR<ProductCategoryUpdateToOneWithWhereWithoutProductsInput, ProductCategoryUpdateWithoutProductsInput>, ProductCategoryUncheckedUpdateWithoutProductsInput>
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -9287,6 +9000,34 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9316,29 +9057,12 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type ShopOnManufacturerCreateWithoutShopInput = {
     manufacturer: ManufacturerCreateNestedOneWithoutPartnerShopsInput
   }
 
   export type ShopOnManufacturerUncheckedCreateWithoutShopInput = {
-    manufacturerId: number
+    manufacturerId: string
   }
 
   export type ShopOnManufacturerCreateOrConnectWithoutShopInput = {
@@ -9366,8 +9090,8 @@ export namespace Prisma {
     AND?: ShopOnManufacturerScalarWhereInput | ShopOnManufacturerScalarWhereInput[]
     OR?: ShopOnManufacturerScalarWhereInput[]
     NOT?: ShopOnManufacturerScalarWhereInput | ShopOnManufacturerScalarWhereInput[]
-    shopId?: IntFilter<"ShopOnManufacturer"> | number
-    manufacturerId?: IntFilter<"ShopOnManufacturer"> | number
+    shopId?: StringFilter<"ShopOnManufacturer"> | string
+    manufacturerId?: StringFilter<"ShopOnManufacturer"> | string
   }
 
   export type ManufacturerHandlingProductsCreateWithoutManufacturerInput = {
@@ -9378,7 +9102,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedCreateWithoutManufacturerInput = {
     id?: number
     stock: number
-    productId: number
+    productId: string
   }
 
   export type ManufacturerHandlingProductsCreateOrConnectWithoutManufacturerInput = {
@@ -9391,7 +9115,7 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerUncheckedCreateWithoutManufacturerInput = {
-    shopId: number
+    shopId: string
   }
 
   export type ShopOnManufacturerCreateOrConnectWithoutManufacturerInput = {
@@ -9421,8 +9145,8 @@ export namespace Prisma {
     NOT?: ManufacturerHandlingProductsScalarWhereInput | ManufacturerHandlingProductsScalarWhereInput[]
     id?: IntFilter<"ManufacturerHandlingProducts"> | number
     stock?: IntFilter<"ManufacturerHandlingProducts"> | number
-    productId?: IntFilter<"ManufacturerHandlingProducts"> | number
-    manufacturerId?: IntFilter<"ManufacturerHandlingProducts"> | number
+    productId?: StringFilter<"ManufacturerHandlingProducts"> | string
+    manufacturerId?: StringFilter<"ManufacturerHandlingProducts"> | string
   }
 
   export type ShopOnManufacturerUpsertWithWhereUniqueWithoutManufacturerInput = {
@@ -9442,12 +9166,13 @@ export namespace Prisma {
   }
 
   export type ShopCreateWithoutPartnerManufacturersInput = {
+    id?: string
     name: string
     description: string
   }
 
   export type ShopUncheckedCreateWithoutPartnerManufacturersInput = {
-    id?: number
+    id?: string
     name: string
     description: string
   }
@@ -9458,13 +9183,14 @@ export namespace Prisma {
   }
 
   export type ManufacturerCreateWithoutPartnerShopsInput = {
+    id?: string
     name: string
     description: string
     handlingProducts?: ManufacturerHandlingProductsCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerUncheckedCreateWithoutPartnerShopsInput = {
-    id?: number
+    id?: string
     name: string
     description: string
     handlingProducts?: ManufacturerHandlingProductsUncheckedCreateNestedManyWithoutManufacturerInput
@@ -9487,12 +9213,13 @@ export namespace Prisma {
   }
 
   export type ShopUpdateWithoutPartnerManufacturersInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShopUncheckedUpdateWithoutPartnerManufacturersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
@@ -9509,13 +9236,14 @@ export namespace Prisma {
   }
 
   export type ManufacturerUpdateWithoutPartnerShopsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ManufacturerUncheckedUpdateWithoutPartnerShopsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUncheckedUpdateManyWithoutManufacturerNestedInput
@@ -9526,7 +9254,7 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryUncheckedCreateWithoutProductInput = {
-    categoryId: number
+    categoryId: string
   }
 
   export type ProductOnProductCategoryCreateOrConnectWithoutProductInput = {
@@ -9542,7 +9270,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedCreateWithoutProductInput = {
     id?: number
     stock: number
-    manufacturerId: number
+    manufacturerId: string
   }
 
   export type ManufacturerHandlingProductsCreateOrConnectWithoutProductInput = {
@@ -9570,8 +9298,8 @@ export namespace Prisma {
     AND?: ProductOnProductCategoryScalarWhereInput | ProductOnProductCategoryScalarWhereInput[]
     OR?: ProductOnProductCategoryScalarWhereInput[]
     NOT?: ProductOnProductCategoryScalarWhereInput | ProductOnProductCategoryScalarWhereInput[]
-    productId?: IntFilter<"ProductOnProductCategory"> | number
-    categoryId?: IntFilter<"ProductOnProductCategory"> | number
+    productId?: StringFilter<"ProductOnProductCategory"> | string
+    categoryId?: StringFilter<"ProductOnProductCategory"> | string
   }
 
   export type ManufacturerHandlingProductsUpsertWithWhereUniqueWithoutProductInput = {
@@ -9591,13 +9319,14 @@ export namespace Prisma {
   }
 
   export type ProductCreateWithoutManufacturersInput = {
+    id?: string
     name: string
     description: string
     categories?: ProductOnProductCategoryCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutManufacturersInput = {
-    id?: number
+    id?: string
     name: string
     description: string
     categories?: ProductOnProductCategoryUncheckedCreateNestedManyWithoutProductInput
@@ -9609,13 +9338,14 @@ export namespace Prisma {
   }
 
   export type ManufacturerCreateWithoutHandlingProductsInput = {
+    id?: string
     name: string
     description: string
     partnerShops?: ShopOnManufacturerCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerUncheckedCreateWithoutHandlingProductsInput = {
-    id?: number
+    id?: string
     name: string
     description: string
     partnerShops?: ShopOnManufacturerUncheckedCreateNestedManyWithoutManufacturerInput
@@ -9638,13 +9368,14 @@ export namespace Prisma {
   }
 
   export type ProductUpdateWithoutManufacturersInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     categories?: ProductOnProductCategoryUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutManufacturersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     categories?: ProductOnProductCategoryUncheckedUpdateManyWithoutProductNestedInput
@@ -9662,13 +9393,14 @@ export namespace Prisma {
   }
 
   export type ManufacturerUpdateWithoutHandlingProductsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerShops?: ShopOnManufacturerUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ManufacturerUncheckedUpdateWithoutHandlingProductsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerShops?: ShopOnManufacturerUncheckedUpdateManyWithoutManufacturerNestedInput
@@ -9679,7 +9411,7 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryUncheckedCreateWithoutCategoryInput = {
-    productId: number
+    productId: string
   }
 
   export type ProductOnProductCategoryCreateOrConnectWithoutCategoryInput = {
@@ -9704,13 +9436,14 @@ export namespace Prisma {
   }
 
   export type ProductCreateWithoutCategoriesInput = {
+    id?: string
     name: string
     description: string
     manufacturers?: ManufacturerHandlingProductsCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoriesInput = {
-    id?: number
+    id?: string
     name: string
     description: string
     manufacturers?: ManufacturerHandlingProductsUncheckedCreateNestedManyWithoutProductInput
@@ -9722,11 +9455,12 @@ export namespace Prisma {
   }
 
   export type ProductCategoryCreateWithoutProductsInput = {
+    id?: string
     name: string
   }
 
   export type ProductCategoryUncheckedCreateWithoutProductsInput = {
-    id?: number
+    id?: string
     name: string
   }
 
@@ -9747,13 +9481,14 @@ export namespace Prisma {
   }
 
   export type ProductUpdateWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     manufacturers?: ManufacturerHandlingProductsUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoriesInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     manufacturers?: ManufacturerHandlingProductsUncheckedUpdateManyWithoutProductNestedInput
@@ -9771,11 +9506,12 @@ export namespace Prisma {
   }
 
   export type ProductCategoryUpdateWithoutProductsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductCategoryUncheckedUpdateWithoutProductsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9784,11 +9520,11 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerUncheckedUpdateWithoutShopInput = {
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShopOnManufacturerUncheckedUpdateManyWithoutShopInput = {
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUpdateWithoutManufacturerInput = {
@@ -9799,13 +9535,13 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedUpdateWithoutManufacturerInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
-    productId?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUncheckedUpdateManyWithoutManufacturerInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
-    productId?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShopOnManufacturerUpdateWithoutManufacturerInput = {
@@ -9813,11 +9549,11 @@ export namespace Prisma {
   }
 
   export type ShopOnManufacturerUncheckedUpdateWithoutManufacturerInput = {
-    shopId?: IntFieldUpdateOperationsInput | number
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShopOnManufacturerUncheckedUpdateManyWithoutManufacturerInput = {
-    shopId?: IntFieldUpdateOperationsInput | number
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductOnProductCategoryUpdateWithoutProductInput = {
@@ -9825,11 +9561,11 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryUncheckedUpdateWithoutProductInput = {
-    categoryId?: IntFieldUpdateOperationsInput | number
+    categoryId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductOnProductCategoryUncheckedUpdateManyWithoutProductInput = {
-    categoryId?: IntFieldUpdateOperationsInput | number
+    categoryId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUpdateWithoutProductInput = {
@@ -9840,13 +9576,13 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedUpdateWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUncheckedUpdateManyWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
-    manufacturerId?: IntFieldUpdateOperationsInput | number
+    manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductOnProductCategoryUpdateWithoutCategoryInput = {
@@ -9854,11 +9590,11 @@ export namespace Prisma {
   }
 
   export type ProductOnProductCategoryUncheckedUpdateWithoutCategoryInput = {
-    productId?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductOnProductCategoryUncheckedUpdateManyWithoutCategoryInput = {
-    productId?: IntFieldUpdateOperationsInput | number
+    productId?: StringFieldUpdateOperationsInput | string
   }
 
 

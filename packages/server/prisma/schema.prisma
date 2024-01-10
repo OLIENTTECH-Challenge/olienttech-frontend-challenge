@@ -17,7 +17,7 @@ datasource db {
 
 // 販売会社
 model Shop {
-  id                   Int                  @id @default(autoincrement())
+  id                   String               @id @default(uuid())
   name                 String
   description          String
   partnerManufacturers ShopOnManufacturer[]
@@ -25,7 +25,7 @@ model Shop {
 
 // 製造会社
 model Manufacturer {
-  id               Int                            @id @default(autoincrement())
+  id               String                         @id @default(uuid())
   name             String
   description      String
   handlingProducts ManufacturerHandlingProducts[]
@@ -35,16 +35,16 @@ model Manufacturer {
 // 販売会社-製造会社 中間テーブル
 model ShopOnManufacturer {
   shop           Shop         @relation(fields: [shopId], references: [id])
-  shopId         Int
+  shopId         String
   manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
-  manufacturerId Int
+  manufacturerId String
 
   @@id([shopId, manufacturerId])
 }
 
 // 商品
 model Product {
-  id            Int                            @id @default(autoincrement())
+  id            String                         @id @default(uuid())
   name          String                         @unique
   description   String
   categories    ProductOnProductCategory[]
@@ -56,14 +56,14 @@ model ManufacturerHandlingProducts {
   id             Int          @id @default(autoincrement())
   stock          Int
   product        Product      @relation(fields: [productId], references: [id])
-  productId      Int
+  productId      String
   manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
-  manufacturerId Int
+  manufacturerId String
 }
 
 // 商品カテゴリ
 model ProductCategory {
-  id       Int                        @id @default(autoincrement())
+  id       String                     @id @default(uuid())
   name     String                     @unique
   products ProductOnProductCategory[]
 }
@@ -71,9 +71,9 @@ model ProductCategory {
 // 商品-商品カテゴリ 中間テーブル
 model ProductOnProductCategory {
   product    Product         @relation(fields: [productId], references: [id])
-  productId  Int
+  productId  String
   category   ProductCategory @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  categoryId String
 
   @@id([productId, categoryId])
 }

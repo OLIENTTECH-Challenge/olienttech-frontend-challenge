@@ -22,7 +22,7 @@ app.get('/', async (c) => {
 app.get('/:manufacturerId', async (c) => {
   const { manufacturerId } = c.req.param();
   const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
-    where: { id: Number(manufacturerId) },
+    where: { id: manufacturerId },
   });
 
   if (!manufacturerOnPrisma) {
@@ -41,7 +41,7 @@ app.get('/:manufacturerId', async (c) => {
 app.get('/:manufacturerId/handling-products', async (c) => {
   const { manufacturerId } = c.req.param();
   const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
-    where: { id: Number(manufacturerId) },
+    where: { id: manufacturerId },
     include: {
       handlingProducts: {
         include: {

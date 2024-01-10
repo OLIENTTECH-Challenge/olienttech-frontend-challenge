@@ -11,7 +11,7 @@ app.post('/signin', async (c) => {
   const { id, password } = await c.req.json<{ id: string; password: string }>();
 
   const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
-    where: { id: Number(id) },
+    where: { id },
   });
   if (manufacturerOnPrisma === null) {
     throw new HTTPException(404, AppResponse.failure('Not found'));

@@ -1,21 +1,21 @@
 -- CreateTable
 CREATE TABLE "Shop" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "Manufacturer" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "ShopOnManufacturer" (
-    "shopId" INTEGER NOT NULL,
-    "manufacturerId" INTEGER NOT NULL,
+    "shopId" TEXT NOT NULL,
+    "manufacturerId" TEXT NOT NULL,
 
     PRIMARY KEY ("shopId", "manufacturerId"),
     CONSTRAINT "ShopOnManufacturer_shopId_fkey" FOREIGN KEY ("shopId") REFERENCES "Shop" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -24,7 +24,7 @@ CREATE TABLE "ShopOnManufacturer" (
 
 -- CreateTable
 CREATE TABLE "Product" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL
 );
@@ -33,22 +33,22 @@ CREATE TABLE "Product" (
 CREATE TABLE "ManufacturerHandlingProducts" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "stock" INTEGER NOT NULL,
-    "productId" INTEGER NOT NULL,
-    "manufacturerId" INTEGER NOT NULL,
+    "productId" TEXT NOT NULL,
+    "manufacturerId" TEXT NOT NULL,
     CONSTRAINT "ManufacturerHandlingProducts_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "ManufacturerHandlingProducts_manufacturerId_fkey" FOREIGN KEY ("manufacturerId") REFERENCES "Manufacturer" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "ProductCategory" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "ProductOnProductCategory" (
-    "productId" INTEGER NOT NULL,
-    "categoryId" INTEGER NOT NULL,
+    "productId" TEXT NOT NULL,
+    "categoryId" TEXT NOT NULL,
 
     PRIMARY KEY ("productId", "categoryId"),
     CONSTRAINT "ProductOnProductCategory_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
