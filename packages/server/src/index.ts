@@ -7,8 +7,32 @@ import manufacturerPublicRoute from './resources/manufacturer/public';
 import shopRoute from './resources/shop';
 import productRoute from './resources/product';
 import { JWT_SECRET } from './libs/constants/env';
+import { OpenAPIHono } from '@hono/zod-openapi';
+import { AppResponse } from '@olienttech/model';
+import { swaggerUI } from '@hono/swagger-ui';
 
-const app = new Hono();
+const app = new OpenAPIHono({
+  defaultHook: (result, c) => {
+    if (!result.success) {
+      return c.json(AppResponse.failure(result.error.message), 422);
+    }
+  },
+});
+
+app.doc('/doc', {
+  openapi: '3.0.0',
+  info: {
+    version: '1.0.0',
+    title: 'My API',
+  },
+});
+app.get('/swagger-ui', swaggerUI({ url: '/doc' }));
+
+app.openAPIRegistry.registerComponent('securitySchemes', 'Bearer', {
+  type: 'http',
+  scheme: 'bearer',
+});
+
 app.get('/', async (c) => {
   return c.text('Hello Hono!');
 });
@@ -29,7 +53,7 @@ app.route('/admin', adminRoute);
 app.route('/shops', shopRoute);
 
 // 製薬会社
-privateRoute.route('/manufacturers', manufacturerRoute);
+app.route('/manufacturers', manufacturerRoute);
 app.route('/manufacturers/public', manufacturerPublicRoute);
 
 // 商品

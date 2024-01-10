@@ -162,12 +162,21 @@ importers:
       '@hono/node-server':
         specifier: ^1.2.3
         version: 1.2.3
+      '@hono/swagger-ui':
+        specifier: ^0.2.1
+        version: 0.2.1(hono@3.10.1)
+      '@hono/zod-openapi':
+        specifier: ^0.9.5
+        version: 0.9.5(hono@3.10.1)(zod@3.22.4)
       '@prisma/client':
         specifier: 5.6.0
         version: 5.6.0(prisma@5.6.0)
       hono:
         specifier: ^3.10.1
         version: 3.10.1
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@olienttech/model':
         specifier: workspace:*
@@ -209,6 +218,15 @@ packages:
     resolution: {integrity: sha512-90X8pU2szlvw0AJo9EZMbYc2eQKkmO7mAdC4tD4r5co2Mm56MT37MIG8EyB7p4WRheuzGxuLDxJ63mF6+Zajiw==}
     hasBin: true
     dev: true
+
+  /@asteasolutions/zod-to-openapi@5.5.0(zod@3.22.4):
+    resolution: {integrity: sha512-d5HwrvM6dOKr3XdeF+DmashGvfEc+1oiEfbscugsiwSTrFtuMa7ETpW9sTNnVgn+hJaz+PRxPQUYD7q9/5dUig==}
+    peerDependencies:
+      zod: ^3.20.2
+    dependencies:
+      openapi3-ts: 4.2.1
+      zod: 3.22.4
+    dev: false
 
   /@aw-web-design/x-default-browser@1.4.126:
     resolution: {integrity: sha512-Xk1sIhyNC/esHGGVjL/niHLowM0csl/kFO5uawBy4IrWwy0o1G8LGt3jP6nmWGz+USxeeqbihAmp/oVZju6wug==}
@@ -2105,6 +2123,37 @@ packages:
   /@hono/node-server@1.2.3:
     resolution: {integrity: sha512-IH2lpqgSSLt9sIhWBE6FivFj+0RglCNYVuBT39vkumfjqjHAwQnx7KJw9WDVNlyH+AJY0N5ImZgcIbfM5xgyBw==}
     engines: {node: '>=18.14.1'}
+    dev: false
+
+  /@hono/swagger-ui@0.2.1(hono@3.10.1):
+    resolution: {integrity: sha512-wBxVMRe3/v8xH4o6icmwztiIq0DG0s7+jHVMHVUAoFFCWEQNL2iskMmQtrhSDtsFmBZUeUFQUaaJ6Ir6DOmHLA==}
+    peerDependencies:
+      hono: '*'
+    dependencies:
+      hono: 3.10.1
+    dev: false
+
+  /@hono/zod-openapi@0.9.5(hono@3.10.1)(zod@3.22.4):
+    resolution: {integrity: sha512-Px8QEIr5RyDeHQn51Ihnwtl//foFvd/F6yBq6o/3pVMUpoV6X4JZ+srgUrOX2VRrInpLVEP/NaroXlfvarwIxA==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      hono: '>=3.11.3'
+      zod: 3.*
+    dependencies:
+      '@asteasolutions/zod-to-openapi': 5.5.0(zod@3.22.4)
+      '@hono/zod-validator': 0.1.11(hono@3.10.1)(zod@3.22.4)
+      hono: 3.10.1
+      zod: 3.22.4
+    dev: false
+
+  /@hono/zod-validator@0.1.11(hono@3.10.1)(zod@3.22.4):
+    resolution: {integrity: sha512-PQXeHUP0+36qpRt8yfeD7N2jbK3ETlGvSN6dMof/HwUC/APRokQRjpXZm4rrlG71Ft0aWE01+Bm4XejqPie5Uw==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: ^3.19.1
+    dependencies:
+      hono: 3.10.1
+      zod: 3.22.4
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -9246,6 +9295,12 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
+  /openapi3-ts@4.2.1:
+    resolution: {integrity: sha512-KL1mKwkZii5ce+tb24KCUmQHyWB/oanG5fzUY35UB+wenWJv4Kr/IWBntpn5R8ODiJcxx13ZDophcpHnLGeIOw==}
+    dependencies:
+      yaml: 2.3.4
+    dev: false
+
   /optionator@0.9.3:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
@@ -11872,7 +11927,6 @@ packages:
   /yaml@2.3.4:
     resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
-    dev: true
 
   /yargs-parser@20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
@@ -11927,3 +11981,7 @@ packages:
       compress-commons: 5.0.1
       readable-stream: 3.6.2
     dev: true
+
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false
