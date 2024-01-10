@@ -1,5 +1,5 @@
 import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
-import { AppResponse, Manufacturer, ManufacturerHandlingProduct } from '@olienttech/model';
+import { AppResponse, ManufacturerHandlingProduct } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
 import { HTTPException } from 'hono/http-exception';
 import { Role, verify } from '@/libs/utils/jwt';
@@ -11,20 +11,6 @@ const app = new OpenAPIHono({
       return c.json(AppResponse.failure(result.error.message), 422);
     }
   },
-});
-
-// NOTE: 管理者のみアクセスできるようにする
-app.get('/', async (c) => {
-  const manufacturersOnPrisma = await prisma.manufacturer.findMany();
-  const manufacturers: Manufacturer[] = manufacturersOnPrisma.map((manufacturer) => {
-    return {
-      id: manufacturer.id,
-      name: manufacturer.name,
-      description: manufacturer.description,
-    };
-  });
-
-  return c.json(AppResponse.success(manufacturers));
 });
 
 /**
