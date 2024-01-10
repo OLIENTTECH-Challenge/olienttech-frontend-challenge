@@ -3,6 +3,7 @@ import { Hono } from 'hono';
 import { jwt } from 'hono/jwt';
 import adminRoute from './resources/admin';
 import manufacturerRoute from './resources/manufacturer';
+import manufacturerPublicRoute from './resources/manufacturer/public';
 import shopRoute from './resources/shop';
 import productRoute from './resources/product';
 import { JWT_SECRET } from './libs/constants/env';
@@ -28,8 +29,8 @@ app.route('/admin', adminRoute);
 app.route('/shops', shopRoute);
 
 // 製薬会社
-// privateRoute.route('/manufacturers', manufacturerRoute);
-app.route('/manufacturers', manufacturerRoute);
+privateRoute.route('/manufacturers', manufacturerRoute);
+app.route('/manufacturers/public', manufacturerPublicRoute);
 
 // 商品
 app.route('/products', productRoute);
