@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { AppResponse, Manufacturer, ManufacturerHandlingProduct } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
 import { HTTPException } from 'hono/http-exception';
+import { Role, verify } from '@/libs/utils/jwt';
 
 const app = new Hono();
 
@@ -21,6 +22,25 @@ app.get('/', async (c) => {
 
 app.get('/:manufacturerId', async (c) => {
   const { manufacturerId } = c.req.param();
+  const token = c.req.header('Authorization')?.replace('Bearer ', '');
+
+  // トークンがセットされていないとき
+  if (token === undefined) {
+    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+  }
+
+  const payload = await verify(token);
+
+  // 適切なロールでないとき
+  if (payload.role !== Role.Manufacturer) {
+    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+  }
+
+  // 自分のIDでないとき
+  if (payload.id !== manufacturerId) {
+    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+  }
+
   const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
     where: { id: manufacturerId },
   });
@@ -40,6 +60,25 @@ app.get('/:manufacturerId', async (c) => {
 
 app.get('/:manufacturerId/handling-products', async (c) => {
   const { manufacturerId } = c.req.param();
+  const token = c.req.header('Authorization')?.replace('Bearer ', '');
+
+  // トークンがセットされていないとき
+  if (token === undefined) {
+    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+  }
+
+  const payload = await verify(token);
+
+  // 適切なロールでないとき
+  if (payload.role !== Role.Manufacturer) {
+    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+  }
+
+  // 自分のIDでないとき
+  if (payload.id !== manufacturerId) {
+    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+  }
+
   const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
     where: { id: manufacturerId },
     include: {

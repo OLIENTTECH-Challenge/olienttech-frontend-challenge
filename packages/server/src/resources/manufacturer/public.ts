@@ -23,7 +23,7 @@ app.post('/signin', async (c) => {
   }
 
   const token = await sign({
-    sub: id,
+    id,
     role: Role.Manufacturer,
   });
 

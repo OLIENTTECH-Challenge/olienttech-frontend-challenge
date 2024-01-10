@@ -9,7 +9,7 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role];
 
 export type JwtPayload = {
-  sub: string;
+  id: string;
   role: Role;
 };
 
