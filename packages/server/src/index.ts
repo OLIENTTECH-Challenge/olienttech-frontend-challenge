@@ -1,3 +1,4 @@
+import { cors } from 'hono/cors';
 import { serve } from '@hono/node-server';
 import adminRoute from './resources/admin';
 import manufacturerRoute from './resources/manufacturer';
@@ -7,6 +8,13 @@ import { swaggerUI } from '@hono/swagger-ui';
 import { createHonoApp } from './libs/hono';
 
 const app = createHonoApp();
+
+app.use(
+  '*',
+  cors({
+    origin: ['http://localhost:3000'],
+  }),
+);
 
 app.doc('/doc', {
   openapi: '3.0.0',
