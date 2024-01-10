@@ -23,7 +23,7 @@ app.doc('/doc', {
   openapi: '3.0.0',
   info: {
     version: '1.0.0',
-    title: 'My API',
+    title: 'OLIENTTECH フロントエンド採用課題',
   },
 });
 app.get('/swagger-ui', swaggerUI({ url: '/doc' }));
