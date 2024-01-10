@@ -3,17 +3,10 @@ import adminRoute from './resources/admin';
 import manufacturerRoute from './resources/manufacturer';
 import shopRoute from './resources/shop';
 import productRoute from './resources/product';
-import { OpenAPIHono } from '@hono/zod-openapi';
-import { AppResponse } from '@olienttech/model';
 import { swaggerUI } from '@hono/swagger-ui';
+import { createHonoApp } from './libs/hono';
 
-const app = new OpenAPIHono({
-  defaultHook: (result, c) => {
-    if (!result.success) {
-      return c.json(AppResponse.failure(result.error.message), 422);
-    }
-  },
-});
+const app = createHonoApp();
 
 app.doc('/doc', {
   openapi: '3.0.0',

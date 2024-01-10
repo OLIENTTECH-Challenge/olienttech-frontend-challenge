@@ -1,15 +1,10 @@
 import { AppResponse, ProductCategory } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
-import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
+import { createRoute, z } from '@hono/zod-openapi';
 import { SuccessResponseSchema } from '@/libs/utils/schema';
+import { createHonoApp } from '@/libs/hono';
 
-const app = new OpenAPIHono({
-  defaultHook: (result, c) => {
-    if (!result.success) {
-      return c.json(AppResponse.failure(result.error.message), 422);
-    }
-  },
-});
+const app = createHonoApp();
 
 app.openapi(
   createRoute({
