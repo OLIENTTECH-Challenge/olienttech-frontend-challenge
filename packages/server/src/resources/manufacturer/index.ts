@@ -1,7 +1,6 @@
 import { createRoute, z } from '@hono/zod-openapi';
 import { AppResponse, ManufacturerHandlingProduct } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
-import { HTTPException } from 'hono/http-exception';
 import { Role, sign, verify } from '@/libs/utils/jwt';
 import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
 import { createHonoApp } from '@/libs/hono';
@@ -64,12 +63,12 @@ app.openapi(
       where: { id },
     });
     if (manufacturerOnPrisma === null) {
-      throw new HTTPException(404, AppResponse.failure('Not found'));
+      return c.jsonT(AppResponse.failure('Not found'), 404);
     }
 
     // NOTE: 一旦パスワードは固定
     if (password !== 'hoge') {
-      throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+      return c.jsonT(AppResponse.failure('Unauthorized'), 401);
     }
 
     const token = await sign({
