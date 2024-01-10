@@ -5,7 +5,13 @@ import { HTTPException } from 'hono/http-exception';
 import { Role, verify } from '@/libs/utils/jwt';
 import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
 
-const app = new OpenAPIHono();
+const app = new OpenAPIHono({
+  defaultHook: (result, c) => {
+    if (!result.success) {
+      return c.json(AppResponse.failure(result.error.message), 422);
+    }
+  },
+});
 
 // NOTE: 管理者のみアクセスできるようにする
 app.get('/', async (c) => {
@@ -316,6 +322,15 @@ app.openapi(
         manufacturerId: z.string(),
         productId: z.string(),
       }),
+      body: {
+        content: {
+          'application/json': {
+            schema: z.object({
+              stock: z.number(),
+            }),
+          },
+        },
+      },
     },
     responses: {
       200: {
@@ -341,8 +356,8 @@ app.openapi(
     },
   }),
   async (c) => {
-    const { manufacturerId, productId } = c.req.param();
-    const { stock } = await c.req.json<{ stock: number }>();
+    const { manufacturerId, productId } = c.req.valid('param');
+    const { stock } = c.req.valid('json');
 
     const manufacturerHandlingProduct = await prisma.manufacturerHandlingProducts.findFirst({
       where: {
