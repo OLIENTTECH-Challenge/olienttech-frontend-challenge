@@ -3,4 +3,4 @@ declare const styles:
   & Readonly<{ "form": string }>
 ;
 export default styles;
-//# sourceMappingURL=./login.module.css.d.ts.map
+//# sourceMappingURL=./LoginPage.module.css.d.ts.map

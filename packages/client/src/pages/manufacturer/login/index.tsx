@@ -1,2 +1,2 @@
-import { LoginPage } from '@/components/domain/login/login';
-export default LoginPage;
+import { ManufacturerLoginPage } from '@/components/domain/manufacturer/LoginPage';
+export default ManufacturerLoginPage;

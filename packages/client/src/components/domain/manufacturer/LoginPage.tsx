@@ -1,9 +1,9 @@
-import styles from './login.module.css';
-import { HomeHeader } from '@/components/common/home-header/home-header';
-import { TextInput } from '../../base/input/TextInput';
-import ActionButton from '../../base/button/action-button/action-button';
-import { SuccessResponse } from '@olienttech/model';
 import { APP_API_URL } from '@/libs/constants';
+import { SuccessResponse } from '@olienttech/model';
+import styles from './LoginPage.module.css';
+import ActionButton from '@/components/base/button/action-button/action-button';
+import { TextInput } from '@/components/base/input/TextInput';
+import { HomeHeader } from '@/components/common/home-header/home-header';
 
 const signin = async (id: string, password: string) => {
   const res = await fetch(`${APP_API_URL}/manufacturers/signin`, {
@@ -24,7 +24,7 @@ const signin = async (id: string, password: string) => {
   }
 };
 
-export const LoginPage = () => {
+export const ManufacturerLoginPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
