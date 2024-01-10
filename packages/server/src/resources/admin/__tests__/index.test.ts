@@ -11,7 +11,7 @@ describe('GET: /admin/token', () => {
 
     expect(res.status).toBe(200);
     expect(decodedPayload).toEqual({
-      sub: 'user123',
+      id: 'user123',
       role: 'admin',
     });
   });
