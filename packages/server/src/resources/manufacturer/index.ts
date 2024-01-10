@@ -20,7 +20,7 @@ app.get('/', async (c) => {
   return c.json(AppResponse.success(manufacturers));
 });
 
-app.get('/:manufacturerId', async (c) => {
+app.use('/:manufacturerId/*', async (c, next) => {
   const { manufacturerId } = c.req.param();
   const token = c.req.header('Authorization')?.replace('Bearer ', '');
 
@@ -40,6 +40,15 @@ app.get('/:manufacturerId', async (c) => {
   if (payload.id !== manufacturerId) {
     throw new HTTPException(401, AppResponse.failure('Unauthorized'));
   }
+
+  await next();
+});
+
+/**
+ * 製造会社情報を取得する
+ */
+app.get('/:manufacturerId', async (c) => {
+  const { manufacturerId } = c.req.param();
 
   const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
     where: { id: manufacturerId },
@@ -58,26 +67,11 @@ app.get('/:manufacturerId', async (c) => {
   return c.json(AppResponse.success(manufacturer));
 });
 
+/**
+ * 製造会社が扱っている商品を取得する
+ */
 app.get('/:manufacturerId/handling-products', async (c) => {
   const { manufacturerId } = c.req.param();
-  const token = c.req.header('Authorization')?.replace('Bearer ', '');
-
-  // トークンがセットされていないとき
-  if (token === undefined) {
-    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
-  }
-
-  const payload = await verify(token);
-
-  // 適切なロールでないとき
-  if (payload.role !== Role.Manufacturer) {
-    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
-  }
-
-  // 自分のIDでないとき
-  if (payload.id !== manufacturerId) {
-    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
-  }
 
   const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
     where: { id: manufacturerId },
@@ -120,6 +114,83 @@ app.get('/:manufacturerId/handling-products', async (c) => {
   );
 
   return c.json(AppResponse.success(handlingProducts));
+});
+
+/**
+ * 製造会社の商品情報を取得する
+ */
+app.get('/:manufacturerId/handling-products/:productId', async (c) => {
+  const { manufacturerId, productId } = c.req.param();
+
+  const manufacturerHandlingProduct = await prisma.manufacturerHandlingProducts.findFirst({
+    where: {
+      manufacturerId,
+      productId,
+    },
+    select: {
+      id: true,
+      stock: true,
+      product: {
+        select: {
+          id: true,
+          name: true,
+          description: true,
+          categories: {
+            select: {
+              category: {
+                select: {
+                  id: true,
+                  name: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (manufacturerHandlingProduct === null) {
+    throw new HTTPException(404, AppResponse.failure('Not found'));
+  }
+
+  return c.json(AppResponse.success(manufacturerHandlingProduct));
+});
+
+/**
+ * 製造会社の商品の在庫数を更新する
+ */
+app.post('/:manufacturerId/handling-products/:productId/stock', async (c) => {
+  const { manufacturerId, productId } = c.req.param();
+  const { stock } = await c.req.json<{ stock: number }>();
+
+  const manufacturerHandlingProduct = await prisma.manufacturerHandlingProducts.findFirst({
+    where: {
+      manufacturerId,
+      productId,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (manufacturerHandlingProduct === null) {
+    throw new HTTPException(404, AppResponse.failure('Not found'));
+  }
+
+  const newManufacturerHandlingProduct = await prisma.manufacturerHandlingProducts.update({
+    select: {
+      stock: true,
+    },
+    data: {
+      stock,
+    },
+    where: {
+      id: manufacturerHandlingProduct.id,
+    },
+  });
+
+  return c.json(AppResponse.success(newManufacturerHandlingProduct));
 });
 
 export default app;
