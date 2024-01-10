@@ -1,37 +1,58 @@
-//todo: basic認証をかける
-
-import { useState } from 'react';
-import { Selectbox } from '@/components/base/selectbox/selectbox';
 import styles from './login.module.css';
-import { LinkButton } from '@/components/base/button/link-button/link-button';
 import { HomeHeader } from '@/components/common/home-header/home-header';
-import { manufacturers } from '@/mocks/manufactures';
+import { TextInput } from '../../base/input/TextInput';
+import ActionButton from '../../base/button/action-button/action-button';
+import { SuccessResponse } from '@olienttech/model';
+import { APP_API_URL } from '@/libs/constants';
+
+const signin = async (id: string, password: string) => {
+  const res = await fetch(`${APP_API_URL}/manufacturers/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      password,
+    }),
+  });
+  if (res.ok) {
+    const json = (await res.json()) as SuccessResponse<{ token: string }>;
+    return json.data.token;
+  } else {
+    return null;
+  }
+};
 
 export const LoginPage = () => {
-  const [selectedManufacturerId, setSelectedManufacturerId] = useState<number | null>(manufacturers[0].id);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  const handleSelectManufacturer = (selectedName: string) => {
-    const selectedManufacturer = manufacturers.find((manufacturer) => manufacturer.name === selectedName);
-    if (selectedManufacturer) {
-      setSelectedManufacturerId(selectedManufacturer.id);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const id = formData.get('id');
+    const password = formData.get('password');
+
+    if (typeof id === 'string' && typeof password === 'string') {
+      void signin(id, password).then((token) => {
+        console.log(token);
+      });
+    } else {
+      // TODO: アラート表示をいい感じにする
+      alert('エラーが発生しました');
     }
   };
 
-  // Selectboxに渡すための変換
-  const manufacturerOptions = manufacturers.map((manufacturer) => ({
-    label: manufacturer.name,
-    value: manufacturer.id.toString(),
-  }));
   return (
     <>
       <HomeHeader />
       <div className={styles.main}>
-        <h5 className={styles.title}>製造会社を選択</h5>
-        <div className={styles.card}>
-          <Selectbox label='製造会社' options={manufacturerOptions} onSelect={handleSelectManufacturer} />
-          <div className={styles.spacer}></div>
-          <LinkButton href={`/manufacturer/stocks?id=${selectedManufacturerId}`}>次へ進む</LinkButton>
-        </div>
+        <form method='post' className={styles.form} onSubmit={handleSubmit}>
+          <TextInput name='id' type='text' placeholder='製造会社ID' />
+          <TextInput name='password' type='password' placeholder='パスワード' />
+          <ActionButton variant='filled'>ログイン</ActionButton>
+        </form>
       </div>
     </>
   );
