@@ -20,7 +20,7 @@ app.get('/', async (c) => {
 app.get('/:shopId', async (c) => {
   const { shopId } = c.req.param();
   const shopOnPrisma = await prisma.shop.findUnique({
-    where: { id: Number(shopId) },
+    where: { id: shopId },
   });
 
   if (!shopOnPrisma) {

@@ -18,6 +18,7 @@ app.openapi(
     method: 'post',
     description: '製造会社でログインする',
     path: '/signin',
+    tags: ['manufacturer'],
     request: {
       body: {
         content: {
@@ -94,19 +95,19 @@ app.use('/:manufacturerId/*', async (c, next) => {
 
   // トークンがセットされていないとき
   if (token === undefined) {
-    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+    return c.json(AppResponse.failure('Unauthorized'), 401);
   }
 
   const payload = await verify(token);
 
   // 適切なロールでないとき
   if (payload.role !== Role.Manufacturer) {
-    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+    return c.json(AppResponse.failure('Unauthorized'), 401);
   }
 
   // 自分のIDでないとき
   if (payload.id !== manufacturerId) {
-    throw new HTTPException(401, AppResponse.failure('Unauthorized'));
+    return c.json(AppResponse.failure('Unauthorized'), 401);
   }
 
   await next();
@@ -117,6 +118,7 @@ app.openapi(
     method: 'get',
     description: '製造会社情報を取得する',
     path: '/{manufacturerId}',
+    tags: ['manufacturer'],
     security: [
       {
         Bearer: [],
@@ -178,6 +180,7 @@ app.openapi(
     method: 'get',
     description: '製造会社情報を取得する',
     path: '/{manufacturerId}/handling-products',
+    tags: ['manufacturer'],
     security: [
       {
         Bearer: [],
@@ -278,6 +281,7 @@ app.openapi(
     method: 'get',
     description: '製造会社の商品情報を取得する',
     path: '/{manufacturerId}/handling-products/{productId}',
+    tags: ['manufacturer'],
     security: [
       {
         Bearer: [],
@@ -370,6 +374,7 @@ app.openapi(
     method: 'post',
     description: '製造会社の商品の在庫数を更新する',
     path: '/{manufacturerId}/handling-products/{productId}/stock',
+    tags: ['manufacturer'],
     security: [
       {
         Bearer: [],
