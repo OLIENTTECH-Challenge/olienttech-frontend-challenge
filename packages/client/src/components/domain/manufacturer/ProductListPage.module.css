@@ -1,0 +1,12 @@
+.main {
+  padding: 20px;
+}
+
+.stockCell {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.stockInput {
+  width: 80px;
+}

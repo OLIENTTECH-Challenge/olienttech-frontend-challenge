@@ -3,6 +3,7 @@ import HomePage from './pages';
 import SamplePage from './pages/sample';
 import LoginPage from './pages/manufacturer/login';
 import StocksPage from './pages/manufacturer/stocks';
+import ProductListPage from './pages/manufacturer/products';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: '/manufacturer/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/manufacturer/products',
+    element: <ProductListPage />,
   },
   {
     path: '/manufacturer/stocks',

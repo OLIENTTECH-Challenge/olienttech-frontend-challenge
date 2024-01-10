@@ -1,5 +1,5 @@
 import { createRoute, z } from '@hono/zod-openapi';
-import { AppResponse, ManufacturerHandlingProduct } from '@olienttech/model';
+import { AppResponse } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
 import { Role, sign, verify } from '@/libs/utils/jwt';
 import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
@@ -193,20 +193,17 @@ app.openapi(
             schema: SuccessResponseSchema(
               z.array(
                 z.object({
-                  id: z.number(),
+                  id: z.string(),
+                  name: z.string(),
+                  description: z.string(),
+                  categories: z.array(
+                    z.object({
+                      id: z.string(),
+                      name: z.string(),
+                    }),
+                  ),
+                  image: z.string(),
                   stock: z.number(),
-                  product: z.object({
-                    id: z.string(),
-                    name: z.string(),
-                    description: z.string(),
-                    categories: z.array(
-                      z.object({
-                        id: z.string(),
-                        name: z.string(),
-                      }),
-                    ),
-                    image: z.string(),
-                  }),
                 }),
               ),
             ),
@@ -249,22 +246,17 @@ app.openapi(
       return c.jsonT(AppResponse.failure('Not found'), 404);
     }
 
-    const handlingProducts: ManufacturerHandlingProduct[] = manufacturerOnPrisma.handlingProducts.map(
-      ({ id, stock, product }) => ({
-        id,
-        stock,
-        product: {
-          id: product.id,
-          name: product.name,
-          description: product.description,
-          categories: product.categories.map(({ category }) => ({
-            id: category.id,
-            name: category.name,
-          })),
-          image: 'https://github.com/Alesion30',
-        },
-      }),
-    );
+    const handlingProducts = manufacturerOnPrisma.handlingProducts.map(({ stock, product }) => ({
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      categories: product.categories.map(({ category }) => ({
+        id: category.id,
+        name: category.name,
+      })),
+      image: 'https://github.com/Alesion30',
+      stock,
+    }));
 
     return c.jsonT(AppResponse.success(handlingProducts));
   },
@@ -365,7 +357,7 @@ app.openapi(
 
 app.openapi(
   createRoute({
-    method: 'post',
+    method: 'put',
     description: '製造会社の商品の在庫数を更新する',
     path: '/{manufacturerId}/handling-products/{productId}/stock',
     tags: ['manufacturer'],
