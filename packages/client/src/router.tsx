@@ -4,6 +4,7 @@ import SamplePage from './pages/sample';
 import LoginPage from './pages/manufacturer/login';
 import ProductListPage from './pages/manufacturer/products';
 import { manufacturerAuthLoader } from './loader';
+import ManufacturerHomePage from './pages/manufacturer';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
   {
     path: '/manufacturer/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/manufacturer',
+    loader: manufacturerAuthLoader,
+    element: <ManufacturerHomePage />,
   },
   {
     path: '/manufacturer/products',

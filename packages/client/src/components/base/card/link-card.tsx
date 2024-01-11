@@ -18,7 +18,7 @@ export const LinkCard = ({ className, title, description, href, external = false
   return (
     <a href={href} className={classNames(styles.link, className)} {...(external ? externalProps : {})}>
       <div className={styles.content}>
-        <h5>{title}</h5>
+        <h5 className={styles.title}>{title}</h5>
         <p className={styles.description}>{description}</p>
       </div>
     </a>
