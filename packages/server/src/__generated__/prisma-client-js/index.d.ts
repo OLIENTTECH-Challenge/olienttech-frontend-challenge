@@ -5375,16 +5375,19 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsAvgAggregateOutputType = {
     id: number | null
     stock: number | null
+    price: number | null
   }
 
   export type ManufacturerHandlingProductsSumAggregateOutputType = {
     id: number | null
     stock: number | null
+    price: number | null
   }
 
   export type ManufacturerHandlingProductsMinAggregateOutputType = {
     id: number | null
     stock: number | null
+    price: number | null
     productId: string | null
     manufacturerId: string | null
   }
@@ -5392,6 +5395,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsMaxAggregateOutputType = {
     id: number | null
     stock: number | null
+    price: number | null
     productId: string | null
     manufacturerId: string | null
   }
@@ -5399,6 +5403,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsCountAggregateOutputType = {
     id: number
     stock: number
+    price: number
     productId: number
     manufacturerId: number
     _all: number
@@ -5408,16 +5413,19 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsAvgAggregateInputType = {
     id?: true
     stock?: true
+    price?: true
   }
 
   export type ManufacturerHandlingProductsSumAggregateInputType = {
     id?: true
     stock?: true
+    price?: true
   }
 
   export type ManufacturerHandlingProductsMinAggregateInputType = {
     id?: true
     stock?: true
+    price?: true
     productId?: true
     manufacturerId?: true
   }
@@ -5425,6 +5433,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsMaxAggregateInputType = {
     id?: true
     stock?: true
+    price?: true
     productId?: true
     manufacturerId?: true
   }
@@ -5432,6 +5441,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsCountAggregateInputType = {
     id?: true
     stock?: true
+    price?: true
     productId?: true
     manufacturerId?: true
     _all?: true
@@ -5526,6 +5536,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsGroupByOutputType = {
     id: number
     stock: number
+    price: number
     productId: string
     manufacturerId: string
     _count: ManufacturerHandlingProductsCountAggregateOutputType | null
@@ -5552,6 +5563,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     stock?: boolean
+    price?: boolean
     productId?: boolean
     manufacturerId?: boolean
     product?: boolean | ProductDefaultArgs<ExtArgs>
@@ -5561,6 +5573,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsSelectScalar = {
     id?: boolean
     stock?: boolean
+    price?: boolean
     productId?: boolean
     manufacturerId?: boolean
   }
@@ -5580,6 +5593,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       stock: number
+      price: number
       productId: string
       manufacturerId: string
     }, ExtArgs["result"]["manufacturerHandlingProducts"]>
@@ -5965,6 +5979,7 @@ export namespace Prisma {
   interface ManufacturerHandlingProductsFieldRefs {
     readonly id: FieldRef<"ManufacturerHandlingProducts", 'Int'>
     readonly stock: FieldRef<"ManufacturerHandlingProducts", 'Int'>
+    readonly price: FieldRef<"ManufacturerHandlingProducts", 'Int'>
     readonly productId: FieldRef<"ManufacturerHandlingProducts", 'String'>
     readonly manufacturerId: FieldRef<"ManufacturerHandlingProducts", 'String'>
   }
@@ -9903,6 +9918,7 @@ export namespace Prisma {
   export const ManufacturerHandlingProductsScalarFieldEnum: {
     id: 'id',
     stock: 'stock',
+    price: 'price',
     productId: 'productId',
     manufacturerId: 'manufacturerId'
   };
@@ -10197,6 +10213,7 @@ export namespace Prisma {
     NOT?: ManufacturerHandlingProductsWhereInput | ManufacturerHandlingProductsWhereInput[]
     id?: IntFilter<"ManufacturerHandlingProducts"> | number
     stock?: IntFilter<"ManufacturerHandlingProducts"> | number
+    price?: IntFilter<"ManufacturerHandlingProducts"> | number
     productId?: StringFilter<"ManufacturerHandlingProducts"> | string
     manufacturerId?: StringFilter<"ManufacturerHandlingProducts"> | string
     product?: XOR<ProductRelationFilter, ProductWhereInput>
@@ -10206,6 +10223,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsOrderByWithRelationInput = {
     id?: SortOrder
     stock?: SortOrder
+    price?: SortOrder
     productId?: SortOrder
     manufacturerId?: SortOrder
     product?: ProductOrderByWithRelationInput
@@ -10218,6 +10236,7 @@ export namespace Prisma {
     OR?: ManufacturerHandlingProductsWhereInput[]
     NOT?: ManufacturerHandlingProductsWhereInput | ManufacturerHandlingProductsWhereInput[]
     stock?: IntFilter<"ManufacturerHandlingProducts"> | number
+    price?: IntFilter<"ManufacturerHandlingProducts"> | number
     productId?: StringFilter<"ManufacturerHandlingProducts"> | string
     manufacturerId?: StringFilter<"ManufacturerHandlingProducts"> | string
     product?: XOR<ProductRelationFilter, ProductWhereInput>
@@ -10227,6 +10246,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsOrderByWithAggregationInput = {
     id?: SortOrder
     stock?: SortOrder
+    price?: SortOrder
     productId?: SortOrder
     manufacturerId?: SortOrder
     _count?: ManufacturerHandlingProductsCountOrderByAggregateInput
@@ -10242,6 +10262,7 @@ export namespace Prisma {
     NOT?: ManufacturerHandlingProductsScalarWhereWithAggregatesInput | ManufacturerHandlingProductsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"ManufacturerHandlingProducts"> | number
     stock?: IntWithAggregatesFilter<"ManufacturerHandlingProducts"> | number
+    price?: IntWithAggregatesFilter<"ManufacturerHandlingProducts"> | number
     productId?: StringWithAggregatesFilter<"ManufacturerHandlingProducts"> | string
     manufacturerId?: StringWithAggregatesFilter<"ManufacturerHandlingProducts"> | string
   }
@@ -10613,6 +10634,7 @@ export namespace Prisma {
 
   export type ManufacturerHandlingProductsCreateInput = {
     stock: number
+    price: number
     product: ProductCreateNestedOneWithoutManufacturersInput
     manufacturer: ManufacturerCreateNestedOneWithoutHandlingProductsInput
   }
@@ -10620,12 +10642,14 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedCreateInput = {
     id?: number
     stock: number
+    price: number
     productId: string
     manufacturerId: string
   }
 
   export type ManufacturerHandlingProductsUpdateInput = {
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     product?: ProductUpdateOneRequiredWithoutManufacturersNestedInput
     manufacturer?: ManufacturerUpdateOneRequiredWithoutHandlingProductsNestedInput
   }
@@ -10633,17 +10657,20 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     productId?: StringFieldUpdateOperationsInput | string
     manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUpdateManyMutationInput = {
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
   }
 
   export type ManufacturerHandlingProductsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     productId?: StringFieldUpdateOperationsInput | string
     manufacturerId?: StringFieldUpdateOperationsInput | string
   }
@@ -10979,6 +11006,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsCountOrderByAggregateInput = {
     id?: SortOrder
     stock?: SortOrder
+    price?: SortOrder
     productId?: SortOrder
     manufacturerId?: SortOrder
   }
@@ -10986,11 +11014,13 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsAvgOrderByAggregateInput = {
     id?: SortOrder
     stock?: SortOrder
+    price?: SortOrder
   }
 
   export type ManufacturerHandlingProductsMaxOrderByAggregateInput = {
     id?: SortOrder
     stock?: SortOrder
+    price?: SortOrder
     productId?: SortOrder
     manufacturerId?: SortOrder
   }
@@ -10998,6 +11028,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsMinOrderByAggregateInput = {
     id?: SortOrder
     stock?: SortOrder
+    price?: SortOrder
     productId?: SortOrder
     manufacturerId?: SortOrder
   }
@@ -11005,6 +11036,7 @@ export namespace Prisma {
   export type ManufacturerHandlingProductsSumOrderByAggregateInput = {
     id?: SortOrder
     stock?: SortOrder
+    price?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -11895,12 +11927,14 @@ export namespace Prisma {
 
   export type ManufacturerHandlingProductsCreateWithoutManufacturerInput = {
     stock: number
+    price: number
     product: ProductCreateNestedOneWithoutManufacturersInput
   }
 
   export type ManufacturerHandlingProductsUncheckedCreateWithoutManufacturerInput = {
     id?: number
     stock: number
+    price: number
     productId: string
   }
 
@@ -11965,6 +11999,7 @@ export namespace Prisma {
     NOT?: ManufacturerHandlingProductsScalarWhereInput | ManufacturerHandlingProductsScalarWhereInput[]
     id?: IntFilter<"ManufacturerHandlingProducts"> | number
     stock?: IntFilter<"ManufacturerHandlingProducts"> | number
+    price?: IntFilter<"ManufacturerHandlingProducts"> | number
     productId?: StringFilter<"ManufacturerHandlingProducts"> | string
     manufacturerId?: StringFilter<"ManufacturerHandlingProducts"> | string
   }
@@ -12108,12 +12143,14 @@ export namespace Prisma {
 
   export type ManufacturerHandlingProductsCreateWithoutProductInput = {
     stock: number
+    price: number
     manufacturer: ManufacturerCreateNestedOneWithoutHandlingProductsInput
   }
 
   export type ManufacturerHandlingProductsUncheckedCreateWithoutProductInput = {
     id?: number
     stock: number
+    price: number
     manufacturerId: string
   }
 
@@ -12667,18 +12704,21 @@ export namespace Prisma {
 
   export type ManufacturerHandlingProductsUpdateWithoutManufacturerInput = {
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     product?: ProductUpdateOneRequiredWithoutManufacturersNestedInput
   }
 
   export type ManufacturerHandlingProductsUncheckedUpdateWithoutManufacturerInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     productId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUncheckedUpdateManyWithoutManufacturerInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     productId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -12731,18 +12771,21 @@ export namespace Prisma {
 
   export type ManufacturerHandlingProductsUpdateWithoutProductInput = {
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     manufacturer?: ManufacturerUpdateOneRequiredWithoutHandlingProductsNestedInput
   }
 
   export type ManufacturerHandlingProductsUncheckedUpdateWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ManufacturerHandlingProductsUncheckedUpdateManyWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     manufacturerId?: StringFieldUpdateOperationsInput | string
   }
 

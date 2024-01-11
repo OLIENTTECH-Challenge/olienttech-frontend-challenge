@@ -4,6 +4,7 @@ export type HandleProduct = {
   description: string;
   categories: { id: string; name: string }[];
   image: string;
+  price: number;
   stock: number;
 };
 
@@ -24,12 +25,14 @@ export type Order = {
   shop: Shop;
   orderAt: string;
   approved: boolean;
+  totalPrice: number;
   items: {
     product: {
       id: string;
       name: string;
       description: string;
     };
+    price: number;
     stock: number;
     quantity: number;
   }[];

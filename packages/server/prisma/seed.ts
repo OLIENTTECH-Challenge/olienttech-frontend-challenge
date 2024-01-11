@@ -4,7 +4,7 @@ import { shops } from './data/shops.js';
 import { PrismaClient } from '../src/__generated__/prisma-client-js/index.js';
 
 const nonNullable = <T>(value: T): value is NonNullable<T> => value != null;
-const getRandomInt = (max: number) => Math.floor(Math.random() * max);
+const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min;
 
 const prisma = new PrismaClient();
 async function main() {
@@ -60,7 +60,8 @@ async function main() {
                   // NOTE: 仮で全商品を登録
                   create: _products.map(({ id }) => ({
                     productId: id,
-                    stock: getRandomInt(100),
+                    price: getRandomInt(10, 10000),
+                    stock: getRandomInt(0, 100),
                   })),
                 },
               },

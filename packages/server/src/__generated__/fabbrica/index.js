@@ -395,7 +395,8 @@ function isManufacturerHandlingProductsmanufacturerFactory(x) {
 }
 function autoGenerateManufacturerHandlingProductsScalarsOrEnums({ seq }) {
     return {
-        stock: getScalarFieldValueGenerator().Int({ modelName: "ManufacturerHandlingProducts", fieldName: "stock", isId: false, isUnique: false, seq })
+        stock: getScalarFieldValueGenerator().Int({ modelName: "ManufacturerHandlingProducts", fieldName: "stock", isId: false, isUnique: false, seq }),
+        price: getScalarFieldValueGenerator().Int({ modelName: "ManufacturerHandlingProducts", fieldName: "price", isId: false, isUnique: false, seq })
     };
 }
 function defineManufacturerHandlingProductsFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {

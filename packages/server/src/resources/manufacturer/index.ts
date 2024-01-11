@@ -206,6 +206,7 @@ app.openapi(
                   ),
                   image: z.string(),
                   stock: z.number(),
+                  price: z.number(),
                 }),
               ),
             ),
@@ -248,7 +249,7 @@ app.openapi(
       return c.jsonT(AppResponse.failure('Not found'), 404);
     }
 
-    const handlingProducts = manufacturerOnPrisma.handlingProducts.map(({ stock, product }) => ({
+    const handlingProducts = manufacturerOnPrisma.handlingProducts.map(({ stock, price, product }) => ({
       id: product.id,
       name: product.name,
       description: product.description,
@@ -257,6 +258,7 @@ app.openapi(
         name: category.name,
       })),
       image: 'https://github.com/Alesion30',
+      price,
       stock,
     }));
 
@@ -290,6 +292,7 @@ app.openapi(
               z.object({
                 id: z.number(),
                 stock: z.number(),
+                price: z.number(),
                 product: z.object({
                   id: z.string(),
                   name: z.string(),
@@ -329,6 +332,7 @@ app.openapi(
       select: {
         id: true,
         stock: true,
+        price: true,
         product: {
           select: {
             id: true,
@@ -472,17 +476,7 @@ app.openapi(
                   }),
                   approved: z.boolean(),
                   orderAt: z.string(),
-                  items: z.array(
-                    z.object({
-                      product: z.object({
-                        id: z.string(),
-                        name: z.string(),
-                        description: z.string(),
-                      }),
-                      stock: z.number().optional(),
-                      quantity: z.number(),
-                    }),
-                  ),
+                  totalPrice: z.number(),
                 }),
               ),
             ),
@@ -524,7 +518,7 @@ app.openapi(
         productId: { in: orderProductIds },
       },
       select: {
-        stock: true,
+        price: true,
         productId: true,
       },
     });
@@ -536,11 +530,11 @@ app.openapi(
           shop: order.shop,
           approved: order.approved,
           orderAt: order.orderAt.toISOString(),
-          items: order.items.map((item) => ({
-            product: item.product,
-            stock: handlingProducts.find((v) => v.productId === item.productId)?.stock,
-            quantity: item.quantity,
-          })),
+          totalPrice: order.items.reduce(
+            (curr, order) =>
+              order.quantity * (handlingProducts.find((v) => v.productId === order.productId)?.price ?? 0) + curr,
+            0,
+          ),
         })),
       ),
     );
@@ -587,6 +581,7 @@ app.openapi(
                       description: z.string(),
                     }),
                     stock: z.number().optional(),
+                    price: z.number().optional(),
                     quantity: z.number(),
                   }),
                 ),
@@ -635,6 +630,7 @@ app.openapi(
       },
       select: {
         stock: true,
+        price: true,
         productId: true,
       },
     });
@@ -645,9 +641,15 @@ app.openapi(
         shop: order.shop,
         approved: order.approved,
         orderAt: order.orderAt.toISOString(),
+        totalPrice: order.items.reduce(
+          (curr, order) =>
+            order.quantity * (handlingProducts.find((v) => v.productId === order.productId)?.price ?? 0) + curr,
+          0,
+        ),
         items: order.items.map((item) => ({
           product: item.product,
           stock: handlingProducts.find((v) => v.productId === item.productId)?.stock,
+          price: handlingProducts.find((v) => v.productId === item.productId)?.price,
           quantity: item.quantity,
         })),
       }),

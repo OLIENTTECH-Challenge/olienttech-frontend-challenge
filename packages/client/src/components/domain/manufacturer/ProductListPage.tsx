@@ -95,6 +95,10 @@ export const ProductListPage = () => {
       accessor: (item) => item.categories.map((category) => category.name).join('・'),
     },
     {
+      header: '単価',
+      accessor: (item) => <p className={styles.priceCell}>{`${item.price}円`}</p>,
+    },
+    {
       header: '在庫',
       accessor: (item) => (
         <div className={styles.stockCell}>

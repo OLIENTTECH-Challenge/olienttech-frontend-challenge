@@ -130,6 +130,7 @@ exports.Prisma.ProductScalarFieldEnum = {
 exports.Prisma.ManufacturerHandlingProductsScalarFieldEnum = {
   id: 'id',
   stock: 'stock',
+  price: 'price',
   productId: 'productId',
   manufacturerId: 'manufacturerId'
 };

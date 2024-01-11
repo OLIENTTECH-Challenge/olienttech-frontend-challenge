@@ -174,6 +174,7 @@ type ManufacturerHandlingProductsmanufacturerFactory = {
 };
 type ManufacturerHandlingProductsFactoryDefineInput = {
     stock?: number;
+    price?: number;
     product: ManufacturerHandlingProductsproductFactory | Prisma.ProductCreateNestedOneWithoutManufacturersInput;
     manufacturer: ManufacturerHandlingProductsmanufacturerFactory | Prisma.ManufacturerCreateNestedOneWithoutHandlingProductsInput;
 };

@@ -1,16 +1,18 @@
-import { Order } from '@/api/model';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { useState, useEffect } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
 import { Column, Table } from '@/components/case/Table';
 import { useNavigate } from 'react-router-dom';
+import styles from './OrderListPage.module.css';
+
+type Orders = Awaited<ReturnType<typeof manufacturerApi.fetchOrders>>;
 
 const useOrder = () => {
   const loaderData = useAuthLoaderData();
   const manufacturerId = loaderData.id;
   const token = loaderData.token;
 
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<Orders>([]);
 
   useEffect(() => {
     void manufacturerApi.fetchOrders({ manufacturerId, token }).then((products) => {
@@ -25,7 +27,7 @@ export const OrderListPage = () => {
   const navigate = useNavigate();
   const { orders } = useOrder();
 
-  const columns: Column<Order>[] = [
+  const columns: Column<Orders[number]>[] = [
     {
       header: '発注書ID',
       accessor: (item) => item.id,
@@ -33,6 +35,10 @@ export const OrderListPage = () => {
     {
       header: '発注元',
       accessor: (item) => item.shop.name,
+    },
+    {
+      header: '発注金額',
+      accessor: (item) => <p className={styles.priceCell}>{item.totalPrice}円</p>,
     },
     {
       header: '発注日',

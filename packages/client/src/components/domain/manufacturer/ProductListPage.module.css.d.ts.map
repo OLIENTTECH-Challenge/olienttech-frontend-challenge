@@ -1,1 +1,1 @@
-{"version":3,"sources":["./ProductListPage.module.css"],"names":["stockCell","stockInput"],"mappings":"AAAA;AAAA,E,aAAAA,W,WAAA;AAAA,E,aAKAC,Y,WALA;AAAA;AAAA","file":"ProductListPage.module.css.d.ts","sourceRoot":""}
+{"version":3,"sources":["./ProductListPage.module.css"],"names":["stockCell","stockInput","priceCell"],"mappings":"AAAA;AAAA,E,aAAAA,W,WAAA;AAAA,E,aAKAC,Y,WALA;AAAA,E,aASAC,W,WATA;AAAA;AAAA","file":"ProductListPage.module.css.d.ts","sourceRoot":""}

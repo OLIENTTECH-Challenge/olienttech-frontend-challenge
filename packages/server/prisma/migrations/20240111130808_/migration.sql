@@ -33,6 +33,7 @@ CREATE TABLE "Product" (
 CREATE TABLE "ManufacturerHandlingProducts" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "stock" INTEGER NOT NULL,
+    "price" INTEGER NOT NULL,
     "productId" TEXT NOT NULL,
     "manufacturerId" TEXT NOT NULL,
     CONSTRAINT "ManufacturerHandlingProducts_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,

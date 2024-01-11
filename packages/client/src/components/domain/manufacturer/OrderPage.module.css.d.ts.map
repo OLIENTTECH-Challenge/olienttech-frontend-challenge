@@ -1,1 +1,1 @@
-{"version":3,"sources":["./OrderPage.module.css"],"names":["main"],"mappings":"AAAA;AAAA,E,aAAAA,M,WAAA;AAAA;AAAA","file":"OrderPage.module.css.d.ts","sourceRoot":""}
+{"version":3,"sources":["./OrderPage.module.css"],"names":["main","priceCell"],"mappings":"AAAA;AAAA,E,aAAAA,M,WAAA;AAAA,E,aAMAC,W,WANA;AAAA;AAAA","file":"OrderPage.module.css.d.ts","sourceRoot":""}

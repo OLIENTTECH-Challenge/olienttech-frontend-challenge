@@ -25,7 +25,12 @@ export const Table = <T extends object>({ columns, data, onClick }: TableProps<T
       </thead>
       <tbody className={styles.tbody}>
         {data.map((item, i) => (
-          <tr key={`row_${i}`} className={styles.tr} onClick={() => onClick?.(item)}>
+          <tr
+            key={`row_${i}`}
+            className={styles.tr}
+            data-is-clickable={onClick ? 'true' : 'false'}
+            onClick={() => onClick?.(item)}
+          >
             {columns.map((column) => (
               <td key={column.header} className={styles.td}>
                 {column.accessor(item)}

@@ -116,7 +116,13 @@ type FetchOrdersRequest = {
   token: string;
 };
 
-type FetchOrdersResponse = Order[];
+type FetchOrdersResponse = {
+  id: string;
+  shop: { id: string; name: string; description: string };
+  approved: boolean;
+  orderAt: string;
+  totalPrice: number;
+}[];
 
 export const fetchOrders = async (req: FetchOrdersRequest): Promise<FetchOrdersResponse> => {
   const { manufacturerId, token } = req;

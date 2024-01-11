@@ -5,11 +5,12 @@
 }
 
 .thead {
-  /* border-bottom: 1px solid var(--border); */
+  background-color: var(--muted);
 }
 
 .tr {
-  &:hover {
+  &[data-is-clickable='true']:hover {
+    cursor: pointer;
     background-color: var(--muted);
   }
 }

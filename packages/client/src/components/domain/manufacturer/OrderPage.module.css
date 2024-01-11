@@ -3,3 +3,7 @@
   flex-direction: column;
   gap: var(--spacing-md);
 }
+
+.priceCell {
+  white-space: nowrap;
+}
