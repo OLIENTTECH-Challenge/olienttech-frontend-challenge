@@ -8,8 +8,9 @@ import { swaggerUI } from '@hono/swagger-ui';
 import { createHonoApp } from './libs/hono';
 import { createRoute, z } from '@hono/zod-openapi';
 import { ErrorResponseSchema, SuccessResponseSchema } from './libs/utils/schema';
-import { AppResponse } from '@olienttech/model';
+import { AppResponse, Role } from '@olienttech/model';
 import { verify } from './libs/utils/jwt';
+import { prisma } from './libs/prisma';
 
 const app = createHonoApp();
 
@@ -82,7 +83,31 @@ app.openapi(
 
     const payload = await verify(token);
 
-    return c.jsonT(AppResponse.success({ id: payload.id, role: payload.role }));
+    const { id, role } = payload;
+
+    if (role === Role.Manufacturer) {
+      const manufacturer = await prisma.manufacturer.findUnique({
+        where: {
+          id,
+        },
+      });
+      if (manufacturer === null) {
+        return c.jsonT(AppResponse.failure('Unauthorized'), 401);
+      }
+    }
+
+    if (role === Role.Shop) {
+      const shop = await prisma.shop.findUnique({
+        where: {
+          id,
+        },
+      });
+      if (shop === null) {
+        return c.jsonT(AppResponse.failure('Unauthorized'), 401);
+      }
+    }
+
+    return c.jsonT(AppResponse.success({ id, role }));
   },
 );
 
