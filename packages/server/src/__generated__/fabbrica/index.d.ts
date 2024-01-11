@@ -18,7 +18,7 @@ type ShopFactoryDefineInput = {
     name?: string;
     description?: string;
     partnerManufacturers?: Prisma.ShopOnManufacturerCreateNestedManyWithoutShopInput;
-    order?: Prisma.OrderCreateNestedManyWithoutShopInput;
+    orders?: Prisma.OrderCreateNestedManyWithoutShopInput;
 };
 type ShopFactoryDefineOptions = {
     defaultData?: Resolver<ShopFactoryDefineInput, BuildDataOptions>;
@@ -55,7 +55,7 @@ type ManufacturerFactoryDefineInput = {
     description?: string;
     handlingProducts?: Prisma.ManufacturerHandlingProductsCreateNestedManyWithoutManufacturerInput;
     partnerShops?: Prisma.ShopOnManufacturerCreateNestedManyWithoutManufacturerInput;
-    order?: Prisma.OrderCreateNestedManyWithoutManufacturerInput;
+    orders?: Prisma.OrderCreateNestedManyWithoutManufacturerInput;
 };
 type ManufacturerFactoryDefineOptions = {
     defaultData?: Resolver<ManufacturerFactoryDefineInput, BuildDataOptions>;
@@ -283,16 +283,18 @@ export interface ProductOnProductCategoryFactoryInterface<TOptions extends Produ
 export declare function defineProductOnProductCategoryFactory<TOptions extends ProductOnProductCategoryFactoryDefineOptions>(options: TOptions): ProductOnProductCategoryFactoryInterface<TOptions>;
 type OrdershopFactory = {
     _factoryFor: "Shop";
-    build: () => PromiseLike<Prisma.ShopCreateNestedOneWithoutOrderInput["create"]>;
+    build: () => PromiseLike<Prisma.ShopCreateNestedOneWithoutOrdersInput["create"]>;
 };
 type OrdermanufacturerFactory = {
     _factoryFor: "Manufacturer";
-    build: () => PromiseLike<Prisma.ManufacturerCreateNestedOneWithoutOrderInput["create"]>;
+    build: () => PromiseLike<Prisma.ManufacturerCreateNestedOneWithoutOrdersInput["create"]>;
 };
 type OrderFactoryDefineInput = {
     id?: string;
-    shop: OrdershopFactory | Prisma.ShopCreateNestedOneWithoutOrderInput;
-    manufacturer: OrdermanufacturerFactory | Prisma.ManufacturerCreateNestedOneWithoutOrderInput;
+    approved?: boolean;
+    orderAt?: Date;
+    shop: OrdershopFactory | Prisma.ShopCreateNestedOneWithoutOrdersInput;
+    manufacturer: OrdermanufacturerFactory | Prisma.ManufacturerCreateNestedOneWithoutOrdersInput;
     items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput;
 };
 type OrderFactoryDefineOptions = {

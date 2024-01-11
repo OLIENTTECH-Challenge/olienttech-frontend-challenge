@@ -470,6 +470,8 @@ app.openapi(
                     name: z.string(),
                     description: z.string(),
                   }),
+                  approved: z.boolean(),
+                  orderAt: z.string(),
                   items: z.array(
                     z.object({
                       product: z.object({
@@ -532,6 +534,8 @@ app.openapi(
         orders.map((order) => ({
           id: order.id,
           shop: order.shop,
+          approved: order.approved,
+          orderAt: order.orderAt.toISOString(),
           items: order.items.map((item) => ({
             product: item.product,
             stock: handlingProducts.find((v) => v.productId === item.productId)?.stock,

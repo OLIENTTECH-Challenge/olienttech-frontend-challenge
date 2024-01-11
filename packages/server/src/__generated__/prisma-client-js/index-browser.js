@@ -147,7 +147,9 @@ exports.Prisma.ProductOnProductCategoryScalarFieldEnum = {
 exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
   shopId: 'shopId',
-  manufacturerId: 'manufacturerId'
+  manufacturerId: 'manufacturerId',
+  approved: 'approved',
+  orderAt: 'orderAt'
 };
 
 exports.Prisma.OrderItemScalarFieldEnum = {

@@ -21,7 +21,7 @@ model Shop {
   name                 String
   description          String
   partnerManufacturers ShopOnManufacturer[]
-  order                Order[]
+  orders               Order[]
 }
 
 // 製造会社
@@ -31,7 +31,7 @@ model Manufacturer {
   description      String
   handlingProducts ManufacturerHandlingProducts[]
   partnerShops     ShopOnManufacturer[]
-  order            Order[]
+  orders           Order[]
 }
 
 // 販売会社-製造会社 中間テーブル
@@ -89,6 +89,8 @@ model Order {
   manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
   manufacturerId String
   items          OrderItem[]
+  approved       Boolean      @default(false) // 承認済みかどうか
+  orderAt        DateTime     @default(now()) // 発注日
 }
 
 // 発注書アイテム

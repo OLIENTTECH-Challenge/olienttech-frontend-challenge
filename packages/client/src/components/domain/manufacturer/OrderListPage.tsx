@@ -33,8 +33,8 @@ export const OrderListPage = () => {
       accessor: (item) => item.shop.name,
     },
     {
-      header: '商品数',
-      accessor: (item) => item.items.length,
+      header: '発注日',
+      accessor: (item) => item.orderAt,
     },
   ];
 

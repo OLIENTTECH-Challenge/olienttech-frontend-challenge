@@ -22,6 +22,8 @@ export type Shop = {
 export type Order = {
   id: string;
   shop: Shop;
+  orderAt: string;
+  approved: boolean;
   items: {
     product: {
       id: string;

@@ -1477,12 +1477,12 @@ export namespace Prisma {
 
   export type ShopCountOutputType = {
     partnerManufacturers: number
-    order: number
+    orders: number
   }
 
   export type ShopCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     partnerManufacturers?: boolean | ShopCountOutputTypeCountPartnerManufacturersArgs
-    order?: boolean | ShopCountOutputTypeCountOrderArgs
+    orders?: boolean | ShopCountOutputTypeCountOrdersArgs
   }
 
   // Custom InputTypes
@@ -1509,7 +1509,7 @@ export namespace Prisma {
   /**
    * ShopCountOutputType without action
    */
-  export type ShopCountOutputTypeCountOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShopCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderWhereInput
   }
 
@@ -1522,13 +1522,13 @@ export namespace Prisma {
   export type ManufacturerCountOutputType = {
     handlingProducts: number
     partnerShops: number
-    order: number
+    orders: number
   }
 
   export type ManufacturerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     handlingProducts?: boolean | ManufacturerCountOutputTypeCountHandlingProductsArgs
     partnerShops?: boolean | ManufacturerCountOutputTypeCountPartnerShopsArgs
-    order?: boolean | ManufacturerCountOutputTypeCountOrderArgs
+    orders?: boolean | ManufacturerCountOutputTypeCountOrdersArgs
   }
 
   // Custom InputTypes
@@ -1563,7 +1563,7 @@ export namespace Prisma {
   /**
    * ManufacturerCountOutputType without action
    */
-  export type ManufacturerCountOutputTypeCountOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ManufacturerCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderWhereInput
   }
 
@@ -1844,7 +1844,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     partnerManufacturers?: boolean | Shop$partnerManufacturersArgs<ExtArgs>
-    order?: boolean | Shop$orderArgs<ExtArgs>
+    orders?: boolean | Shop$ordersArgs<ExtArgs>
     _count?: boolean | ShopCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["shop"]>
 
@@ -1856,7 +1856,7 @@ export namespace Prisma {
 
   export type ShopInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     partnerManufacturers?: boolean | Shop$partnerManufacturersArgs<ExtArgs>
-    order?: boolean | Shop$orderArgs<ExtArgs>
+    orders?: boolean | Shop$ordersArgs<ExtArgs>
     _count?: boolean | ShopCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1865,7 +1865,7 @@ export namespace Prisma {
     name: "Shop"
     objects: {
       partnerManufacturers: Prisma.$ShopOnManufacturerPayload<ExtArgs>[]
-      order: Prisma.$OrderPayload<ExtArgs>[]
+      orders: Prisma.$OrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2222,7 +2222,7 @@ export namespace Prisma {
 
     partnerManufacturers<T extends Shop$partnerManufacturersArgs<ExtArgs> = {}>(args?: Subset<T, Shop$partnerManufacturersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShopOnManufacturerPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    order<T extends Shop$orderArgs<ExtArgs> = {}>(args?: Subset<T, Shop$orderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'> | Null>;
+    orders<T extends Shop$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Shop$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2576,9 +2576,9 @@ export namespace Prisma {
 
 
   /**
-   * Shop.order
+   * Shop.orders
    */
-  export type Shop$orderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Shop$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Order
      */
@@ -2762,7 +2762,7 @@ export namespace Prisma {
     description?: boolean
     handlingProducts?: boolean | Manufacturer$handlingProductsArgs<ExtArgs>
     partnerShops?: boolean | Manufacturer$partnerShopsArgs<ExtArgs>
-    order?: boolean | Manufacturer$orderArgs<ExtArgs>
+    orders?: boolean | Manufacturer$ordersArgs<ExtArgs>
     _count?: boolean | ManufacturerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["manufacturer"]>
 
@@ -2775,7 +2775,7 @@ export namespace Prisma {
   export type ManufacturerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     handlingProducts?: boolean | Manufacturer$handlingProductsArgs<ExtArgs>
     partnerShops?: boolean | Manufacturer$partnerShopsArgs<ExtArgs>
-    order?: boolean | Manufacturer$orderArgs<ExtArgs>
+    orders?: boolean | Manufacturer$ordersArgs<ExtArgs>
     _count?: boolean | ManufacturerCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2785,7 +2785,7 @@ export namespace Prisma {
     objects: {
       handlingProducts: Prisma.$ManufacturerHandlingProductsPayload<ExtArgs>[]
       partnerShops: Prisma.$ShopOnManufacturerPayload<ExtArgs>[]
-      order: Prisma.$OrderPayload<ExtArgs>[]
+      orders: Prisma.$OrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3144,7 +3144,7 @@ export namespace Prisma {
 
     partnerShops<T extends Manufacturer$partnerShopsArgs<ExtArgs> = {}>(args?: Subset<T, Manufacturer$partnerShopsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShopOnManufacturerPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    order<T extends Manufacturer$orderArgs<ExtArgs> = {}>(args?: Subset<T, Manufacturer$orderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'> | Null>;
+    orders<T extends Manufacturer$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Manufacturer$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3519,9 +3519,9 @@ export namespace Prisma {
 
 
   /**
-   * Manufacturer.order
+   * Manufacturer.orders
    */
-  export type Manufacturer$orderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Manufacturer$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Order
      */
@@ -8038,18 +8038,24 @@ export namespace Prisma {
     id: string | null
     shopId: string | null
     manufacturerId: string | null
+    approved: boolean | null
+    orderAt: Date | null
   }
 
   export type OrderMaxAggregateOutputType = {
     id: string | null
     shopId: string | null
     manufacturerId: string | null
+    approved: boolean | null
+    orderAt: Date | null
   }
 
   export type OrderCountAggregateOutputType = {
     id: number
     shopId: number
     manufacturerId: number
+    approved: number
+    orderAt: number
     _all: number
   }
 
@@ -8058,18 +8064,24 @@ export namespace Prisma {
     id?: true
     shopId?: true
     manufacturerId?: true
+    approved?: true
+    orderAt?: true
   }
 
   export type OrderMaxAggregateInputType = {
     id?: true
     shopId?: true
     manufacturerId?: true
+    approved?: true
+    orderAt?: true
   }
 
   export type OrderCountAggregateInputType = {
     id?: true
     shopId?: true
     manufacturerId?: true
+    approved?: true
+    orderAt?: true
     _all?: true
   }
 
@@ -8149,6 +8161,8 @@ export namespace Prisma {
     id: string
     shopId: string
     manufacturerId: string
+    approved: boolean
+    orderAt: Date
     _count: OrderCountAggregateOutputType | null
     _min: OrderMinAggregateOutputType | null
     _max: OrderMaxAggregateOutputType | null
@@ -8172,6 +8186,8 @@ export namespace Prisma {
     id?: boolean
     shopId?: boolean
     manufacturerId?: boolean
+    approved?: boolean
+    orderAt?: boolean
     shop?: boolean | ShopDefaultArgs<ExtArgs>
     manufacturer?: boolean | ManufacturerDefaultArgs<ExtArgs>
     items?: boolean | Order$itemsArgs<ExtArgs>
@@ -8182,6 +8198,8 @@ export namespace Prisma {
     id?: boolean
     shopId?: boolean
     manufacturerId?: boolean
+    approved?: boolean
+    orderAt?: boolean
   }
 
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8203,6 +8221,8 @@ export namespace Prisma {
       id: string
       shopId: string
       manufacturerId: string
+      approved: boolean
+      orderAt: Date
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -8589,6 +8609,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Order", 'String'>
     readonly shopId: FieldRef<"Order", 'String'>
     readonly manufacturerId: FieldRef<"Order", 'String'>
+    readonly approved: FieldRef<"Order", 'Boolean'>
+    readonly orderAt: FieldRef<"Order", 'DateTime'>
   }
     
 
@@ -9907,7 +9929,9 @@ export namespace Prisma {
   export const OrderScalarFieldEnum: {
     id: 'id',
     shopId: 'shopId',
-    manufacturerId: 'manufacturerId'
+    manufacturerId: 'manufacturerId',
+    approved: 'approved',
+    orderAt: 'orderAt'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -9950,6 +9974,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -9967,7 +10005,7 @@ export namespace Prisma {
     name?: StringFilter<"Shop"> | string
     description?: StringFilter<"Shop"> | string
     partnerManufacturers?: ShopOnManufacturerListRelationFilter
-    order?: OrderListRelationFilter
+    orders?: OrderListRelationFilter
   }
 
   export type ShopOrderByWithRelationInput = {
@@ -9975,7 +10013,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     partnerManufacturers?: ShopOnManufacturerOrderByRelationAggregateInput
-    order?: OrderOrderByRelationAggregateInput
+    orders?: OrderOrderByRelationAggregateInput
   }
 
   export type ShopWhereUniqueInput = Prisma.AtLeast<{
@@ -9986,7 +10024,7 @@ export namespace Prisma {
     name?: StringFilter<"Shop"> | string
     description?: StringFilter<"Shop"> | string
     partnerManufacturers?: ShopOnManufacturerListRelationFilter
-    order?: OrderListRelationFilter
+    orders?: OrderListRelationFilter
   }, "id">
 
   export type ShopOrderByWithAggregationInput = {
@@ -10016,7 +10054,7 @@ export namespace Prisma {
     description?: StringFilter<"Manufacturer"> | string
     handlingProducts?: ManufacturerHandlingProductsListRelationFilter
     partnerShops?: ShopOnManufacturerListRelationFilter
-    order?: OrderListRelationFilter
+    orders?: OrderListRelationFilter
   }
 
   export type ManufacturerOrderByWithRelationInput = {
@@ -10025,7 +10063,7 @@ export namespace Prisma {
     description?: SortOrder
     handlingProducts?: ManufacturerHandlingProductsOrderByRelationAggregateInput
     partnerShops?: ShopOnManufacturerOrderByRelationAggregateInput
-    order?: OrderOrderByRelationAggregateInput
+    orders?: OrderOrderByRelationAggregateInput
   }
 
   export type ManufacturerWhereUniqueInput = Prisma.AtLeast<{
@@ -10037,7 +10075,7 @@ export namespace Prisma {
     description?: StringFilter<"Manufacturer"> | string
     handlingProducts?: ManufacturerHandlingProductsListRelationFilter
     partnerShops?: ShopOnManufacturerListRelationFilter
-    order?: OrderListRelationFilter
+    orders?: OrderListRelationFilter
   }, "id">
 
   export type ManufacturerOrderByWithAggregationInput = {
@@ -10299,6 +10337,8 @@ export namespace Prisma {
     id?: StringFilter<"Order"> | string
     shopId?: StringFilter<"Order"> | string
     manufacturerId?: StringFilter<"Order"> | string
+    approved?: BoolFilter<"Order"> | boolean
+    orderAt?: DateTimeFilter<"Order"> | Date | string
     shop?: XOR<ShopRelationFilter, ShopWhereInput>
     manufacturer?: XOR<ManufacturerRelationFilter, ManufacturerWhereInput>
     items?: OrderItemListRelationFilter
@@ -10308,6 +10348,8 @@ export namespace Prisma {
     id?: SortOrder
     shopId?: SortOrder
     manufacturerId?: SortOrder
+    approved?: SortOrder
+    orderAt?: SortOrder
     shop?: ShopOrderByWithRelationInput
     manufacturer?: ManufacturerOrderByWithRelationInput
     items?: OrderItemOrderByRelationAggregateInput
@@ -10320,6 +10362,8 @@ export namespace Prisma {
     NOT?: OrderWhereInput | OrderWhereInput[]
     shopId?: StringFilter<"Order"> | string
     manufacturerId?: StringFilter<"Order"> | string
+    approved?: BoolFilter<"Order"> | boolean
+    orderAt?: DateTimeFilter<"Order"> | Date | string
     shop?: XOR<ShopRelationFilter, ShopWhereInput>
     manufacturer?: XOR<ManufacturerRelationFilter, ManufacturerWhereInput>
     items?: OrderItemListRelationFilter
@@ -10329,6 +10373,8 @@ export namespace Prisma {
     id?: SortOrder
     shopId?: SortOrder
     manufacturerId?: SortOrder
+    approved?: SortOrder
+    orderAt?: SortOrder
     _count?: OrderCountOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
     _min?: OrderMinOrderByAggregateInput
@@ -10341,6 +10387,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Order"> | string
     shopId?: StringWithAggregatesFilter<"Order"> | string
     manufacturerId?: StringWithAggregatesFilter<"Order"> | string
+    approved?: BoolWithAggregatesFilter<"Order"> | boolean
+    orderAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
   }
 
   export type OrderItemWhereInput = {
@@ -10399,7 +10447,7 @@ export namespace Prisma {
     name: string
     description: string
     partnerManufacturers?: ShopOnManufacturerCreateNestedManyWithoutShopInput
-    order?: OrderCreateNestedManyWithoutShopInput
+    orders?: OrderCreateNestedManyWithoutShopInput
   }
 
   export type ShopUncheckedCreateInput = {
@@ -10407,7 +10455,7 @@ export namespace Prisma {
     name: string
     description: string
     partnerManufacturers?: ShopOnManufacturerUncheckedCreateNestedManyWithoutShopInput
-    order?: OrderUncheckedCreateNestedManyWithoutShopInput
+    orders?: OrderUncheckedCreateNestedManyWithoutShopInput
   }
 
   export type ShopUpdateInput = {
@@ -10415,7 +10463,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerManufacturers?: ShopOnManufacturerUpdateManyWithoutShopNestedInput
-    order?: OrderUpdateManyWithoutShopNestedInput
+    orders?: OrderUpdateManyWithoutShopNestedInput
   }
 
   export type ShopUncheckedUpdateInput = {
@@ -10423,7 +10471,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerManufacturers?: ShopOnManufacturerUncheckedUpdateManyWithoutShopNestedInput
-    order?: OrderUncheckedUpdateManyWithoutShopNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type ShopUpdateManyMutationInput = {
@@ -10444,7 +10492,7 @@ export namespace Prisma {
     description: string
     handlingProducts?: ManufacturerHandlingProductsCreateNestedManyWithoutManufacturerInput
     partnerShops?: ShopOnManufacturerCreateNestedManyWithoutManufacturerInput
-    order?: OrderCreateNestedManyWithoutManufacturerInput
+    orders?: OrderCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerUncheckedCreateInput = {
@@ -10453,7 +10501,7 @@ export namespace Prisma {
     description: string
     handlingProducts?: ManufacturerHandlingProductsUncheckedCreateNestedManyWithoutManufacturerInput
     partnerShops?: ShopOnManufacturerUncheckedCreateNestedManyWithoutManufacturerInput
-    order?: OrderUncheckedCreateNestedManyWithoutManufacturerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerUpdateInput = {
@@ -10462,7 +10510,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUpdateManyWithoutManufacturerNestedInput
     partnerShops?: ShopOnManufacturerUpdateManyWithoutManufacturerNestedInput
-    order?: OrderUpdateManyWithoutManufacturerNestedInput
+    orders?: OrderUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ManufacturerUncheckedUpdateInput = {
@@ -10471,7 +10519,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUncheckedUpdateManyWithoutManufacturerNestedInput
     partnerShops?: ShopOnManufacturerUncheckedUpdateManyWithoutManufacturerNestedInput
-    order?: OrderUncheckedUpdateManyWithoutManufacturerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ManufacturerUpdateManyMutationInput = {
@@ -10665,8 +10713,10 @@ export namespace Prisma {
 
   export type OrderCreateInput = {
     id?: string
-    shop: ShopCreateNestedOneWithoutOrderInput
-    manufacturer: ManufacturerCreateNestedOneWithoutOrderInput
+    approved?: boolean
+    orderAt?: Date | string
+    shop: ShopCreateNestedOneWithoutOrdersInput
+    manufacturer: ManufacturerCreateNestedOneWithoutOrdersInput
     items?: OrderItemCreateNestedManyWithoutOrderInput
   }
 
@@ -10674,13 +10724,17 @@ export namespace Prisma {
     id?: string
     shopId: string
     manufacturerId: string
+    approved?: boolean
+    orderAt?: Date | string
     items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    shop?: ShopUpdateOneRequiredWithoutOrderNestedInput
-    manufacturer?: ManufacturerUpdateOneRequiredWithoutOrderNestedInput
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: ShopUpdateOneRequiredWithoutOrdersNestedInput
+    manufacturer?: ManufacturerUpdateOneRequiredWithoutOrdersNestedInput
     items?: OrderItemUpdateManyWithoutOrderNestedInput
   }
 
@@ -10688,17 +10742,23 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     shopId?: StringFieldUpdateOperationsInput | string
     manufacturerId?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     shopId?: StringFieldUpdateOperationsInput | string
     manufacturerId?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrderItemCreateInput = {
@@ -11003,22 +11063,66 @@ export namespace Prisma {
     categoryId?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
     shopId?: SortOrder
     manufacturerId?: SortOrder
+    approved?: SortOrder
+    orderAt?: SortOrder
   }
 
   export type OrderMaxOrderByAggregateInput = {
     id?: SortOrder
     shopId?: SortOrder
     manufacturerId?: SortOrder
+    approved?: SortOrder
+    orderAt?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
     id?: SortOrder
     shopId?: SortOrder
     manufacturerId?: SortOrder
+    approved?: SortOrder
+    orderAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type OrderRelationFilter = {
@@ -11495,15 +11599,15 @@ export namespace Prisma {
     update?: XOR<XOR<ProductCategoryUpdateToOneWithWhereWithoutProductsInput, ProductCategoryUpdateWithoutProductsInput>, ProductCategoryUncheckedUpdateWithoutProductsInput>
   }
 
-  export type ShopCreateNestedOneWithoutOrderInput = {
-    create?: XOR<ShopCreateWithoutOrderInput, ShopUncheckedCreateWithoutOrderInput>
-    connectOrCreate?: ShopCreateOrConnectWithoutOrderInput
+  export type ShopCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<ShopCreateWithoutOrdersInput, ShopUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: ShopCreateOrConnectWithoutOrdersInput
     connect?: ShopWhereUniqueInput
   }
 
-  export type ManufacturerCreateNestedOneWithoutOrderInput = {
-    create?: XOR<ManufacturerCreateWithoutOrderInput, ManufacturerUncheckedCreateWithoutOrderInput>
-    connectOrCreate?: ManufacturerCreateOrConnectWithoutOrderInput
+  export type ManufacturerCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<ManufacturerCreateWithoutOrdersInput, ManufacturerUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: ManufacturerCreateOrConnectWithoutOrdersInput
     connect?: ManufacturerWhereUniqueInput
   }
 
@@ -11519,20 +11623,28 @@ export namespace Prisma {
     connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
   }
 
-  export type ShopUpdateOneRequiredWithoutOrderNestedInput = {
-    create?: XOR<ShopCreateWithoutOrderInput, ShopUncheckedCreateWithoutOrderInput>
-    connectOrCreate?: ShopCreateOrConnectWithoutOrderInput
-    upsert?: ShopUpsertWithoutOrderInput
-    connect?: ShopWhereUniqueInput
-    update?: XOR<XOR<ShopUpdateToOneWithWhereWithoutOrderInput, ShopUpdateWithoutOrderInput>, ShopUncheckedUpdateWithoutOrderInput>
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
-  export type ManufacturerUpdateOneRequiredWithoutOrderNestedInput = {
-    create?: XOR<ManufacturerCreateWithoutOrderInput, ManufacturerUncheckedCreateWithoutOrderInput>
-    connectOrCreate?: ManufacturerCreateOrConnectWithoutOrderInput
-    upsert?: ManufacturerUpsertWithoutOrderInput
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type ShopUpdateOneRequiredWithoutOrdersNestedInput = {
+    create?: XOR<ShopCreateWithoutOrdersInput, ShopUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: ShopCreateOrConnectWithoutOrdersInput
+    upsert?: ShopUpsertWithoutOrdersInput
+    connect?: ShopWhereUniqueInput
+    update?: XOR<XOR<ShopUpdateToOneWithWhereWithoutOrdersInput, ShopUpdateWithoutOrdersInput>, ShopUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type ManufacturerUpdateOneRequiredWithoutOrdersNestedInput = {
+    create?: XOR<ManufacturerCreateWithoutOrdersInput, ManufacturerUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: ManufacturerCreateOrConnectWithoutOrdersInput
+    upsert?: ManufacturerUpsertWithoutOrdersInput
     connect?: ManufacturerWhereUniqueInput
-    update?: XOR<XOR<ManufacturerUpdateToOneWithWhereWithoutOrderInput, ManufacturerUpdateWithoutOrderInput>, ManufacturerUncheckedUpdateWithoutOrderInput>
+    update?: XOR<XOR<ManufacturerUpdateToOneWithWhereWithoutOrdersInput, ManufacturerUpdateWithoutOrdersInput>, ManufacturerUncheckedUpdateWithoutOrdersInput>
   }
 
   export type OrderItemUpdateManyWithoutOrderNestedInput = {
@@ -11658,6 +11770,44 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type ShopOnManufacturerCreateWithoutShopInput = {
     manufacturer: ManufacturerCreateNestedOneWithoutPartnerShopsInput
   }
@@ -11673,13 +11823,17 @@ export namespace Prisma {
 
   export type OrderCreateWithoutShopInput = {
     id?: string
-    manufacturer: ManufacturerCreateNestedOneWithoutOrderInput
+    approved?: boolean
+    orderAt?: Date | string
+    manufacturer: ManufacturerCreateNestedOneWithoutOrdersInput
     items?: OrderItemCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutShopInput = {
     id?: string
     manufacturerId: string
+    approved?: boolean
+    orderAt?: Date | string
     items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
   }
 
@@ -11735,6 +11889,8 @@ export namespace Prisma {
     id?: StringFilter<"Order"> | string
     shopId?: StringFilter<"Order"> | string
     manufacturerId?: StringFilter<"Order"> | string
+    approved?: BoolFilter<"Order"> | boolean
+    orderAt?: DateTimeFilter<"Order"> | Date | string
   }
 
   export type ManufacturerHandlingProductsCreateWithoutManufacturerInput = {
@@ -11768,13 +11924,17 @@ export namespace Prisma {
 
   export type OrderCreateWithoutManufacturerInput = {
     id?: string
-    shop: ShopCreateNestedOneWithoutOrderInput
+    approved?: boolean
+    orderAt?: Date | string
+    shop: ShopCreateNestedOneWithoutOrdersInput
     items?: OrderItemCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutManufacturerInput = {
     id?: string
     shopId: string
+    approved?: boolean
+    orderAt?: Date | string
     items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
   }
 
@@ -11845,14 +12005,14 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    order?: OrderCreateNestedManyWithoutShopInput
+    orders?: OrderCreateNestedManyWithoutShopInput
   }
 
   export type ShopUncheckedCreateWithoutPartnerManufacturersInput = {
     id?: string
     name: string
     description: string
-    order?: OrderUncheckedCreateNestedManyWithoutShopInput
+    orders?: OrderUncheckedCreateNestedManyWithoutShopInput
   }
 
   export type ShopCreateOrConnectWithoutPartnerManufacturersInput = {
@@ -11865,7 +12025,7 @@ export namespace Prisma {
     name: string
     description: string
     handlingProducts?: ManufacturerHandlingProductsCreateNestedManyWithoutManufacturerInput
-    order?: OrderCreateNestedManyWithoutManufacturerInput
+    orders?: OrderCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerUncheckedCreateWithoutPartnerShopsInput = {
@@ -11873,7 +12033,7 @@ export namespace Prisma {
     name: string
     description: string
     handlingProducts?: ManufacturerHandlingProductsUncheckedCreateNestedManyWithoutManufacturerInput
-    order?: OrderUncheckedCreateNestedManyWithoutManufacturerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerCreateOrConnectWithoutPartnerShopsInput = {
@@ -11896,14 +12056,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    order?: OrderUpdateManyWithoutShopNestedInput
+    orders?: OrderUpdateManyWithoutShopNestedInput
   }
 
   export type ShopUncheckedUpdateWithoutPartnerManufacturersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    order?: OrderUncheckedUpdateManyWithoutShopNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type ManufacturerUpsertWithoutPartnerShopsInput = {
@@ -11922,7 +12082,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUpdateManyWithoutManufacturerNestedInput
-    order?: OrderUpdateManyWithoutManufacturerNestedInput
+    orders?: OrderUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ManufacturerUncheckedUpdateWithoutPartnerShopsInput = {
@@ -11930,7 +12090,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     handlingProducts?: ManufacturerHandlingProductsUncheckedUpdateManyWithoutManufacturerNestedInput
-    order?: OrderUncheckedUpdateManyWithoutManufacturerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ProductOnProductCategoryCreateWithoutProductInput = {
@@ -12068,7 +12228,7 @@ export namespace Prisma {
     name: string
     description: string
     partnerShops?: ShopOnManufacturerCreateNestedManyWithoutManufacturerInput
-    order?: OrderCreateNestedManyWithoutManufacturerInput
+    orders?: OrderCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerUncheckedCreateWithoutHandlingProductsInput = {
@@ -12076,7 +12236,7 @@ export namespace Prisma {
     name: string
     description: string
     partnerShops?: ShopOnManufacturerUncheckedCreateNestedManyWithoutManufacturerInput
-    order?: OrderUncheckedCreateNestedManyWithoutManufacturerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutManufacturerInput
   }
 
   export type ManufacturerCreateOrConnectWithoutHandlingProductsInput = {
@@ -12127,7 +12287,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerShops?: ShopOnManufacturerUpdateManyWithoutManufacturerNestedInput
-    order?: OrderUpdateManyWithoutManufacturerNestedInput
+    orders?: OrderUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ManufacturerUncheckedUpdateWithoutHandlingProductsInput = {
@@ -12135,7 +12295,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerShops?: ShopOnManufacturerUncheckedUpdateManyWithoutManufacturerNestedInput
-    order?: OrderUncheckedUpdateManyWithoutManufacturerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutManufacturerNestedInput
   }
 
   export type ProductOnProductCategoryCreateWithoutCategoryInput = {
@@ -12251,26 +12411,26 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ShopCreateWithoutOrderInput = {
+  export type ShopCreateWithoutOrdersInput = {
     id?: string
     name: string
     description: string
     partnerManufacturers?: ShopOnManufacturerCreateNestedManyWithoutShopInput
   }
 
-  export type ShopUncheckedCreateWithoutOrderInput = {
+  export type ShopUncheckedCreateWithoutOrdersInput = {
     id?: string
     name: string
     description: string
     partnerManufacturers?: ShopOnManufacturerUncheckedCreateNestedManyWithoutShopInput
   }
 
-  export type ShopCreateOrConnectWithoutOrderInput = {
+  export type ShopCreateOrConnectWithoutOrdersInput = {
     where: ShopWhereUniqueInput
-    create: XOR<ShopCreateWithoutOrderInput, ShopUncheckedCreateWithoutOrderInput>
+    create: XOR<ShopCreateWithoutOrdersInput, ShopUncheckedCreateWithoutOrdersInput>
   }
 
-  export type ManufacturerCreateWithoutOrderInput = {
+  export type ManufacturerCreateWithoutOrdersInput = {
     id?: string
     name: string
     description: string
@@ -12278,7 +12438,7 @@ export namespace Prisma {
     partnerShops?: ShopOnManufacturerCreateNestedManyWithoutManufacturerInput
   }
 
-  export type ManufacturerUncheckedCreateWithoutOrderInput = {
+  export type ManufacturerUncheckedCreateWithoutOrdersInput = {
     id?: string
     name: string
     description: string
@@ -12286,9 +12446,9 @@ export namespace Prisma {
     partnerShops?: ShopOnManufacturerUncheckedCreateNestedManyWithoutManufacturerInput
   }
 
-  export type ManufacturerCreateOrConnectWithoutOrderInput = {
+  export type ManufacturerCreateOrConnectWithoutOrdersInput = {
     where: ManufacturerWhereUniqueInput
-    create: XOR<ManufacturerCreateWithoutOrderInput, ManufacturerUncheckedCreateWithoutOrderInput>
+    create: XOR<ManufacturerCreateWithoutOrdersInput, ManufacturerUncheckedCreateWithoutOrdersInput>
   }
 
   export type OrderItemCreateWithoutOrderInput = {
@@ -12306,43 +12466,43 @@ export namespace Prisma {
     create: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput>
   }
 
-  export type ShopUpsertWithoutOrderInput = {
-    update: XOR<ShopUpdateWithoutOrderInput, ShopUncheckedUpdateWithoutOrderInput>
-    create: XOR<ShopCreateWithoutOrderInput, ShopUncheckedCreateWithoutOrderInput>
+  export type ShopUpsertWithoutOrdersInput = {
+    update: XOR<ShopUpdateWithoutOrdersInput, ShopUncheckedUpdateWithoutOrdersInput>
+    create: XOR<ShopCreateWithoutOrdersInput, ShopUncheckedCreateWithoutOrdersInput>
     where?: ShopWhereInput
   }
 
-  export type ShopUpdateToOneWithWhereWithoutOrderInput = {
+  export type ShopUpdateToOneWithWhereWithoutOrdersInput = {
     where?: ShopWhereInput
-    data: XOR<ShopUpdateWithoutOrderInput, ShopUncheckedUpdateWithoutOrderInput>
+    data: XOR<ShopUpdateWithoutOrdersInput, ShopUncheckedUpdateWithoutOrdersInput>
   }
 
-  export type ShopUpdateWithoutOrderInput = {
+  export type ShopUpdateWithoutOrdersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerManufacturers?: ShopOnManufacturerUpdateManyWithoutShopNestedInput
   }
 
-  export type ShopUncheckedUpdateWithoutOrderInput = {
+  export type ShopUncheckedUpdateWithoutOrdersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     partnerManufacturers?: ShopOnManufacturerUncheckedUpdateManyWithoutShopNestedInput
   }
 
-  export type ManufacturerUpsertWithoutOrderInput = {
-    update: XOR<ManufacturerUpdateWithoutOrderInput, ManufacturerUncheckedUpdateWithoutOrderInput>
-    create: XOR<ManufacturerCreateWithoutOrderInput, ManufacturerUncheckedCreateWithoutOrderInput>
+  export type ManufacturerUpsertWithoutOrdersInput = {
+    update: XOR<ManufacturerUpdateWithoutOrdersInput, ManufacturerUncheckedUpdateWithoutOrdersInput>
+    create: XOR<ManufacturerCreateWithoutOrdersInput, ManufacturerUncheckedCreateWithoutOrdersInput>
     where?: ManufacturerWhereInput
   }
 
-  export type ManufacturerUpdateToOneWithWhereWithoutOrderInput = {
+  export type ManufacturerUpdateToOneWithWhereWithoutOrdersInput = {
     where?: ManufacturerWhereInput
-    data: XOR<ManufacturerUpdateWithoutOrderInput, ManufacturerUncheckedUpdateWithoutOrderInput>
+    data: XOR<ManufacturerUpdateWithoutOrdersInput, ManufacturerUncheckedUpdateWithoutOrdersInput>
   }
 
-  export type ManufacturerUpdateWithoutOrderInput = {
+  export type ManufacturerUpdateWithoutOrdersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -12350,7 +12510,7 @@ export namespace Prisma {
     partnerShops?: ShopOnManufacturerUpdateManyWithoutManufacturerNestedInput
   }
 
-  export type ManufacturerUncheckedUpdateWithoutOrderInput = {
+  export type ManufacturerUncheckedUpdateWithoutOrdersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -12376,14 +12536,18 @@ export namespace Prisma {
 
   export type OrderCreateWithoutItemsInput = {
     id?: string
-    shop: ShopCreateNestedOneWithoutOrderInput
-    manufacturer: ManufacturerCreateNestedOneWithoutOrderInput
+    approved?: boolean
+    orderAt?: Date | string
+    shop: ShopCreateNestedOneWithoutOrdersInput
+    manufacturer: ManufacturerCreateNestedOneWithoutOrdersInput
   }
 
   export type OrderUncheckedCreateWithoutItemsInput = {
     id?: string
     shopId: string
     manufacturerId: string
+    approved?: boolean
+    orderAt?: Date | string
   }
 
   export type OrderCreateOrConnectWithoutItemsInput = {
@@ -12425,14 +12589,18 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    shop?: ShopUpdateOneRequiredWithoutOrderNestedInput
-    manufacturer?: ManufacturerUpdateOneRequiredWithoutOrderNestedInput
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: ShopUpdateOneRequiredWithoutOrdersNestedInput
+    manufacturer?: ManufacturerUpdateOneRequiredWithoutOrdersNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
     shopId?: StringFieldUpdateOperationsInput | string
     manufacturerId?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductUpsertWithoutOrderItemInput = {
@@ -12476,19 +12644,25 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutShopInput = {
     id?: StringFieldUpdateOperationsInput | string
-    manufacturer?: ManufacturerUpdateOneRequiredWithoutOrderNestedInput
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    manufacturer?: ManufacturerUpdateOneRequiredWithoutOrdersNestedInput
     items?: OrderItemUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutShopInput = {
     id?: StringFieldUpdateOperationsInput | string
     manufacturerId?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutShopInput = {
     id?: StringFieldUpdateOperationsInput | string
     manufacturerId?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ManufacturerHandlingProductsUpdateWithoutManufacturerInput = {
@@ -12522,19 +12696,25 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutManufacturerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    shop?: ShopUpdateOneRequiredWithoutOrderNestedInput
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: ShopUpdateOneRequiredWithoutOrdersNestedInput
     items?: OrderItemUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutManufacturerInput = {
     id?: StringFieldUpdateOperationsInput | string
     shopId?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutManufacturerInput = {
     id?: StringFieldUpdateOperationsInput | string
     shopId?: StringFieldUpdateOperationsInput | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    orderAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductOnProductCategoryUpdateWithoutProductInput = {

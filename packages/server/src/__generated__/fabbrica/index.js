@@ -7,7 +7,7 @@ const modelFieldDefinitions = [{
                 type: "ShopOnManufacturer",
                 relationName: "ShopToShopOnManufacturer"
             }, {
-                name: "order",
+                name: "orders",
                 type: "Order",
                 relationName: "OrderToShop"
             }]
@@ -22,7 +22,7 @@ const modelFieldDefinitions = [{
                 type: "ShopOnManufacturer",
                 relationName: "ManufacturerToShopOnManufacturer"
             }, {
-                name: "order",
+                name: "orders",
                 type: "Order",
                 relationName: "ManufacturerToOrder"
             }]

@@ -60,6 +60,8 @@ CREATE TABLE "Order" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "shopId" TEXT NOT NULL,
     "manufacturerId" TEXT NOT NULL,
+    "approved" BOOLEAN NOT NULL DEFAULT false,
+    "orderAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "Order_shopId_fkey" FOREIGN KEY ("shopId") REFERENCES "Shop" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Order_manufacturerId_fkey" FOREIGN KEY ("manufacturerId") REFERENCES "Manufacturer" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
