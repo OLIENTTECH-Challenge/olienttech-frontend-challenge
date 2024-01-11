@@ -21,7 +21,7 @@ model Shop {
   name                 String
   description          String
   partnerManufacturers ShopOnManufacturer[]
-  invoice              Invoice[]
+  order                Order[]
 }
 
 // 製造会社
@@ -31,7 +31,7 @@ model Manufacturer {
   description      String
   handlingProducts ManufacturerHandlingProducts[]
   partnerShops     ShopOnManufacturer[]
-  invoice          Invoice[]
+  order            Order[]
 }
 
 // 販売会社-製造会社 中間テーブル
@@ -51,7 +51,7 @@ model Product {
   description   String
   categories    ProductOnProductCategory[]
   manufacturers ManufacturerHandlingProducts[]
-  invoiceItem   InvoiceItem[]
+  orderItem     OrderItem[]
 }
 
 // 取り扱い商品（製造会社）
@@ -81,23 +81,23 @@ model ProductOnProductCategory {
   @@id([productId, categoryId])
 }
 
-// 請求書
-model Invoice {
-  id             String        @id @default(uuid())
-  shop           Shop          @relation(fields: [shopId], references: [id])
+// 発注書
+model Order {
+  id             String       @id @default(uuid())
+  shop           Shop         @relation(fields: [shopId], references: [id])
   shopId         String
-  manufacturer   Manufacturer  @relation(fields: [manufacturerId], references: [id])
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
   manufacturerId String
-  items          InvoiceItem[]
+  items          OrderItem[]
 }
 
-// 請求書アイテム
-model InvoiceItem {
-  invoice   Invoice @relation(fields: [invoiceId], references: [id])
-  invoiceId String
+// 発注書アイテム
+model OrderItem {
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
   product   Product @relation(fields: [productId], references: [id])
   productId String
   quantity  Int // 個数
 
-  @@id([productId, invoiceId])
+  @@id([productId, orderId])
 }

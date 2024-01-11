@@ -5,8 +5,8 @@ import type { Product } from "../prisma-client-js";
 import type { ManufacturerHandlingProducts } from "../prisma-client-js";
 import type { ProductCategory } from "../prisma-client-js";
 import type { ProductOnProductCategory } from "../prisma-client-js";
-import type { Invoice } from "../prisma-client-js";
-import type { InvoiceItem } from "../prisma-client-js";
+import type { Order } from "../prisma-client-js";
+import type { OrderItem } from "../prisma-client-js";
 import { Prisma } from "../prisma-client-js";
 import { Resolver } from "@quramy/prisma-fabbrica/lib/internal";
 export { initialize, resetSequence, registerScalarFieldValueGenerator, resetScalarFieldValueGenerator } from "@quramy/prisma-fabbrica/lib/internal";
@@ -18,7 +18,7 @@ type ShopFactoryDefineInput = {
     name?: string;
     description?: string;
     partnerManufacturers?: Prisma.ShopOnManufacturerCreateNestedManyWithoutShopInput;
-    invoice?: Prisma.InvoiceCreateNestedManyWithoutShopInput;
+    order?: Prisma.OrderCreateNestedManyWithoutShopInput;
 };
 type ShopFactoryDefineOptions = {
     defaultData?: Resolver<ShopFactoryDefineInput, BuildDataOptions>;
@@ -55,7 +55,7 @@ type ManufacturerFactoryDefineInput = {
     description?: string;
     handlingProducts?: Prisma.ManufacturerHandlingProductsCreateNestedManyWithoutManufacturerInput;
     partnerShops?: Prisma.ShopOnManufacturerCreateNestedManyWithoutManufacturerInput;
-    invoice?: Prisma.InvoiceCreateNestedManyWithoutManufacturerInput;
+    order?: Prisma.OrderCreateNestedManyWithoutManufacturerInput;
 };
 type ManufacturerFactoryDefineOptions = {
     defaultData?: Resolver<ManufacturerFactoryDefineInput, BuildDataOptions>;
@@ -133,7 +133,7 @@ type ProductFactoryDefineInput = {
     description?: string;
     categories?: Prisma.ProductOnProductCategoryCreateNestedManyWithoutProductInput;
     manufacturers?: Prisma.ManufacturerHandlingProductsCreateNestedManyWithoutProductInput;
-    invoiceItem?: Prisma.InvoiceItemCreateNestedManyWithoutProductInput;
+    orderItem?: Prisma.OrderItemCreateNestedManyWithoutProductInput;
 };
 type ProductFactoryDefineOptions = {
     defaultData?: Resolver<ProductFactoryDefineInput, BuildDataOptions>;
@@ -281,88 +281,88 @@ export interface ProductOnProductCategoryFactoryInterface<TOptions extends Produ
  * @returns factory {@link ProductOnProductCategoryFactoryInterface}
  */
 export declare function defineProductOnProductCategoryFactory<TOptions extends ProductOnProductCategoryFactoryDefineOptions>(options: TOptions): ProductOnProductCategoryFactoryInterface<TOptions>;
-type InvoiceshopFactory = {
+type OrdershopFactory = {
     _factoryFor: "Shop";
-    build: () => PromiseLike<Prisma.ShopCreateNestedOneWithoutInvoiceInput["create"]>;
+    build: () => PromiseLike<Prisma.ShopCreateNestedOneWithoutOrderInput["create"]>;
 };
-type InvoicemanufacturerFactory = {
+type OrdermanufacturerFactory = {
     _factoryFor: "Manufacturer";
-    build: () => PromiseLike<Prisma.ManufacturerCreateNestedOneWithoutInvoiceInput["create"]>;
+    build: () => PromiseLike<Prisma.ManufacturerCreateNestedOneWithoutOrderInput["create"]>;
 };
-type InvoiceFactoryDefineInput = {
+type OrderFactoryDefineInput = {
     id?: string;
-    shop: InvoiceshopFactory | Prisma.ShopCreateNestedOneWithoutInvoiceInput;
-    manufacturer: InvoicemanufacturerFactory | Prisma.ManufacturerCreateNestedOneWithoutInvoiceInput;
-    items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
+    shop: OrdershopFactory | Prisma.ShopCreateNestedOneWithoutOrderInput;
+    manufacturer: OrdermanufacturerFactory | Prisma.ManufacturerCreateNestedOneWithoutOrderInput;
+    items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput;
 };
-type InvoiceFactoryDefineOptions = {
-    defaultData: Resolver<InvoiceFactoryDefineInput, BuildDataOptions>;
+type OrderFactoryDefineOptions = {
+    defaultData: Resolver<OrderFactoryDefineInput, BuildDataOptions>;
     traits?: {
         [traitName: string | symbol]: {
-            data: Resolver<Partial<InvoiceFactoryDefineInput>, BuildDataOptions>;
+            data: Resolver<Partial<OrderFactoryDefineInput>, BuildDataOptions>;
         };
     };
 };
-type InvoiceTraitKeys<TOptions extends InvoiceFactoryDefineOptions> = keyof TOptions["traits"];
-export interface InvoiceFactoryInterfaceWithoutTraits {
-    readonly _factoryFor: "Invoice";
-    build(inputData?: Partial<Prisma.InvoiceCreateInput>): PromiseLike<Prisma.InvoiceCreateInput>;
-    buildCreateInput(inputData?: Partial<Prisma.InvoiceCreateInput>): PromiseLike<Prisma.InvoiceCreateInput>;
-    buildList(inputData: number | readonly Partial<Prisma.InvoiceCreateInput>[]): PromiseLike<Prisma.InvoiceCreateInput[]>;
-    pickForConnect(inputData: Invoice): Pick<Invoice, "id">;
-    create(inputData?: Partial<Prisma.InvoiceCreateInput>): PromiseLike<Invoice>;
-    createList(inputData: number | readonly Partial<Prisma.InvoiceCreateInput>[]): PromiseLike<Invoice[]>;
-    createForConnect(inputData?: Partial<Prisma.InvoiceCreateInput>): PromiseLike<Pick<Invoice, "id">>;
+type OrderTraitKeys<TOptions extends OrderFactoryDefineOptions> = keyof TOptions["traits"];
+export interface OrderFactoryInterfaceWithoutTraits {
+    readonly _factoryFor: "Order";
+    build(inputData?: Partial<Prisma.OrderCreateInput>): PromiseLike<Prisma.OrderCreateInput>;
+    buildCreateInput(inputData?: Partial<Prisma.OrderCreateInput>): PromiseLike<Prisma.OrderCreateInput>;
+    buildList(inputData: number | readonly Partial<Prisma.OrderCreateInput>[]): PromiseLike<Prisma.OrderCreateInput[]>;
+    pickForConnect(inputData: Order): Pick<Order, "id">;
+    create(inputData?: Partial<Prisma.OrderCreateInput>): PromiseLike<Order>;
+    createList(inputData: number | readonly Partial<Prisma.OrderCreateInput>[]): PromiseLike<Order[]>;
+    createForConnect(inputData?: Partial<Prisma.OrderCreateInput>): PromiseLike<Pick<Order, "id">>;
 }
-export interface InvoiceFactoryInterface<TOptions extends InvoiceFactoryDefineOptions = InvoiceFactoryDefineOptions> extends InvoiceFactoryInterfaceWithoutTraits {
-    use(name: InvoiceTraitKeys<TOptions>, ...names: readonly InvoiceTraitKeys<TOptions>[]): InvoiceFactoryInterfaceWithoutTraits;
+export interface OrderFactoryInterface<TOptions extends OrderFactoryDefineOptions = OrderFactoryDefineOptions> extends OrderFactoryInterfaceWithoutTraits {
+    use(name: OrderTraitKeys<TOptions>, ...names: readonly OrderTraitKeys<TOptions>[]): OrderFactoryInterfaceWithoutTraits;
 }
 /**
- * Define factory for {@link Invoice} model.
+ * Define factory for {@link Order} model.
  *
  * @param options
- * @returns factory {@link InvoiceFactoryInterface}
+ * @returns factory {@link OrderFactoryInterface}
  */
-export declare function defineInvoiceFactory<TOptions extends InvoiceFactoryDefineOptions>(options: TOptions): InvoiceFactoryInterface<TOptions>;
-type InvoiceIteminvoiceFactory = {
-    _factoryFor: "Invoice";
-    build: () => PromiseLike<Prisma.InvoiceCreateNestedOneWithoutItemsInput["create"]>;
+export declare function defineOrderFactory<TOptions extends OrderFactoryDefineOptions>(options: TOptions): OrderFactoryInterface<TOptions>;
+type OrderItemorderFactory = {
+    _factoryFor: "Order";
+    build: () => PromiseLike<Prisma.OrderCreateNestedOneWithoutItemsInput["create"]>;
 };
-type InvoiceItemproductFactory = {
+type OrderItemproductFactory = {
     _factoryFor: "Product";
-    build: () => PromiseLike<Prisma.ProductCreateNestedOneWithoutInvoiceItemInput["create"]>;
+    build: () => PromiseLike<Prisma.ProductCreateNestedOneWithoutOrderItemInput["create"]>;
 };
-type InvoiceItemFactoryDefineInput = {
+type OrderItemFactoryDefineInput = {
     quantity?: number;
-    invoice: InvoiceIteminvoiceFactory | Prisma.InvoiceCreateNestedOneWithoutItemsInput;
-    product: InvoiceItemproductFactory | Prisma.ProductCreateNestedOneWithoutInvoiceItemInput;
+    order: OrderItemorderFactory | Prisma.OrderCreateNestedOneWithoutItemsInput;
+    product: OrderItemproductFactory | Prisma.ProductCreateNestedOneWithoutOrderItemInput;
 };
-type InvoiceItemFactoryDefineOptions = {
-    defaultData: Resolver<InvoiceItemFactoryDefineInput, BuildDataOptions>;
+type OrderItemFactoryDefineOptions = {
+    defaultData: Resolver<OrderItemFactoryDefineInput, BuildDataOptions>;
     traits?: {
         [traitName: string | symbol]: {
-            data: Resolver<Partial<InvoiceItemFactoryDefineInput>, BuildDataOptions>;
+            data: Resolver<Partial<OrderItemFactoryDefineInput>, BuildDataOptions>;
         };
     };
 };
-type InvoiceItemTraitKeys<TOptions extends InvoiceItemFactoryDefineOptions> = keyof TOptions["traits"];
-export interface InvoiceItemFactoryInterfaceWithoutTraits {
-    readonly _factoryFor: "InvoiceItem";
-    build(inputData?: Partial<Prisma.InvoiceItemCreateInput>): PromiseLike<Prisma.InvoiceItemCreateInput>;
-    buildCreateInput(inputData?: Partial<Prisma.InvoiceItemCreateInput>): PromiseLike<Prisma.InvoiceItemCreateInput>;
-    buildList(inputData: number | readonly Partial<Prisma.InvoiceItemCreateInput>[]): PromiseLike<Prisma.InvoiceItemCreateInput[]>;
-    pickForConnect(inputData: InvoiceItem): Pick<InvoiceItem, "productId" | "invoiceId">;
-    create(inputData?: Partial<Prisma.InvoiceItemCreateInput>): PromiseLike<InvoiceItem>;
-    createList(inputData: number | readonly Partial<Prisma.InvoiceItemCreateInput>[]): PromiseLike<InvoiceItem[]>;
-    createForConnect(inputData?: Partial<Prisma.InvoiceItemCreateInput>): PromiseLike<Pick<InvoiceItem, "productId" | "invoiceId">>;
+type OrderItemTraitKeys<TOptions extends OrderItemFactoryDefineOptions> = keyof TOptions["traits"];
+export interface OrderItemFactoryInterfaceWithoutTraits {
+    readonly _factoryFor: "OrderItem";
+    build(inputData?: Partial<Prisma.OrderItemCreateInput>): PromiseLike<Prisma.OrderItemCreateInput>;
+    buildCreateInput(inputData?: Partial<Prisma.OrderItemCreateInput>): PromiseLike<Prisma.OrderItemCreateInput>;
+    buildList(inputData: number | readonly Partial<Prisma.OrderItemCreateInput>[]): PromiseLike<Prisma.OrderItemCreateInput[]>;
+    pickForConnect(inputData: OrderItem): Pick<OrderItem, "productId" | "orderId">;
+    create(inputData?: Partial<Prisma.OrderItemCreateInput>): PromiseLike<OrderItem>;
+    createList(inputData: number | readonly Partial<Prisma.OrderItemCreateInput>[]): PromiseLike<OrderItem[]>;
+    createForConnect(inputData?: Partial<Prisma.OrderItemCreateInput>): PromiseLike<Pick<OrderItem, "productId" | "orderId">>;
 }
-export interface InvoiceItemFactoryInterface<TOptions extends InvoiceItemFactoryDefineOptions = InvoiceItemFactoryDefineOptions> extends InvoiceItemFactoryInterfaceWithoutTraits {
-    use(name: InvoiceItemTraitKeys<TOptions>, ...names: readonly InvoiceItemTraitKeys<TOptions>[]): InvoiceItemFactoryInterfaceWithoutTraits;
+export interface OrderItemFactoryInterface<TOptions extends OrderItemFactoryDefineOptions = OrderItemFactoryDefineOptions> extends OrderItemFactoryInterfaceWithoutTraits {
+    use(name: OrderItemTraitKeys<TOptions>, ...names: readonly OrderItemTraitKeys<TOptions>[]): OrderItemFactoryInterfaceWithoutTraits;
 }
 /**
- * Define factory for {@link InvoiceItem} model.
+ * Define factory for {@link OrderItem} model.
  *
  * @param options
- * @returns factory {@link InvoiceItemFactoryInterface}
+ * @returns factory {@link OrderItemFactoryInterface}
  */
-export declare function defineInvoiceItemFactory<TOptions extends InvoiceItemFactoryDefineOptions>(options: TOptions): InvoiceItemFactoryInterface<TOptions>;
+export declare function defineOrderItemFactory<TOptions extends OrderItemFactoryDefineOptions>(options: TOptions): OrderItemFactoryInterface<TOptions>;

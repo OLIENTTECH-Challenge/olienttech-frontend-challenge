@@ -7,9 +7,9 @@ const modelFieldDefinitions = [{
                 type: "ShopOnManufacturer",
                 relationName: "ShopToShopOnManufacturer"
             }, {
-                name: "invoice",
-                type: "Invoice",
-                relationName: "InvoiceToShop"
+                name: "order",
+                type: "Order",
+                relationName: "OrderToShop"
             }]
     }, {
         name: "Manufacturer",
@@ -22,9 +22,9 @@ const modelFieldDefinitions = [{
                 type: "ShopOnManufacturer",
                 relationName: "ManufacturerToShopOnManufacturer"
             }, {
-                name: "invoice",
-                type: "Invoice",
-                relationName: "InvoiceToManufacturer"
+                name: "order",
+                type: "Order",
+                relationName: "ManufacturerToOrder"
             }]
     }, {
         name: "ShopOnManufacturer",
@@ -48,9 +48,9 @@ const modelFieldDefinitions = [{
                 type: "ManufacturerHandlingProducts",
                 relationName: "ManufacturerHandlingProductsToProduct"
             }, {
-                name: "invoiceItem",
-                type: "InvoiceItem",
-                relationName: "InvoiceItemToProduct"
+                name: "orderItem",
+                type: "OrderItem",
+                relationName: "OrderItemToProduct"
             }]
     }, {
         name: "ManufacturerHandlingProducts",
@@ -82,30 +82,30 @@ const modelFieldDefinitions = [{
                 relationName: "ProductCategoryToProductOnProductCategory"
             }]
     }, {
-        name: "Invoice",
+        name: "Order",
         fields: [{
                 name: "shop",
                 type: "Shop",
-                relationName: "InvoiceToShop"
+                relationName: "OrderToShop"
             }, {
                 name: "manufacturer",
                 type: "Manufacturer",
-                relationName: "InvoiceToManufacturer"
+                relationName: "ManufacturerToOrder"
             }, {
                 name: "items",
-                type: "InvoiceItem",
-                relationName: "InvoiceToInvoiceItem"
+                type: "OrderItem",
+                relationName: "OrderToOrderItem"
             }]
     }, {
-        name: "InvoiceItem",
+        name: "OrderItem",
         fields: [{
-                name: "invoice",
-                type: "Invoice",
-                relationName: "InvoiceToInvoiceItem"
+                name: "order",
+                type: "Order",
+                relationName: "OrderToOrderItem"
             }, {
                 name: "product",
                 type: "Product",
-                relationName: "InvoiceItemToProduct"
+                relationName: "OrderItemToProduct"
             }]
     }];
 function autoGenerateShopScalarsOrEnums({ seq }) {
@@ -610,23 +610,23 @@ function defineProductOnProductCategoryFactoryInternal({ defaultData: defaultDat
 export function defineProductOnProductCategoryFactory(options) {
     return defineProductOnProductCategoryFactoryInternal(options);
 }
-function isInvoiceshopFactory(x) {
+function isOrdershopFactory(x) {
     return x?._factoryFor === "Shop";
 }
-function isInvoicemanufacturerFactory(x) {
+function isOrdermanufacturerFactory(x) {
     return x?._factoryFor === "Manufacturer";
 }
-function autoGenerateInvoiceScalarsOrEnums({ seq }) {
+function autoGenerateOrderScalarsOrEnums({ seq }) {
     return {};
 }
-function defineInvoiceFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {
+function defineOrderFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {
     const getFactoryWithTraits = (traitKeys = []) => {
         const seqKey = {};
         const getSeq = () => getSequenceCounter(seqKey);
-        const screen = createScreener("Invoice", modelFieldDefinitions);
+        const screen = createScreener("Order", modelFieldDefinitions);
         const build = async (inputData = {}) => {
             const seq = getSeq();
-            const requiredScalarData = autoGenerateInvoiceScalarsOrEnums({ seq });
+            const requiredScalarData = autoGenerateOrderScalarsOrEnums({ seq });
             const resolveValue = normalizeResolver(defaultDataResolver ?? {});
             const defaultData = await traitKeys.reduce(async (queue, traitKey) => {
                 const acc = await queue;
@@ -638,10 +638,10 @@ function defineInvoiceFactoryInternal({ defaultData: defaultDataResolver, traits
                 };
             }, resolveValue({ seq }));
             const defaultAssociations = {
-                shop: isInvoiceshopFactory(defaultData.shop) ? {
+                shop: isOrdershopFactory(defaultData.shop) ? {
                     create: await defaultData.shop.build()
                 } : defaultData.shop,
-                manufacturer: isInvoicemanufacturerFactory(defaultData.manufacturer) ? {
+                manufacturer: isOrdermanufacturerFactory(defaultData.manufacturer) ? {
                     create: await defaultData.manufacturer.build()
                 } : defaultData.manufacturer
             };
@@ -654,12 +654,12 @@ function defineInvoiceFactoryInternal({ defaultData: defaultDataResolver, traits
         });
         const create = async (inputData = {}) => {
             const data = await build(inputData).then(screen);
-            return await getClient().invoice.create({ data });
+            return await getClient().order.create({ data });
         };
         const createList = (inputData) => Promise.all(normalizeList(inputData).map(data => create(data)));
         const createForConnect = (inputData = {}) => create(inputData).then(pickForConnect);
         return {
-            _factoryFor: "Invoice",
+            _factoryFor: "Order",
             build,
             buildList,
             buildCreateInput: build,
@@ -679,33 +679,33 @@ function defineInvoiceFactoryInternal({ defaultData: defaultDataResolver, traits
     };
 }
 /**
- * Define factory for {@link Invoice} model.
+ * Define factory for {@link Order} model.
  *
  * @param options
- * @returns factory {@link InvoiceFactoryInterface}
+ * @returns factory {@link OrderFactoryInterface}
  */
-export function defineInvoiceFactory(options) {
-    return defineInvoiceFactoryInternal(options);
+export function defineOrderFactory(options) {
+    return defineOrderFactoryInternal(options);
 }
-function isInvoiceIteminvoiceFactory(x) {
-    return x?._factoryFor === "Invoice";
+function isOrderItemorderFactory(x) {
+    return x?._factoryFor === "Order";
 }
-function isInvoiceItemproductFactory(x) {
+function isOrderItemproductFactory(x) {
     return x?._factoryFor === "Product";
 }
-function autoGenerateInvoiceItemScalarsOrEnums({ seq }) {
+function autoGenerateOrderItemScalarsOrEnums({ seq }) {
     return {
-        quantity: getScalarFieldValueGenerator().Int({ modelName: "InvoiceItem", fieldName: "quantity", isId: false, isUnique: false, seq })
+        quantity: getScalarFieldValueGenerator().Int({ modelName: "OrderItem", fieldName: "quantity", isId: false, isUnique: false, seq })
     };
 }
-function defineInvoiceItemFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {
+function defineOrderItemFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {
     const getFactoryWithTraits = (traitKeys = []) => {
         const seqKey = {};
         const getSeq = () => getSequenceCounter(seqKey);
-        const screen = createScreener("InvoiceItem", modelFieldDefinitions);
+        const screen = createScreener("OrderItem", modelFieldDefinitions);
         const build = async (inputData = {}) => {
             const seq = getSeq();
-            const requiredScalarData = autoGenerateInvoiceItemScalarsOrEnums({ seq });
+            const requiredScalarData = autoGenerateOrderItemScalarsOrEnums({ seq });
             const resolveValue = normalizeResolver(defaultDataResolver ?? {});
             const defaultData = await traitKeys.reduce(async (queue, traitKey) => {
                 const acc = await queue;
@@ -717,10 +717,10 @@ function defineInvoiceItemFactoryInternal({ defaultData: defaultDataResolver, tr
                 };
             }, resolveValue({ seq }));
             const defaultAssociations = {
-                invoice: isInvoiceIteminvoiceFactory(defaultData.invoice) ? {
-                    create: await defaultData.invoice.build()
-                } : defaultData.invoice,
-                product: isInvoiceItemproductFactory(defaultData.product) ? {
+                order: isOrderItemorderFactory(defaultData.order) ? {
+                    create: await defaultData.order.build()
+                } : defaultData.order,
+                product: isOrderItemproductFactory(defaultData.product) ? {
                     create: await defaultData.product.build()
                 } : defaultData.product
             };
@@ -730,16 +730,16 @@ function defineInvoiceItemFactoryInternal({ defaultData: defaultDataResolver, tr
         const buildList = (inputData) => Promise.all(normalizeList(inputData).map(data => build(data)));
         const pickForConnect = (inputData) => ({
             productId: inputData.productId,
-            invoiceId: inputData.invoiceId
+            orderId: inputData.orderId
         });
         const create = async (inputData = {}) => {
             const data = await build(inputData).then(screen);
-            return await getClient().invoiceItem.create({ data });
+            return await getClient().orderItem.create({ data });
         };
         const createList = (inputData) => Promise.all(normalizeList(inputData).map(data => create(data)));
         const createForConnect = (inputData = {}) => create(inputData).then(pickForConnect);
         return {
-            _factoryFor: "InvoiceItem",
+            _factoryFor: "OrderItem",
             build,
             buildList,
             buildCreateInput: build,
@@ -759,11 +759,11 @@ function defineInvoiceItemFactoryInternal({ defaultData: defaultDataResolver, tr
     };
 }
 /**
- * Define factory for {@link InvoiceItem} model.
+ * Define factory for {@link OrderItem} model.
  *
  * @param options
- * @returns factory {@link InvoiceItemFactoryInterface}
+ * @returns factory {@link OrderItemFactoryInterface}
  */
-export function defineInvoiceItemFactory(options) {
-    return defineInvoiceItemFactoryInternal(options);
+export function defineOrderItemFactory(options) {
+    return defineOrderItemFactoryInternal(options);
 }

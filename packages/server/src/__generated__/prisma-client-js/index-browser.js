@@ -144,14 +144,14 @@ exports.Prisma.ProductOnProductCategoryScalarFieldEnum = {
   categoryId: 'categoryId'
 };
 
-exports.Prisma.InvoiceScalarFieldEnum = {
+exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
   shopId: 'shopId',
   manufacturerId: 'manufacturerId'
 };
 
-exports.Prisma.InvoiceItemScalarFieldEnum = {
-  invoiceId: 'invoiceId',
+exports.Prisma.OrderItemScalarFieldEnum = {
+  orderId: 'orderId',
   productId: 'productId',
   quantity: 'quantity'
 };
@@ -170,8 +170,8 @@ exports.Prisma.ModelName = {
   ManufacturerHandlingProducts: 'ManufacturerHandlingProducts',
   ProductCategory: 'ProductCategory',
   ProductOnProductCategory: 'ProductOnProductCategory',
-  Invoice: 'Invoice',
-  InvoiceItem: 'InvoiceItem'
+  Order: 'Order',
+  OrderItem: 'OrderItem'
 };
 
 /**
