@@ -1,10 +1,10 @@
 import styles from './LoginPage.module.css';
-import ActionButton from '@/components/base/button/action-button/action-button';
-import { TextInput } from '@/components/base/input/TextInput';
+import { TextInput } from '@/components/base/TextInput';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as manufacturerApi from '@/api/manufacturer';
-import { HomeHeader } from '@/components/common/home-header/home-header';
+import { HomeHeader } from '@/components/common/HomeHeader';
+import ActionButton from '@/components/base/ActionButton';
 
 export const ManufacturerLoginPage = () => {
   const navigate = useNavigate();

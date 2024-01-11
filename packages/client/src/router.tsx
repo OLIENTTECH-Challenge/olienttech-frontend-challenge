@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages';
-import SamplePage from './pages/sample';
 import LoginPage from './pages/manufacturer/login';
 import ProductListPage from './pages/manufacturer/products';
 import { manufacturerAuthLoader } from './loader';
@@ -11,10 +10,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
-  },
-  {
-    path: '/sample',
-    element: <SamplePage />,
   },
   {
     element: <ManufacturerLayout />,

@@ -1,5 +1,5 @@
-import { Container } from '@/components/case/container/Container';
-import { HomeHeader } from '@/components/common/home-header/home-header';
+import { Container } from '@/components/case/Container';
+import { HomeHeader } from '@/components/common/HomeHeader';
 import { Outlet, useLocation } from 'react-router-dom';
 import styles from './Layout.module.css';
 import { Breadcrumb } from '@/components/case/Breadcrumb';

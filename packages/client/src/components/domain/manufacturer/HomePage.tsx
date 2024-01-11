@@ -1,4 +1,4 @@
-import { LinkCard } from '@/components/base/card/link-card';
+import { LinkCard } from '@/components/base/LinkCard';
 import styles from './HomePage.module.css';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { useEffect, useState } from 'react';

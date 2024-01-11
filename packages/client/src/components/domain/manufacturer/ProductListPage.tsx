@@ -1,13 +1,13 @@
-import { TextInput } from '@/components/base/input/TextInput';
-import { Column, Table } from '@/components/case/table/Table';
+import { TextInput } from '@/components/base/TextInput';
+import { Column, Table } from '@/components/case/Table';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './ProductListPage.module.css';
-import ActionButton from '@/components/base/button/action-button/action-button';
 import { Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 import * as manufacturerApi from '@/api/manufacturer';
 import { HandleProduct } from '@/api/model';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
+import ActionButton from '@/components/base/ActionButton';
 
 const useHandleProducts = () => {
   const loaderData = useAuthLoaderData();
