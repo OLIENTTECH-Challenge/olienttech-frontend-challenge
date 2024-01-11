@@ -5,6 +5,7 @@ import LoginPage from './pages/manufacturer/login';
 import ProductListPage from './pages/manufacturer/products';
 import { manufacturerAuthLoader } from './loader';
 import ManufacturerHomePage from './pages/manufacturer';
+import ManufacturerLayout from './pages/manufacturer/layout';
 
 const router = createBrowserRouter([
   {
@@ -16,19 +17,13 @@ const router = createBrowserRouter([
     element: <SamplePage />,
   },
   {
-    path: '/manufacturer/login',
-    element: <LoginPage />,
+    element: <ManufacturerLayout />,
+    children: [
+      { path: '/manufacturer', element: <ManufacturerHomePage />, loader: manufacturerAuthLoader },
+      { path: '/manufacturer/products', element: <ProductListPage />, loader: manufacturerAuthLoader },
+    ],
   },
-  {
-    path: '/manufacturer',
-    loader: manufacturerAuthLoader,
-    element: <ManufacturerHomePage />,
-  },
-  {
-    path: '/manufacturer/products',
-    loader: manufacturerAuthLoader,
-    element: <ProductListPage />,
-  },
+  { path: '/manufacturer/login', element: <LoginPage /> },
 ]);
 
 export const AppRouter = () => {

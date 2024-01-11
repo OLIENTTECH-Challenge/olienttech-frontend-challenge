@@ -1,0 +1,9 @@
+.breadcrumb {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.breadcrumbIcon {
+  margin-top: 4px;
+}

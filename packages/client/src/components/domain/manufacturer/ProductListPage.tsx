@@ -1,9 +1,7 @@
 import { TextInput } from '@/components/base/input/TextInput';
 import { Column, Table } from '@/components/case/table/Table';
-import { HomeHeader } from '@/components/common/home-header/home-header';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './ProductListPage.module.css';
-import { FlexibleContainer } from '@/components/case/container/flexible-container';
 import ActionButton from '@/components/base/button/action-button/action-button';
 import { Check } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -117,13 +115,8 @@ export const ProductListPage = () => {
   ];
 
   return (
-    <>
-      <HomeHeader />
-      <FlexibleContainer>
-        <form className={styles.main} onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
-          <Table columns={columns} data={products} />
-        </form>
-      </FlexibleContainer>
-    </>
+    <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
+      <Table columns={columns} data={products} />
+    </form>
   );
 };

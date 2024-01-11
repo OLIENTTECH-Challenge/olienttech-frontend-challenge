@@ -1,5 +1,4 @@
 declare const styles:
-  & Readonly<{ "main": string }>
   & Readonly<{ "stockCell": string }>
   & Readonly<{ "stockInput": string }>
 ;

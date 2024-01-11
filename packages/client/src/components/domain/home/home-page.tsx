@@ -1,7 +1,7 @@
 import styles from './home-page.module.css';
 import { LinkButton } from '@/components/base/button/link-button/link-button';
 import { LinkCard } from '@/components/base/card/link-card';
-import { FlexibleContainer } from '@/components/case/container/flexible-container';
+import { Container } from '@/components/case/container/Container';
 import { HomeHeader } from '@/components/common/home-header/home-header';
 
 type Reference = {
@@ -44,7 +44,7 @@ export const HomePage = () => {
   return (
     <>
       <HomeHeader />
-      <FlexibleContainer>
+      <Container>
         <main className={styles.main}>
           <div className={styles.intro}>
             <div className={styles.introTitle}>
@@ -85,7 +85,7 @@ export const HomePage = () => {
             </div>
           </div>
         </main>
-      </FlexibleContainer>
+      </Container>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import styles from './LoginPage.module.css';
 import ActionButton from '@/components/base/button/action-button/action-button';
 import { TextInput } from '@/components/base/input/TextInput';
-import { HomeHeader } from '@/components/common/home-header/home-header';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as manufacturerApi from '@/api/manufacturer';
@@ -35,7 +34,6 @@ export const ManufacturerLoginPage = () => {
 
   return (
     <>
-      <HomeHeader />
       <div className={styles.main}>
         <form method='post' className={styles.form} onSubmit={handleSubmit}>
           <TextInput name='id' type='text' placeholder='製造会社ID' />

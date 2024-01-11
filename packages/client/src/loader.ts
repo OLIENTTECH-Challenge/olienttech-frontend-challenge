@@ -1,8 +1,11 @@
 import { Role } from '@olienttech/model';
-import { redirect } from 'react-router-dom';
+import { LoaderFunction, redirect } from 'react-router-dom';
 import * as api from '@/api';
 
-export const manufacturerAuthLoader = async () => {
+export const manufacturerAuthLoader: LoaderFunction = async ({ request }) => {
+  const url = request.url;
+  console.log('manufacturerAuthLoader', url);
+
   const token = document.cookie
     .split('; ')
     .find((row) => row.startsWith('token'))

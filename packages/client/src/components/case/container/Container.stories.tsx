@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FlexibleContainer } from './flexible-container';
+import { Container } from './Container';
 
-const meta: Meta<typeof FlexibleContainer> = {
-  component: FlexibleContainer,
+const meta: Meta<typeof Container> = {
+  component: Container,
   tags: ['autodocs'],
 };
 
-type Story = StoryObj<typeof FlexibleContainer>;
+type Story = StoryObj<typeof Container>;
 
 export const Default: Story = {
   args: {
@@ -17,7 +17,7 @@ export const Default: Story = {
     ),
   },
   render: (args) => {
-    return <FlexibleContainer {...args} />;
+    return <Container {...args} />;
   },
 };
 

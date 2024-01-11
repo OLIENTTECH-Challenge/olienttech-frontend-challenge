@@ -3,4 +3,4 @@ declare const styles:
   & Readonly<{ "content": string }>
 ;
 export default styles;
-//# sourceMappingURL=./flexible-container.module.css.d.ts.map
+//# sourceMappingURL=./Container.module.css.d.ts.map
