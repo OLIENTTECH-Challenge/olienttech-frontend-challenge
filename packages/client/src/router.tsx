@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages';
 import SamplePage from './pages/sample';
 import LoginPage from './pages/manufacturer/login';
-import StocksPage from './pages/manufacturer/stocks';
 import ProductListPage from './pages/manufacturer/products';
+import { manufacturerAuthLoader } from './loader';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +20,8 @@ const router = createBrowserRouter([
   },
   {
     path: '/manufacturer/products',
+    loader: manufacturerAuthLoader,
     element: <ProductListPage />,
-  },
-  {
-    path: '/manufacturer/stocks',
-    element: <StocksPage />,
   },
 ]);
 

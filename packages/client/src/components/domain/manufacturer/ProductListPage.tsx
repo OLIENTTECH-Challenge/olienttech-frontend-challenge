@@ -9,11 +9,12 @@ import { Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 import * as manufacturerApi from '@/api/manufacturer';
 import { HandleProduct } from '@/api/model';
+import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 
 const useHandleProducts = () => {
-  const manufacturerId = '3bbcc2e5-e432-47ac-8c4c-23a96b86bcf7';
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNiYmNjMmU1LWU0MzItNDdhYy04YzRjLTIzYTk2Yjg2YmNmNyIsInJvbGUiOiJtYW51ZmFjdHVyZXIifQ.FlhNx1uvxafdKAm2PQ7h54d3zMlRCXZYf97PlHgW23Y';
+  const loaderData = useAuthLoaderData();
+  const manufacturerId = loaderData.id;
+  const token = loaderData.token;
 
   const [products, setProducts] = useState<HandleProduct[]>([]);
 
@@ -21,11 +22,14 @@ const useHandleProducts = () => {
     void manufacturerApi.fetchHandlingProducts({ manufacturerId, token }).then((products) => {
       setProducts(products);
     });
-  }, []);
+  }, [manufacturerId, token]);
 
-  const mutateUpdateStock = useCallback(async (productId: string, stock: number) => {
-    await manufacturerApi.updateHandlingProductStock({ manufacturerId, productId, token, stock });
-  }, []);
+  const mutateUpdateStock = useCallback(
+    async (productId: string, stock: number) => {
+      await manufacturerApi.updateHandlingProductStock({ manufacturerId, productId, token, stock });
+    },
+    [manufacturerId, token],
+  );
 
   return { products, mutateUpdateStock };
 };

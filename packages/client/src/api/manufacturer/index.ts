@@ -25,6 +25,10 @@ export const signin = async (req: SigninRequest) => {
 
   if (res.ok) {
     const json = (await res.json()) as SuccessResponse<{ id: string; name: string; token: string }>;
+
+    // NOTE: トークンをCookieにセット
+    document.cookie = `token=${json.data.token}; path=/`;
+
     return json.data;
   } else {
     throw new Error();

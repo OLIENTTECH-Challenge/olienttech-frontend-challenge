@@ -6,6 +6,10 @@ import shopRoute from './resources/shop';
 import productRoute from './resources/product';
 import { swaggerUI } from '@hono/swagger-ui';
 import { createHonoApp } from './libs/hono';
+import { createRoute, z } from '@hono/zod-openapi';
+import { ErrorResponseSchema, SuccessResponseSchema } from './libs/utils/schema';
+import { AppResponse } from '@olienttech/model';
+import { verify } from './libs/utils/jwt';
 
 const app = createHonoApp();
 
@@ -33,6 +37,54 @@ app.openAPIRegistry.registerComponent('securitySchemes', 'Bearer', {
 app.get('/', async (c) => {
   return c.text('Hello Hono!');
 });
+
+app.openapi(
+  createRoute({
+    method: 'get',
+    description: 'トークンを検証する',
+    path: '/verify',
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
+    responses: {
+      200: {
+        description: 'OK',
+        content: {
+          'application/json': {
+            schema: SuccessResponseSchema(
+              z.object({
+                id: z.string(),
+                role: z.enum(['admin', 'manufacturer', 'shop']),
+              }),
+            ),
+          },
+        },
+      },
+      404: {
+        description: 'Not found',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
+          },
+        },
+      },
+    },
+  }),
+  async (c) => {
+    const token = c.req.header('Authorization')?.replace('Bearer ', '');
+
+    // トークンがセットされていないとき
+    if (token === undefined) {
+      return c.jsonT(AppResponse.failure('Unauthorized'), 401);
+    }
+
+    const payload = await verify(token);
+
+    return c.jsonT(AppResponse.success({ id: payload.id, role: payload.role }));
+  },
+);
 
 // const privateRoute = new Hono();
 // privateRoute.use(
