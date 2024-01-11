@@ -22,6 +22,9 @@ export const fetchHandlingProducts = async (
     },
   });
 
+  if (!res.ok) {
+    throw new Error();
+  }
   const json = (await res.json()) as SuccessResponse<FetchHandlingProductsResponse>;
   return json.data;
 };

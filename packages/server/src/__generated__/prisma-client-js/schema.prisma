@@ -21,6 +21,7 @@ model Shop {
   name                 String
   description          String
   partnerManufacturers ShopOnManufacturer[]
+  invoice              Invoice[]
 }
 
 // 製造会社
@@ -30,6 +31,7 @@ model Manufacturer {
   description      String
   handlingProducts ManufacturerHandlingProducts[]
   partnerShops     ShopOnManufacturer[]
+  invoice          Invoice[]
 }
 
 // 販売会社-製造会社 中間テーブル
@@ -49,6 +51,7 @@ model Product {
   description   String
   categories    ProductOnProductCategory[]
   manufacturers ManufacturerHandlingProducts[]
+  invoiceItem   InvoiceItem[]
 }
 
 // 取り扱い商品（製造会社）
@@ -76,4 +79,25 @@ model ProductOnProductCategory {
   categoryId String
 
   @@id([productId, categoryId])
+}
+
+// 請求書
+model Invoice {
+  id             String        @id @default(uuid())
+  shop           Shop          @relation(fields: [shopId], references: [id])
+  shopId         String
+  manufacturer   Manufacturer  @relation(fields: [manufacturerId], references: [id])
+  manufacturerId String
+  items          InvoiceItem[]
+}
+
+// 請求書アイテム
+model InvoiceItem {
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+  invoiceId String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int // 個数
+
+  @@id([productId, invoiceId])
 }

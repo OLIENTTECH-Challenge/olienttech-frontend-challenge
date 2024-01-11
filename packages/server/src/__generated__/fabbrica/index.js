@@ -6,6 +6,10 @@ const modelFieldDefinitions = [{
                 name: "partnerManufacturers",
                 type: "ShopOnManufacturer",
                 relationName: "ShopToShopOnManufacturer"
+            }, {
+                name: "invoice",
+                type: "Invoice",
+                relationName: "InvoiceToShop"
             }]
     }, {
         name: "Manufacturer",
@@ -17,6 +21,10 @@ const modelFieldDefinitions = [{
                 name: "partnerShops",
                 type: "ShopOnManufacturer",
                 relationName: "ManufacturerToShopOnManufacturer"
+            }, {
+                name: "invoice",
+                type: "Invoice",
+                relationName: "InvoiceToManufacturer"
             }]
     }, {
         name: "ShopOnManufacturer",
@@ -39,6 +47,10 @@ const modelFieldDefinitions = [{
                 name: "manufacturers",
                 type: "ManufacturerHandlingProducts",
                 relationName: "ManufacturerHandlingProductsToProduct"
+            }, {
+                name: "invoiceItem",
+                type: "InvoiceItem",
+                relationName: "InvoiceItemToProduct"
             }]
     }, {
         name: "ManufacturerHandlingProducts",
@@ -68,6 +80,32 @@ const modelFieldDefinitions = [{
                 name: "category",
                 type: "ProductCategory",
                 relationName: "ProductCategoryToProductOnProductCategory"
+            }]
+    }, {
+        name: "Invoice",
+        fields: [{
+                name: "shop",
+                type: "Shop",
+                relationName: "InvoiceToShop"
+            }, {
+                name: "manufacturer",
+                type: "Manufacturer",
+                relationName: "InvoiceToManufacturer"
+            }, {
+                name: "items",
+                type: "InvoiceItem",
+                relationName: "InvoiceToInvoiceItem"
+            }]
+    }, {
+        name: "InvoiceItem",
+        fields: [{
+                name: "invoice",
+                type: "Invoice",
+                relationName: "InvoiceToInvoiceItem"
+            }, {
+                name: "product",
+                type: "Product",
+                relationName: "InvoiceItemToProduct"
             }]
     }];
 function autoGenerateShopScalarsOrEnums({ seq }) {
@@ -571,4 +609,161 @@ function defineProductOnProductCategoryFactoryInternal({ defaultData: defaultDat
  */
 export function defineProductOnProductCategoryFactory(options) {
     return defineProductOnProductCategoryFactoryInternal(options);
+}
+function isInvoiceshopFactory(x) {
+    return x?._factoryFor === "Shop";
+}
+function isInvoicemanufacturerFactory(x) {
+    return x?._factoryFor === "Manufacturer";
+}
+function autoGenerateInvoiceScalarsOrEnums({ seq }) {
+    return {};
+}
+function defineInvoiceFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {
+    const getFactoryWithTraits = (traitKeys = []) => {
+        const seqKey = {};
+        const getSeq = () => getSequenceCounter(seqKey);
+        const screen = createScreener("Invoice", modelFieldDefinitions);
+        const build = async (inputData = {}) => {
+            const seq = getSeq();
+            const requiredScalarData = autoGenerateInvoiceScalarsOrEnums({ seq });
+            const resolveValue = normalizeResolver(defaultDataResolver ?? {});
+            const defaultData = await traitKeys.reduce(async (queue, traitKey) => {
+                const acc = await queue;
+                const resolveTraitValue = normalizeResolver(traitsDefs[traitKey]?.data ?? {});
+                const traitData = await resolveTraitValue({ seq });
+                return {
+                    ...acc,
+                    ...traitData,
+                };
+            }, resolveValue({ seq }));
+            const defaultAssociations = {
+                shop: isInvoiceshopFactory(defaultData.shop) ? {
+                    create: await defaultData.shop.build()
+                } : defaultData.shop,
+                manufacturer: isInvoicemanufacturerFactory(defaultData.manufacturer) ? {
+                    create: await defaultData.manufacturer.build()
+                } : defaultData.manufacturer
+            };
+            const data = { ...requiredScalarData, ...defaultData, ...defaultAssociations, ...inputData };
+            return data;
+        };
+        const buildList = (inputData) => Promise.all(normalizeList(inputData).map(data => build(data)));
+        const pickForConnect = (inputData) => ({
+            id: inputData.id
+        });
+        const create = async (inputData = {}) => {
+            const data = await build(inputData).then(screen);
+            return await getClient().invoice.create({ data });
+        };
+        const createList = (inputData) => Promise.all(normalizeList(inputData).map(data => create(data)));
+        const createForConnect = (inputData = {}) => create(inputData).then(pickForConnect);
+        return {
+            _factoryFor: "Invoice",
+            build,
+            buildList,
+            buildCreateInput: build,
+            pickForConnect,
+            create,
+            createList,
+            createForConnect,
+        };
+    };
+    const factory = getFactoryWithTraits();
+    const useTraits = (name, ...names) => {
+        return getFactoryWithTraits([name, ...names]);
+    };
+    return {
+        ...factory,
+        use: useTraits,
+    };
+}
+/**
+ * Define factory for {@link Invoice} model.
+ *
+ * @param options
+ * @returns factory {@link InvoiceFactoryInterface}
+ */
+export function defineInvoiceFactory(options) {
+    return defineInvoiceFactoryInternal(options);
+}
+function isInvoiceIteminvoiceFactory(x) {
+    return x?._factoryFor === "Invoice";
+}
+function isInvoiceItemproductFactory(x) {
+    return x?._factoryFor === "Product";
+}
+function autoGenerateInvoiceItemScalarsOrEnums({ seq }) {
+    return {
+        quantity: getScalarFieldValueGenerator().Int({ modelName: "InvoiceItem", fieldName: "quantity", isId: false, isUnique: false, seq })
+    };
+}
+function defineInvoiceItemFactoryInternal({ defaultData: defaultDataResolver, traits: traitsDefs = {} }) {
+    const getFactoryWithTraits = (traitKeys = []) => {
+        const seqKey = {};
+        const getSeq = () => getSequenceCounter(seqKey);
+        const screen = createScreener("InvoiceItem", modelFieldDefinitions);
+        const build = async (inputData = {}) => {
+            const seq = getSeq();
+            const requiredScalarData = autoGenerateInvoiceItemScalarsOrEnums({ seq });
+            const resolveValue = normalizeResolver(defaultDataResolver ?? {});
+            const defaultData = await traitKeys.reduce(async (queue, traitKey) => {
+                const acc = await queue;
+                const resolveTraitValue = normalizeResolver(traitsDefs[traitKey]?.data ?? {});
+                const traitData = await resolveTraitValue({ seq });
+                return {
+                    ...acc,
+                    ...traitData,
+                };
+            }, resolveValue({ seq }));
+            const defaultAssociations = {
+                invoice: isInvoiceIteminvoiceFactory(defaultData.invoice) ? {
+                    create: await defaultData.invoice.build()
+                } : defaultData.invoice,
+                product: isInvoiceItemproductFactory(defaultData.product) ? {
+                    create: await defaultData.product.build()
+                } : defaultData.product
+            };
+            const data = { ...requiredScalarData, ...defaultData, ...defaultAssociations, ...inputData };
+            return data;
+        };
+        const buildList = (inputData) => Promise.all(normalizeList(inputData).map(data => build(data)));
+        const pickForConnect = (inputData) => ({
+            productId: inputData.productId,
+            invoiceId: inputData.invoiceId
+        });
+        const create = async (inputData = {}) => {
+            const data = await build(inputData).then(screen);
+            return await getClient().invoiceItem.create({ data });
+        };
+        const createList = (inputData) => Promise.all(normalizeList(inputData).map(data => create(data)));
+        const createForConnect = (inputData = {}) => create(inputData).then(pickForConnect);
+        return {
+            _factoryFor: "InvoiceItem",
+            build,
+            buildList,
+            buildCreateInput: build,
+            pickForConnect,
+            create,
+            createList,
+            createForConnect,
+        };
+    };
+    const factory = getFactoryWithTraits();
+    const useTraits = (name, ...names) => {
+        return getFactoryWithTraits([name, ...names]);
+    };
+    return {
+        ...factory,
+        use: useTraits,
+    };
+}
+/**
+ * Define factory for {@link InvoiceItem} model.
+ *
+ * @param options
+ * @returns factory {@link InvoiceItemFactoryInterface}
+ */
+export function defineInvoiceItemFactory(options) {
+    return defineInvoiceItemFactoryInternal(options);
 }
