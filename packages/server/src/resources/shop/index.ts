@@ -239,7 +239,7 @@ app.openapi(
   createRoute({
     method: 'get',
     description: '製造会社情報を取得する',
-    path: '/{shopId}/manufacturers/{manufacturerId}',
+    path: '/{shopId}/partner-manufacturers/{manufacturerId}',
     tags: ['shop'],
     security: [
       {
@@ -362,7 +362,7 @@ app.openapi(
   createRoute({
     method: 'post',
     description: '請求書を発行する',
-    path: '/{shopId}/manufacturers/{manufacturerId}/invoice',
+    path: '/{shopId}/partner-manufacturers/{manufacturerId}/invoice',
     tags: ['shop'],
     security: [
       {
