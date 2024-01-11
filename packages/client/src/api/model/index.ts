@@ -6,3 +6,9 @@ export type HandleProduct = {
   image: string;
   stock: number;
 };
+
+export type Manufacturer = {
+  id: string;
+  name: string;
+  description: string;
+};

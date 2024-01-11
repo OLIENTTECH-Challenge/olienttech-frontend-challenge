@@ -1,6 +1,6 @@
 import { APP_API_URL } from '@/libs/constants';
 import { SuccessResponse } from '@olienttech/model';
-import { HandleProduct } from '../model';
+import { HandleProduct, Manufacturer } from '../model';
 
 type SigninRequest = {
   id: string;
@@ -33,6 +33,32 @@ export const signin = async (req: SigninRequest) => {
   } else {
     throw new Error();
   }
+};
+
+type FetchManufactureRequest = {
+  manufacturerId: string;
+  token: string;
+};
+
+type FetchManufactureResponse = Manufacturer;
+
+export const fetchManufacture = async (req: FetchManufactureRequest) => {
+  const { manufacturerId, token } = req;
+
+  const res = await fetch(`${APP_API_URL}/manufacturers/${manufacturerId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error();
+  }
+
+  const json = (await res.json()) as SuccessResponse<FetchManufactureResponse>;
+  return json.data;
 };
 
 type FetchHandlingProductsRequest = {

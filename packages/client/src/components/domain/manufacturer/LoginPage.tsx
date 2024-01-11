@@ -4,6 +4,7 @@ import { TextInput } from '@/components/base/input/TextInput';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as manufacturerApi from '@/api/manufacturer';
+import { HomeHeader } from '@/components/common/home-header/home-header';
 
 export const ManufacturerLoginPage = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const ManufacturerLoginPage = () => {
           error: 'ログインに失敗しました',
         })
         .then(() => {
-          navigate('/manufacturer/products');
+          navigate('/manufacturer');
         });
     } else {
       toast.error('エラーが発生しました');
@@ -34,10 +35,11 @@ export const ManufacturerLoginPage = () => {
 
   return (
     <>
+      <HomeHeader />
       <div className={styles.main}>
         <form method='post' className={styles.form} onSubmit={handleSubmit}>
-          <TextInput name='id' type='text' placeholder='製造会社ID' />
-          <TextInput name='password' type='password' placeholder='パスワード' />
+          <TextInput name='id' type='text' placeholder='製造会社ID' required />
+          <TextInput name='password' type='password' placeholder='パスワード' required />
           <ActionButton variant='filled'>ログイン</ActionButton>
         </form>
       </div>

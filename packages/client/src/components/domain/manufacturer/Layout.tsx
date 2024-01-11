@@ -6,7 +6,6 @@ import { Breadcrumb } from '@/components/case/Breadcrumb';
 
 export const ManufacturerLayout = () => {
   const location = useLocation();
-
   const isProductPage = location.pathname.includes('products');
 
   let breadcrumbItems = [{ href: '/manufacturer', title: '製造会社トップ' }];
@@ -19,10 +18,7 @@ export const ManufacturerLayout = () => {
       <HomeHeader />
       <Container>
         <div className={styles.container}>
-          <div>
-            <h3>製造会社用ページ</h3>
-            <Breadcrumb items={breadcrumbItems} />
-          </div>
+          <Breadcrumb items={breadcrumbItems} />
           <Outlet />
         </div>
       </Container>
