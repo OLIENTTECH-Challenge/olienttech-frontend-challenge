@@ -1,67 +1,31 @@
 import { TextInput } from '@/components/base/input/TextInput';
 import { Column, Table } from '@/components/case/table/Table';
 import { HomeHeader } from '@/components/common/home-header/home-header';
-import { APP_API_URL } from '@/libs/constants';
-import { SuccessResponse } from '@olienttech/model';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './ProductListPage.module.css';
 import { FlexibleContainer } from '@/components/case/container/flexible-container';
 import ActionButton from '@/components/base/button/action-button/action-button';
 import { Check } from 'lucide-react';
 import toast from 'react-hot-toast';
-
-type HandleProduct = {
-  id: string;
-  name: string;
-  description: string;
-  categories: { id: string; name: string }[];
-  image: string;
-  stock: number;
-};
-
-type GetHandleProductResponse = HandleProduct[];
-
-const fetchHandleProducts = async (id: string, token: string) => {
-  const res = await fetch(`${APP_API_URL}/manufacturers/${id}/handling-products`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const json = (await res.json()) as SuccessResponse<GetHandleProductResponse>;
-  return json.data;
-};
-
-const updateProductStock = async (id: string, productId: string, token: string, stock: number) => {
-  await fetch(`${APP_API_URL}/manufacturers/${id}/handling-products/${productId}/stock`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      stock,
-    }),
-  });
-};
+import * as manufacturerApi from '@/api/manufacturer';
+import { HandleProduct } from '@/api/model';
 
 const useHandleProducts = () => {
-  const id = 'a5b5da89-b124-4c6f-8937-f308fed6c577';
+  const manufacturerId = 'a5b5da89-b124-4c6f-8937-f308fed6c577';
   const token =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1YjVkYTg5LWIxMjQtNGM2Zi04OTM3LWYzMDhmZWQ2YzU3NyIsInJvbGUiOiJtYW51ZmFjdHVyZXIifQ.wEGQL5Ra8Eo8g4Dr6NZX4Dg-C98e9h9hsEW0qB6MfQU';
 
   const [products, setProducts] = useState<HandleProduct[]>([]);
 
   useEffect(() => {
-    void fetchHandleProducts(id, token).then((products) => {
+    void manufacturerApi.fetchHandlingProducts({ manufacturerId, token }).then((products) => {
       setProducts(products);
     });
   }, []);
 
   const mutateUpdateStock = useCallback(async (productId: string, stock: number) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    await updateProductStock(id, productId, token, stock);
+    await manufacturerApi.updateHandlingProductStock({ manufacturerId, productId, token, stock });
   }, []);
 
   return { products, mutateUpdateStock };
@@ -136,7 +100,6 @@ export const ProductListPage = () => {
           <TextInput
             type='number'
             min={0}
-            data-id={item.id}
             name={`stock_${item.id}`}
             className={styles.stockInput}
             defaultValue={item.stock}

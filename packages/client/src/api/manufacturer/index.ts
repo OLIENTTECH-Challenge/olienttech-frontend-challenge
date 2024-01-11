@@ -1,0 +1,49 @@
+import { APP_API_URL } from '@/libs/constants';
+import { SuccessResponse } from '@olienttech/model';
+import { HandleProduct } from '../model';
+
+type FetchHandlingProductsRequest = {
+  manufacturerId: string;
+  token: string;
+};
+
+type FetchHandlingProductsResponse = HandleProduct[];
+
+export const fetchHandlingProducts = async (
+  req: FetchHandlingProductsRequest,
+): Promise<FetchHandlingProductsResponse> => {
+  const { manufacturerId, token } = req;
+
+  const res = await fetch(`${APP_API_URL}/manufacturers/${manufacturerId}/handling-products`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const json = (await res.json()) as SuccessResponse<FetchHandlingProductsResponse>;
+  return json.data;
+};
+
+type UpdateHandlingProductStockRequest = {
+  manufacturerId: string;
+  productId: string;
+  stock: number;
+  token: string;
+};
+
+export const updateHandlingProductStock = async (req: UpdateHandlingProductStockRequest) => {
+  const { manufacturerId, productId, stock, token } = req;
+
+  await fetch(`${APP_API_URL}/manufacturers/${manufacturerId}/handling-products/${productId}/stock`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      stock,
+    }),
+  });
+};
