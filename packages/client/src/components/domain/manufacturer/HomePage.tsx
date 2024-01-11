@@ -3,14 +3,15 @@ import styles from './HomePage.module.css';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { useEffect, useState } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
-import { Manufacturer } from '@/api/model';
+
+type Response = Awaited<ReturnType<typeof manufacturerApi.fetchManufacture>>;
 
 const useManufacture = () => {
   const lodaerData = useAuthLoaderData();
   const id = lodaerData.id;
   const token = lodaerData.token;
 
-  const [manufacturer, setManufacturer] = useState<Manufacturer | null>(null);
+  const [manufacturer, setManufacturer] = useState<Response | null>(null);
 
   useEffect(() => {
     void manufacturerApi.fetchManufacture({ manufacturerId: id, token }).then((res) => {

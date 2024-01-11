@@ -1,4 +1,3 @@
-import { Order } from '@/api/model';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { useState, useEffect } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
@@ -6,16 +5,18 @@ import { Column, Table } from '@/components/case/Table';
 import { useParams } from 'react-router-dom';
 import styles from './OrderPage.module.css';
 
+type Response = Awaited<ReturnType<typeof manufacturerApi.fetchOrder>>;
+
 const useOrder = (orderId: string) => {
   const loaderData = useAuthLoaderData();
   const manufacturerId = loaderData.id;
   const token = loaderData.token;
 
-  const [order, setOrders] = useState<Order | null>(null);
+  const [order, setOrders] = useState<Response | null>(null);
 
   useEffect(() => {
-    void manufacturerApi.fetchOrder({ manufacturerId, orderId, token }).then((products) => {
-      setOrders(products);
+    void manufacturerApi.fetchOrder({ manufacturerId, orderId, token }).then((orders) => {
+      setOrders(orders);
     });
   }, [manufacturerId, orderId, token]);
 

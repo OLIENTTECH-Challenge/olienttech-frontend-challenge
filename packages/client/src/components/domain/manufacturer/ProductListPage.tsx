@@ -5,16 +5,17 @@ import styles from './ProductListPage.module.css';
 import { Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 import * as manufacturerApi from '@/api/manufacturer';
-import { HandleProduct } from '@/api/model';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import ActionButton from '@/components/base/ActionButton';
+
+type Response = Awaited<ReturnType<typeof manufacturerApi.fetchHandlingProducts>>;
 
 const useHandleProducts = () => {
   const loaderData = useAuthLoaderData();
   const manufacturerId = loaderData.id;
   const token = loaderData.token;
 
-  const [products, setProducts] = useState<HandleProduct[]>([]);
+  const [products, setProducts] = useState<Response>([]);
 
   useEffect(() => {
     void manufacturerApi.fetchHandlingProducts({ manufacturerId, token }).then((products) => {
@@ -77,7 +78,7 @@ export const ProductListPage = () => {
     }
   };
 
-  const columns: Column<HandleProduct>[] = [
+  const columns: Column<Response[number]>[] = [
     {
       header: 'ID',
       accessor: (item) => item.id,

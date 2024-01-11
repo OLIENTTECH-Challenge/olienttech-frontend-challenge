@@ -1,6 +1,5 @@
 import { APP_API_URL } from '@/libs/constants';
 import { SuccessResponse } from '@olienttech/model';
-import { HandleProduct, Manufacturer, Order } from '../model';
 
 type SigninRequest = {
   id: string;
@@ -40,7 +39,11 @@ type FetchManufactureRequest = {
   token: string;
 };
 
-type FetchManufactureResponse = Manufacturer;
+type FetchManufactureResponse = {
+  id: string;
+  name: string;
+  description: string;
+};
 
 export const fetchManufacture = async (req: FetchManufactureRequest) => {
   const { manufacturerId, token } = req;
@@ -66,7 +69,15 @@ type FetchHandlingProductsRequest = {
   token: string;
 };
 
-type FetchHandlingProductsResponse = HandleProduct[];
+type FetchHandlingProductsResponse = {
+  id: string;
+  name: string;
+  description: string;
+  categories: { id: string; name: string }[];
+  image: string;
+  price: number;
+  stock: number;
+}[];
 
 export const fetchHandlingProducts = async (
   req: FetchHandlingProductsRequest,
@@ -148,7 +159,27 @@ type FetchOrderRequest = {
   token: string;
 };
 
-type FetchOrderResponse = Order;
+type FetchOrderResponse = {
+  id: string;
+  shop: {
+    id: string;
+    name: string;
+    description: string;
+  };
+  orderAt: string;
+  approved: boolean;
+  totalPrice: number;
+  items: {
+    product: {
+      id: string;
+      name: string;
+      description: string;
+    };
+    price: number;
+    stock: number;
+    quantity: number;
+  }[];
+};
 
 export const fetchOrder = async (req: FetchOrderRequest): Promise<FetchOrderResponse> => {
   const { manufacturerId, orderId, token } = req;
