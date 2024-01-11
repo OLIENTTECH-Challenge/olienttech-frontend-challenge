@@ -43,7 +43,7 @@ export const ManufacturerHomePage = () => {
           <LinkCard
             title='発注書一覧'
             description='販売会社からの発注書を管理します'
-            href='/manufacturer/products'
+            href='/manufacturer/orders'
             className={styles.linkCard}
           />
         </div>

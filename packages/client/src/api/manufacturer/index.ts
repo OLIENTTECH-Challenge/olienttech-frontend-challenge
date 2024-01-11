@@ -1,6 +1,6 @@
 import { APP_API_URL } from '@/libs/constants';
 import { SuccessResponse } from '@olienttech/model';
-import { HandleProduct, Manufacturer } from '../model';
+import { HandleProduct, Manufacturer, Order } from '../model';
 
 type SigninRequest = {
   id: string;
@@ -109,4 +109,29 @@ export const updateHandlingProductStock = async (req: UpdateHandlingProductStock
     }),
   });
   await new Promise((resolve) => setTimeout(resolve, 1000)); // NOTE: トーストの挙動を試すために, わざと処理待ちしている
+};
+
+type FetchOrdersRequest = {
+  manufacturerId: string;
+  token: string;
+};
+
+type FetchOrdersResponse = Order[];
+
+export const fetchOrders = async (req: FetchOrdersRequest): Promise<FetchOrdersResponse> => {
+  const { manufacturerId, token } = req;
+
+  const res = await fetch(`${APP_API_URL}/manufacturers/${manufacturerId}/orders`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error();
+  }
+  const json = (await res.json()) as SuccessResponse<FetchOrdersResponse>;
+  return json.data;
 };

@@ -440,4 +440,107 @@ app.openapi(
   },
 );
 
+app.openapi(
+  createRoute({
+    method: 'get',
+    description: '製造会社の発注書一覧を取得する',
+    path: '/{manufacturerId}/orders',
+    tags: ['manufacturer'],
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
+    request: {
+      params: z.object({
+        manufacturerId: z.string(),
+      }),
+    },
+    responses: {
+      200: {
+        description: 'OK',
+        content: {
+          'application/json': {
+            schema: SuccessResponseSchema(
+              z.array(
+                z.object({
+                  id: z.string(),
+                  shop: z.object({
+                    id: z.string(),
+                    name: z.string(),
+                    description: z.string(),
+                  }),
+                  items: z.array(
+                    z.object({
+                      product: z.object({
+                        id: z.string(),
+                        name: z.string(),
+                        description: z.string(),
+                      }),
+                      stock: z.number().optional(),
+                      quantity: z.number(),
+                    }),
+                  ),
+                }),
+              ),
+            ),
+          },
+        },
+      },
+      500: {
+        description: 'Server Error',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
+          },
+        },
+      },
+    },
+  }),
+  async (c) => {
+    const { manufacturerId } = c.req.valid('param');
+
+    const orders = await prisma.order.findMany({
+      where: {
+        manufacturerId,
+      },
+      include: {
+        shop: true,
+        items: {
+          include: {
+            product: true,
+          },
+        },
+      },
+    });
+
+    const orderProductIds = Array.from(new Set(orders.flatMap((order) => order.items.map((item) => item.productId))));
+
+    const handlingProducts = await prisma.manufacturerHandlingProducts.findMany({
+      where: {
+        manufacturerId,
+        productId: { in: orderProductIds },
+      },
+      select: {
+        stock: true,
+        productId: true,
+      },
+    });
+
+    return c.jsonT(
+      AppResponse.success(
+        orders.map((order) => ({
+          id: order.id,
+          shop: order.shop,
+          items: order.items.map((item) => ({
+            product: item.product,
+            stock: handlingProducts.find((v) => v.productId === item.productId)?.stock,
+            quantity: item.quantity,
+          })),
+        })),
+      ),
+    );
+  },
+);
+
 export default app;

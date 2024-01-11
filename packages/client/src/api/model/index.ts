@@ -12,3 +12,23 @@ export type Manufacturer = {
   name: string;
   description: string;
 };
+
+export type Shop = {
+  id: string;
+  name: string;
+  description: string;
+};
+
+export type Order = {
+  id: string;
+  shop: Shop;
+  items: {
+    product: {
+      id: string;
+      name: string;
+      description: string;
+    };
+    stock: number;
+    quantity: number;
+  }[];
+};

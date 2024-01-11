@@ -7,10 +7,14 @@ import { Breadcrumb } from '@/components/case/Breadcrumb';
 export const ManufacturerLayout = () => {
   const location = useLocation();
   const isProductPage = location.pathname.includes('products');
+  const isOrderPage = location.pathname.includes('orders');
 
   let breadcrumbItems = [{ href: '/manufacturer', title: '製造会社トップ' }];
   if (isProductPage) {
     breadcrumbItems = [...breadcrumbItems, { href: '/manufacturer/products', title: '取り扱い商品一覧' }];
+  }
+  if (isOrderPage) {
+    breadcrumbItems = [...breadcrumbItems, { href: '/manufacturer/orders', title: '発注書一覧' }];
   }
 
   return (
