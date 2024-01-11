@@ -2,6 +2,32 @@ import { APP_API_URL } from '@/libs/constants';
 import { SuccessResponse } from '@olienttech/model';
 import { HandleProduct } from '../model';
 
+type SigninRequest = {
+  id: string;
+  password: string;
+};
+
+export const signin = async (req: SigninRequest) => {
+  const { id, password } = req;
+
+  const res = await fetch(`${APP_API_URL}/manufacturers/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      password,
+    }),
+  });
+  if (res.ok) {
+    const json = (await res.json()) as SuccessResponse<{ token: string }>;
+    return json.data.token;
+  } else {
+    throw new Error();
+  }
+};
+
 type FetchHandlingProductsRequest = {
   manufacturerId: string;
   token: string;

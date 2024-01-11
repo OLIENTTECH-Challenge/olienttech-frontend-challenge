@@ -11,9 +11,9 @@ import * as manufacturerApi from '@/api/manufacturer';
 import { HandleProduct } from '@/api/model';
 
 const useHandleProducts = () => {
-  const manufacturerId = 'a5b5da89-b124-4c6f-8937-f308fed6c577';
+  const manufacturerId = '3bbcc2e5-e432-47ac-8c4c-23a96b86bcf7';
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1YjVkYTg5LWIxMjQtNGM2Zi04OTM3LWYzMDhmZWQ2YzU3NyIsInJvbGUiOiJtYW51ZmFjdHVyZXIifQ.wEGQL5Ra8Eo8g4Dr6NZX4Dg-C98e9h9hsEW0qB6MfQU';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNiYmNjMmU1LWU0MzItNDdhYy04YzRjLTIzYTk2Yjg2YmNmNyIsInJvbGUiOiJtYW51ZmFjdHVyZXIifQ.FlhNx1uvxafdKAm2PQ7h54d3zMlRCXZYf97PlHgW23Y';
 
   const [products, setProducts] = useState<HandleProduct[]>([]);
 
