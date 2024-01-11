@@ -361,8 +361,8 @@ app.openapi(
 app.openapi(
   createRoute({
     method: 'post',
-    description: '請求書を発行する',
-    path: '/{shopId}/partner-manufacturers/{manufacturerId}/invoice',
+    description: '発注書を発行する',
+    path: '/{shopId}/partner-manufacturers/{manufacturerId}/order',
     tags: ['shop'],
     security: [
       {
@@ -416,7 +416,7 @@ app.openapi(
       return c.jsonT(AppResponse.failure('quantityは0以上で入力してください'), 422);
     }
 
-    await prisma.invoice.create({
+    await prisma.order.create({
       data: {
         shopId,
         manufacturerId,
