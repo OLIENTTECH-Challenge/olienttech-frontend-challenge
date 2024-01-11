@@ -8,6 +8,7 @@ import styles from './ProductListPage.module.css';
 import { FlexibleContainer } from '@/components/case/container/flexible-container';
 import ActionButton from '@/components/base/button/action-button/action-button';
 import { Check } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 type HandleProduct = {
   id: string;
@@ -59,6 +60,7 @@ const useHandleProducts = () => {
   }, []);
 
   const mutateUpdateStock = useCallback(async (productId: string, stock: number) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await updateProductStock(id, productId, token, stock);
   }, []);
 
@@ -75,6 +77,7 @@ export const ProductListPage = () => {
 
     const productId = targetProductId.current;
     if (productId == null) {
+      toast.error('商品IDが存在しません');
       return;
     }
 
@@ -82,13 +85,24 @@ export const ProductListPage = () => {
     const formData = new FormData(form);
 
     const stock = formData.get(`stock_${productId}`);
-    console.log(productId, stock);
 
-    if (typeof stock === 'string') {
-      void mutateUpdateStock(productId, Number(stock));
-
-      // TODO: 処理が終わった後にtoastを出す
+    const product = products.find((product) => product.id === productId) ?? null;
+    if (product === null) {
+      toast.error('対象の商品が存在しません');
+      return;
     }
+
+    if (typeof stock !== 'string') {
+      toast.error('在庫数は数値で入力してください');
+      return;
+    }
+
+    void toast.promise(mutateUpdateStock(productId, Number(stock)), {
+      loading: `${product.name}の在庫数を更新中です`,
+      success: `${product.name}の在庫数を更新しました`,
+      error: `${product.name}の在庫数の更新に失敗しました`,
+    });
+    return;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
