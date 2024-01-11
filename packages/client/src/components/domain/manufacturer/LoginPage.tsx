@@ -2,9 +2,12 @@ import styles from './LoginPage.module.css';
 import ActionButton from '@/components/base/button/action-button/action-button';
 import { TextInput } from '@/components/base/input/TextInput';
 import { HomeHeader } from '@/components/common/home-header/home-header';
-import * as manufacturerApi from '@/api/manufacturer';
+import { useAuth } from '@/providers/auth';
+import toast from 'react-hot-toast';
 
 export const ManufacturerLoginPage = () => {
+  const { signinManufacturer } = useAuth();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -15,12 +18,13 @@ export const ManufacturerLoginPage = () => {
     const password = formData.get('password');
 
     if (typeof id === 'string' && typeof password === 'string') {
-      void manufacturerApi.signin({ id, password }).then((token) => {
-        console.log(token);
+      void toast.promise(signinManufacturer(id, password), {
+        loading: 'ログイン中です',
+        success: (user) => `${user.name}でログインしました`,
+        error: 'ログインに失敗しました',
       });
     } else {
-      // TODO: アラート表示をいい感じにする
-      alert('エラーが発生しました');
+      toast.error('エラーが発生しました');
     }
   };
 

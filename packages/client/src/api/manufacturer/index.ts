@@ -20,9 +20,12 @@ export const signin = async (req: SigninRequest) => {
       password,
     }),
   });
+
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // NOTE: トーストの挙動を試すために, わざと処理待ちしている
+
   if (res.ok) {
-    const json = (await res.json()) as SuccessResponse<{ token: string }>;
-    return json.data.token;
+    const json = (await res.json()) as SuccessResponse<{ id: string; name: string; token: string }>;
+    return json.data;
   } else {
     throw new Error();
   }
@@ -75,4 +78,5 @@ export const updateHandlingProductStock = async (req: UpdateHandlingProductStock
       stock,
     }),
   });
+  await new Promise((resolve) => setTimeout(resolve, 1000)); // NOTE: トーストの挙動を試すために, わざと処理待ちしている
 };

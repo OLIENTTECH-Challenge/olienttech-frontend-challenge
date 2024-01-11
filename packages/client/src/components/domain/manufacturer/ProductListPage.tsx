@@ -24,7 +24,6 @@ const useHandleProducts = () => {
   }, []);
 
   const mutateUpdateStock = useCallback(async (productId: string, stock: number) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     await manufacturerApi.updateHandlingProductStock({ manufacturerId, productId, token, stock });
   }, []);
 

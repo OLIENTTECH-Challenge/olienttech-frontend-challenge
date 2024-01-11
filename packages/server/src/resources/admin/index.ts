@@ -1,4 +1,5 @@
-import { Role, sign } from '@/libs/utils/jwt';
+import { sign } from '@/libs/utils/jwt';
+import { Role } from '@olienttech/model';
 import { Hono } from 'hono';
 
 const app = new Hono();

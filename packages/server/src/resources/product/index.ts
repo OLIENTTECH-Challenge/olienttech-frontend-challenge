@@ -1,4 +1,4 @@
-import { AppResponse, ProductCategory } from '@olienttech/model';
+import { AppResponse } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
 import { createRoute, z } from '@hono/zod-openapi';
 import { SuccessResponseSchema } from '@/libs/utils/schema';
@@ -92,7 +92,7 @@ app.openapi(
   async (c) => {
     const categoriesOnPrisma = await prisma.productCategory.findMany();
 
-    const categories: ProductCategory[] = categoriesOnPrisma.map((category) => ({
+    const categories = categoriesOnPrisma.map((category) => ({
       id: category.id,
       name: category.name,
     }));

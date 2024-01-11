@@ -1,7 +1,7 @@
 import { createRoute, z } from '@hono/zod-openapi';
-import { AppResponse } from '@olienttech/model';
+import { AppResponse, Role } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
-import { Role, sign, verify } from '@/libs/utils/jwt';
+import { sign, verify } from '@/libs/utils/jwt';
 import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
 import { createHonoApp } from '@/libs/hono';
 
@@ -32,6 +32,8 @@ app.openapi(
           'application/json': {
             schema: SuccessResponseSchema(
               z.object({
+                id: z.string(),
+                name: z.string(),
                 token: z.string(),
               }),
             ),
@@ -59,10 +61,10 @@ app.openapi(
   async (c) => {
     const { id, password } = c.req.valid('json');
 
-    const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
+    const manufacturer = await prisma.manufacturer.findUnique({
       where: { id },
     });
-    if (manufacturerOnPrisma === null) {
+    if (manufacturer === null) {
       return c.jsonT(AppResponse.failure('Not found'), 404);
     }
 
@@ -76,7 +78,7 @@ app.openapi(
       role: Role.Manufacturer,
     });
 
-    return c.jsonT(AppResponse.success({ token }));
+    return c.jsonT(AppResponse.success({ id, name: manufacturer.name, token }));
   },
 );
 

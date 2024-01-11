@@ -1,9 +1,9 @@
 import { createHonoApp } from '@/libs/hono';
 import { prisma } from '@/libs/prisma';
-import { Role, sign, verify } from '@/libs/utils/jwt';
+import { sign, verify } from '@/libs/utils/jwt';
 import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
 import { createRoute, z } from '@hono/zod-openapi';
-import { AppResponse } from '@olienttech/model';
+import { AppResponse, Role } from '@olienttech/model';
 
 const app = createHonoApp();
 
