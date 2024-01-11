@@ -1,0 +1,69 @@
+import { Order } from '@/api/model';
+import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
+import { useState, useEffect } from 'react';
+import * as manufacturerApi from '@/api/manufacturer';
+import { Column, Table } from '@/components/case/Table';
+import { useParams } from 'react-router-dom';
+import styles from './OrderPage.module.css';
+
+const useOrder = (orderId: string) => {
+  const loaderData = useAuthLoaderData();
+  const manufacturerId = loaderData.id;
+  const token = loaderData.token;
+
+  const [order, setOrders] = useState<Order | null>(null);
+
+  useEffect(() => {
+    void manufacturerApi.fetchOrder({ manufacturerId, orderId, token }).then((products) => {
+      setOrders(products);
+    });
+  }, [manufacturerId, orderId, token]);
+
+  return { order };
+};
+
+export const OrderPage = () => {
+  const params = useParams();
+  const orderId = params['orderId'];
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const { order } = useOrder(orderId!);
+  const items = order?.items ?? [];
+
+  const columns: Column<(typeof items)[number]>[] = [
+    {
+      header: '商品ID',
+      accessor: (item) => item.product.id,
+    },
+    {
+      header: '商品名',
+      accessor: (item) => item.product.name,
+    },
+    {
+      header: '商品説明',
+      accessor: (item) => item.product.description,
+    },
+    {
+      header: '在庫数',
+      accessor: (item) => item.stock,
+    },
+    {
+      header: '発注数',
+      accessor: (item) => item.quantity,
+    },
+  ];
+
+  if (order === null) {
+    return <p>Not Found</p>;
+  }
+
+  return (
+    <div className={styles.main}>
+      <div>
+        <p>発注元: {order.shop.name}</p>
+        <p>発注日: {order.orderAt}</p>
+      </div>
+      <Table columns={columns} data={items} />
+    </div>
+  );
+};

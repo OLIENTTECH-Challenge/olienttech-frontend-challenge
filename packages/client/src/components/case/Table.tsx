@@ -8,9 +8,10 @@ export type Column<T extends object> = {
 type TableProps<T extends object> = {
   columns: Column<T>[];
   data: T[];
+  onClick?: (item: T) => void;
 };
 
-export const Table = <T extends object>({ columns, data }: TableProps<T>) => {
+export const Table = <T extends object>({ columns, data, onClick }: TableProps<T>) => {
   return (
     <table className={styles.table}>
       <thead className={styles.thead}>
@@ -24,7 +25,7 @@ export const Table = <T extends object>({ columns, data }: TableProps<T>) => {
       </thead>
       <tbody className={styles.tbody}>
         {data.map((item, i) => (
-          <tr key={`row_${i}`} className={styles.tr}>
+          <tr key={`row_${i}`} className={styles.tr} onClick={() => onClick?.(item)}>
             {columns.map((column) => (
               <td key={column.header} className={styles.td}>
                 {column.accessor(item)}

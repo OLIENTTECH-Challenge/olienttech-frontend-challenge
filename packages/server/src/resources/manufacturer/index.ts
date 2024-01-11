@@ -547,4 +547,112 @@ app.openapi(
   },
 );
 
+app.openapi(
+  createRoute({
+    method: 'get',
+    description: '製造会社の発注書を取得する',
+    path: '/{manufacturerId}/orders/{orderId}',
+    tags: ['manufacturer'],
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
+    request: {
+      params: z.object({
+        manufacturerId: z.string(),
+        orderId: z.string(),
+      }),
+    },
+    responses: {
+      200: {
+        description: 'OK',
+        content: {
+          'application/json': {
+            schema: SuccessResponseSchema(
+              z.object({
+                id: z.string(),
+                shop: z.object({
+                  id: z.string(),
+                  name: z.string(),
+                  description: z.string(),
+                }),
+                approved: z.boolean(),
+                orderAt: z.string(),
+                items: z.array(
+                  z.object({
+                    product: z.object({
+                      id: z.string(),
+                      name: z.string(),
+                      description: z.string(),
+                    }),
+                    stock: z.number().optional(),
+                    quantity: z.number(),
+                  }),
+                ),
+              }),
+            ),
+          },
+        },
+      },
+      500: {
+        description: 'Server Error',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
+          },
+        },
+      },
+    },
+  }),
+  async (c) => {
+    const { manufacturerId, orderId } = c.req.valid('param');
+
+    const order = await prisma.order.findUnique({
+      where: {
+        id: orderId,
+      },
+      include: {
+        shop: true,
+        items: {
+          include: {
+            product: true,
+          },
+        },
+      },
+    });
+
+    if (order === null) {
+      return c.jsonT(AppResponse.failure('Not found'), 404);
+    }
+
+    const orderProductIds = order.items.map((item) => item.productId);
+
+    const handlingProducts = await prisma.manufacturerHandlingProducts.findMany({
+      where: {
+        manufacturerId,
+        productId: { in: orderProductIds },
+      },
+      select: {
+        stock: true,
+        productId: true,
+      },
+    });
+
+    return c.jsonT(
+      AppResponse.success({
+        id: order.id,
+        shop: order.shop,
+        approved: order.approved,
+        orderAt: order.orderAt.toISOString(),
+        items: order.items.map((item) => ({
+          product: item.product,
+          stock: handlingProducts.find((v) => v.productId === item.productId)?.stock,
+          quantity: item.quantity,
+        })),
+      }),
+    );
+  },
+);
+
 export default app;

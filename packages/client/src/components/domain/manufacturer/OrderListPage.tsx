@@ -3,6 +3,7 @@ import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { useState, useEffect } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
 import { Column, Table } from '@/components/case/Table';
+import { useNavigate } from 'react-router-dom';
 
 const useOrder = () => {
   const loaderData = useAuthLoaderData();
@@ -21,6 +22,7 @@ const useOrder = () => {
 };
 
 export const OrderListPage = () => {
+  const navigate = useNavigate();
   const { orders } = useOrder();
 
   const columns: Column<Order>[] = [
@@ -29,7 +31,7 @@ export const OrderListPage = () => {
       accessor: (item) => item.id,
     },
     {
-      header: '請求元',
+      header: '発注元',
       accessor: (item) => item.shop.name,
     },
     {
@@ -38,5 +40,13 @@ export const OrderListPage = () => {
     },
   ];
 
-  return <Table columns={columns} data={orders} />;
+  return (
+    <Table
+      columns={columns}
+      data={orders}
+      onClick={(item) => {
+        navigate(`/manufacturer/orders/${item.id}`);
+      }}
+    />
+  );
 };

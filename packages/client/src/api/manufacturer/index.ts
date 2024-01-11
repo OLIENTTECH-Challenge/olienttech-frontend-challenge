@@ -135,3 +135,29 @@ export const fetchOrders = async (req: FetchOrdersRequest): Promise<FetchOrdersR
   const json = (await res.json()) as SuccessResponse<FetchOrdersResponse>;
   return json.data;
 };
+
+type FetchOrderRequest = {
+  manufacturerId: string;
+  orderId: string;
+  token: string;
+};
+
+type FetchOrderResponse = Order;
+
+export const fetchOrder = async (req: FetchOrderRequest): Promise<FetchOrderResponse> => {
+  const { manufacturerId, orderId, token } = req;
+
+  const res = await fetch(`${APP_API_URL}/manufacturers/${manufacturerId}/orders/${orderId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error();
+  }
+  const json = (await res.json()) as SuccessResponse<FetchOrderResponse>;
+  return json.data;
+};

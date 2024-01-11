@@ -412,6 +412,8 @@ app.openapi(
     const { shopId, manufacturerId } = c.req.valid('param');
     const { items } = c.req.valid('json');
 
+    console.log(items);
+
     if (items.filter((item) => item.quantity <= 0).length > 0) {
       return c.jsonT(AppResponse.failure('quantityは0以上で入力してください'), 422);
     }

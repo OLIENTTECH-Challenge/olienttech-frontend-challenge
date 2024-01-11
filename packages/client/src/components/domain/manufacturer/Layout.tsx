@@ -1,20 +1,27 @@
 import { Container } from '@/components/case/Container';
 import { HomeHeader } from '@/components/common/HomeHeader';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import styles from './Layout.module.css';
 import { Breadcrumb } from '@/components/case/Breadcrumb';
 
 export const ManufacturerLayout = () => {
+  const params = useParams();
+  const orderId = params['orderId'];
+
   const location = useLocation();
-  const isProductPage = location.pathname.includes('products');
-  const isOrderPage = location.pathname.includes('orders');
+  const isProductListPage = location.pathname.includes('products');
+  const isOrderListPage = location.pathname.includes('orders');
+  const isOrderPage = !!orderId;
 
   let breadcrumbItems = [{ href: '/manufacturer', title: '製造会社トップ' }];
-  if (isProductPage) {
+  if (isProductListPage) {
     breadcrumbItems = [...breadcrumbItems, { href: '/manufacturer/products', title: '取り扱い商品一覧' }];
   }
-  if (isOrderPage) {
+  if (isOrderListPage) {
     breadcrumbItems = [...breadcrumbItems, { href: '/manufacturer/orders', title: '発注書一覧' }];
+  }
+  if (isOrderPage) {
+    breadcrumbItems = [...breadcrumbItems, { href: location.pathname, title: orderId }];
   }
 
   return (
