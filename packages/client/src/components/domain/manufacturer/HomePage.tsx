@@ -3,6 +3,7 @@ import styles from './HomePage.module.css';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { useEffect, useState } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
+import ActionButton from '../../base/ActionButton';
 
 type Response = Awaited<ReturnType<typeof manufacturerApi.fetchManufacture>>;
 
@@ -25,6 +26,11 @@ const useManufacture = () => {
 export const ManufacturerHomePage = () => {
   const { manufacturer } = useManufacture();
 
+  const logout = () => {
+    document.cookie = 'token=; max-age=0';
+    location.reload();
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -32,6 +38,11 @@ export const ManufacturerHomePage = () => {
           <div>
             <h3>{manufacturer.name}</h3>
             <p>{manufacturer.description}</p>
+            <div className={styles.logoutButton}>
+              <ActionButton variant='outlined' onClick={logout}>
+                ログアウト
+              </ActionButton>
+            </div>
           </div>
         )}
         <div className={styles.linkList}>
