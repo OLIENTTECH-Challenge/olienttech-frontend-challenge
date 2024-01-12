@@ -362,7 +362,7 @@ app.openapi(
   createRoute({
     method: 'post',
     description: '発注書を発行する',
-    path: '/{shopId}/partner-manufacturers/{manufacturerId}/order',
+    path: '/{shopId}/orders',
     tags: ['shop'],
     security: [
       {
@@ -372,12 +372,12 @@ app.openapi(
     request: {
       params: z.object({
         shopId: z.string(),
-        manufacturerId: z.string(),
       }),
       body: {
         content: {
           'application/json': {
             schema: z.object({
+              manufacturerId: z.string(),
               items: z.array(
                 z.object({
                   productId: z.string(),
@@ -409,10 +409,8 @@ app.openapi(
     },
   }),
   async (c) => {
-    const { shopId, manufacturerId } = c.req.valid('param');
-    const { items } = c.req.valid('json');
-
-    console.log(items);
+    const { shopId } = c.req.valid('param');
+    const { manufacturerId, items } = c.req.valid('json');
 
     if (items.filter((item) => item.quantity <= 0).length > 0) {
       return c.jsonT(AppResponse.failure('quantityは0以上で入力してください'), 422);
