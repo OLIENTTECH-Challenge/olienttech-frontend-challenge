@@ -352,6 +352,73 @@ app.openapi(
 
 app.openapi(
   createRoute({
+    method: 'get',
+    description: '発注書一覧を取得する',
+    path: '/{shopId}/orders',
+    tags: ['shop'],
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
+    request: {
+      params: z.object({
+        shopId: z.string(),
+      }),
+    },
+    responses: {
+      200: {
+        description: 'OK',
+        content: {
+          'application/json': {
+            schema: SuccessResponseSchema(
+              z.array(
+                z.object({
+                  id: z.string(),
+                  manufacturer: z.object({
+                    id: z.string(),
+                    name: z.string(),
+                    description: z.string(),
+                  }),
+                  approved: z.boolean(),
+                  orderAt: z.string(),
+                }),
+              ),
+            ),
+          },
+        },
+      },
+      500: {
+        description: 'Server Error',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
+          },
+        },
+      },
+    },
+  }),
+  async (c) => {
+    const { shopId } = c.req.valid('param');
+
+    const orders = await prisma.order.findMany({
+      where: {
+        shopId,
+      },
+      select: {
+        id: true,
+        manufacturer: true,
+        approved: true,
+        orderAt: true,
+      },
+    });
+
+    return c.jsonT(AppResponse.success(orders.map((order) => ({ ...order, orderAt: order.orderAt.toISOString() }))));
+  },
+);
+
+app.openapi(
+  createRoute({
     method: 'post',
     description: '発注書を発行する',
     path: '/{shopId}/orders',
