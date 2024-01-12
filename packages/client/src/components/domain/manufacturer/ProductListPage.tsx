@@ -6,7 +6,7 @@ import { Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 import * as manufacturerApi from '@/api/manufacturer';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
-import ActionButton from '@/components/base/ActionButton';
+import { Button } from '@/components/base/Button';
 
 type Response = Awaited<ReturnType<typeof manufacturerApi.fetchHandlingProducts>>;
 
@@ -111,9 +111,9 @@ export const ProductListPage = () => {
             defaultValue={item.stock}
             required
           />
-          <ActionButton variant='outlined' onClick={() => (targetProductId.current = item.id)}>
+          <Button variant='outlined' onClick={() => (targetProductId.current = item.id)}>
             <Check />
-          </ActionButton>
+          </Button>
         </div>
       ),
     },

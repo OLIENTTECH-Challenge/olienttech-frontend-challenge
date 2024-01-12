@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as manufacturerApi from '@/api/manufacturer';
 import { HomeHeader } from '@/components/common/HomeHeader';
-import ActionButton from '@/components/base/ActionButton';
+import { Button } from '@/components/base/Button';
 
 export const ManufacturerLoginPage = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export const ManufacturerLoginPage = () => {
         <form method='post' className={styles.form} onSubmit={handleSubmit}>
           <TextInput name='id' type='text' placeholder='製造会社ID' required />
           <TextInput name='password' type='password' placeholder='パスワード' required />
-          <ActionButton variant='filled'>ログイン</ActionButton>
+          <Button variant='filled'>ログイン</Button>
         </form>
       </div>
     </>

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ActionButton } from './ActionButton';
+import { Button } from './Button';
 
-const meta: Meta<typeof ActionButton> = {
-  component: ActionButton,
+const meta: Meta<typeof Button> = {
+  component: Button,
   tags: ['autodocs'],
 };
 
-type Story = StoryObj<typeof ActionButton>;
+type Story = StoryObj<typeof Button>;
 
 export const Filled: Story = {
   args: {
@@ -14,7 +14,7 @@ export const Filled: Story = {
     children: 'Button',
   },
   render: (args) => {
-    return <ActionButton {...args} />;
+    return <Button {...args} />;
   },
 };
 
@@ -24,7 +24,7 @@ export const Outlined: Story = {
     children: 'Button',
   },
   render: (args) => {
-    return <ActionButton {...args} />;
+    return <Button {...args} />;
   },
 };
 

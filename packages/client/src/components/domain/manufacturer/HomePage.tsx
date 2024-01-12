@@ -3,7 +3,7 @@ import styles from './HomePage.module.css';
 import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { useEffect, useState } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
-import ActionButton from '../../base/ActionButton';
+import { Button } from '@/components/base/Button';
 
 type Response = Awaited<ReturnType<typeof manufacturerApi.fetchManufacture>>;
 
@@ -39,9 +39,9 @@ export const ManufacturerHomePage = () => {
             <h3>{manufacturer.name}</h3>
             <p>{manufacturer.description}</p>
             <div className={styles.logoutButton}>
-              <ActionButton variant='outlined' onClick={logout}>
+              <Button variant='outlined' onClick={logout}>
                 ログアウト
-              </ActionButton>
+              </Button>
             </div>
           </div>
         )}

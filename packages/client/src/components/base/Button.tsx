@@ -1,15 +1,15 @@
 import React from 'react';
-import styles from './ActionButton.module.css';
+import styles from './Button.module.css';
 import { classNames } from '@/libs/utils';
 
 type HTMLButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-type ActionButtonProps = {
+type ButtonProps = {
   variant: 'outlined' | 'filled';
   isLoading?: boolean;
 } & Pick<HTMLButtonProps, 'children' | 'onClick'>;
 
-export const ActionButton = ({ children, variant, onClick, isLoading }: ActionButtonProps) => {
+export const Button = ({ children, variant, onClick, isLoading }: ButtonProps) => {
   const buttonClass = isLoading ? `${styles.button} ${styles['loading']}` : styles.button;
 
   return (
@@ -18,5 +18,3 @@ export const ActionButton = ({ children, variant, onClick, isLoading }: ActionBu
     </button>
   );
 };
-
-export default ActionButton;

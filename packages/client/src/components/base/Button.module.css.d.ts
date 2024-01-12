@@ -6,4 +6,4 @@ declare const styles:
   & Readonly<{ "spinner": string }>
 ;
 export default styles;
-//# sourceMappingURL=./ActionButton.module.css.d.ts.map
+//# sourceMappingURL=./Button.module.css.d.ts.map
