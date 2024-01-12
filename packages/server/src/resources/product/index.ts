@@ -1,7 +1,7 @@
 import { AppResponse } from '@olienttech/model';
 import { prisma } from '@/libs/prisma';
 import { createRoute, z } from '@hono/zod-openapi';
-import { SuccessResponseSchema } from '@/libs/utils/schema';
+import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
 import { createHonoApp } from '@/libs/hono';
 
 const app = createHonoApp();
@@ -33,6 +33,14 @@ app.openapi(
                 }),
               ),
             ),
+          },
+        },
+      },
+      500: {
+        description: 'Server Error',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
           },
         },
       },
@@ -84,6 +92,14 @@ app.openapi(
                 }),
               ),
             ),
+          },
+        },
+      },
+      500: {
+        description: 'Server Error',
+        content: {
+          'application/json': {
+            schema: ErrorResponseSchema,
           },
         },
       },

@@ -38,16 +38,8 @@ app.openapi(
           },
         },
       },
-      401: {
-        description: 'Unauthorized',
-        content: {
-          'application/json': {
-            schema: ErrorResponseSchema,
-          },
-        },
-      },
-      404: {
-        description: 'Not found',
+      500: {
+        description: 'Server Error',
         content: {
           'application/json': {
             schema: ErrorResponseSchema,
@@ -138,8 +130,8 @@ app.openapi(
           },
         },
       },
-      404: {
-        description: 'Not found',
+      500: {
+        description: 'Server Error',
         content: {
           'application/json': {
             schema: ErrorResponseSchema,
@@ -202,8 +194,8 @@ app.openapi(
           },
         },
       },
-      404: {
-        description: 'Not found',
+      500: {
+        description: 'Server Error',
         content: {
           'application/json': {
             schema: ErrorResponseSchema,
@@ -281,8 +273,8 @@ app.openapi(
           },
         },
       },
-      404: {
-        description: 'Not found',
+      500: {
+        description: 'Server Error',
         content: {
           'application/json': {
             schema: ErrorResponseSchema,
