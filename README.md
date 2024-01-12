@@ -41,12 +41,14 @@ $ pnpm task bootstrap
 To view and interact with your application during development, you'll need to run the development server.
 
 1. Start the Server: Run `pnpm run dev` from the project root. This will start the development server.
-2. Access the Application: Open your browser and navigate to http://localhost:5173 (or the designated port shown in your terminal) to view the application and Running server on http://localhost:8787.
+2. Access the Application: Open your browser and navigate to http://localhost:3000 (or the designated port shown in your terminal) to view the application and Running server on http://localhost:8787.
 
 ```sh
-$ open http://localhost:5173
+$ open http://localhost:3000
 $ curl http://localhost:8787
 ```
+
+3. Access Swagger UI: Open your browser and navigate to http://localhost:8787/swagger-ui.
 
 ## Formatting and Linting
 
@@ -61,6 +63,13 @@ Storybook is an essential tool for developing and testing UI components. To run 
 
 1. Start Storybook: `pnpm run workspace/client storybook`.
 2. Access UI: Open http://localhost:6006 in your browser to view and interact with your UI components.
+
+## Running Prisma Studio
+
+Prisma Studio is a database visualization tool. To run it:
+
+1. Start Prisma Studio: `pnpm run workspace/server prisma studio`
+2. Access UI: Open http://localhost:5555 in your browser to view.
 
 ## Conclusion
 
