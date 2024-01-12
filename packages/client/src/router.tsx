@@ -22,9 +22,9 @@ const router = createBrowserRouter([
       { path: '/manufacturer/products', element: <ManufacturerProductListPage />, loader: manufacturerAuthLoader },
       { path: '/manufacturer/orders', element: <ManufacturerOrderListPage />, loader: manufacturerAuthLoader },
       { path: '/manufacturer/orders/:orderId', element: <ManufacturerOrderPage />, loader: manufacturerAuthLoader },
+      { path: '/manufacturer/login', element: <ManufacturerLoginPage /> },
     ],
   },
-  { path: '/manufacturer/login', element: <ManufacturerLoginPage /> },
   {
     element: <ShopLayout />,
     children: [{ path: '/shop', element: <ShopHomePage /> }],

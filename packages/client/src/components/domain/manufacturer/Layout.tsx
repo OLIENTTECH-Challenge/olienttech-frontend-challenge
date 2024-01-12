@@ -9,6 +9,7 @@ export const ManufacturerLayout = () => {
   const orderId = params['orderId'];
 
   const location = useLocation();
+  const isLoginPage = location.pathname.includes('login');
   const isProductListPage = location.pathname.includes('products');
   const isOrderListPage = location.pathname.includes('orders');
   const isOrderPage = !!orderId;
@@ -22,6 +23,9 @@ export const ManufacturerLayout = () => {
   }
   if (isOrderPage) {
     breadcrumbItems = [...breadcrumbItems, { href: location.pathname, title: orderId }];
+  }
+  if (isLoginPage) {
+    breadcrumbItems = [];
   }
 
   return (
