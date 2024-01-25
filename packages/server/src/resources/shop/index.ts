@@ -1,6 +1,7 @@
 import { createHonoApp } from '@/libs/hono';
 import { prisma } from '@/libs/prisma';
 import { sign, verify } from '@/libs/utils/jwt';
+import { safeParseInt } from '@/libs/utils/parseInt';
 import { ErrorResponseSchema, SuccessResponseSchema } from '@/libs/utils/schema';
 import { createRoute, z } from '@hono/zod-openapi';
 import { AppResponse, Role } from '@olienttech/model';
@@ -239,8 +240,8 @@ app.openapi(
 app.openapi(
   createRoute({
     method: 'get',
-    description: '製造会社情報を取得する',
-    path: '/{shopId}/partner-manufacturers/{manufacturerId}',
+    description: '製造会社の取り扱いしている商品一覧を取得する',
+    path: '/{shopId}/partner-manufacturers/{manufacturerId}/products',
     tags: ['shop'],
     security: [
       {
@@ -252,6 +253,10 @@ app.openapi(
         shopId: z.string(),
         manufacturerId: z.string(),
       }),
+      query: z.object({
+        page: z.string().optional(),
+        limit: z.string().optional(),
+      }),
     },
     responses: {
       200: {
@@ -260,10 +265,7 @@ app.openapi(
           'application/json': {
             schema: SuccessResponseSchema(
               z.object({
-                id: z.string(),
-                name: z.string(),
-                description: z.string(),
-                handlingProducts: z.array(
+                products: z.array(
                   z.object({
                     id: z.string(),
                     name: z.string(),
@@ -277,6 +279,15 @@ app.openapi(
                     stock: z.number(),
                   }),
                 ),
+                pageMeta: z.object({
+                  isFirstPage: z.boolean(),
+                  isLastPage: z.boolean(),
+                  currentPage: z.number(),
+                  previousPage: z.number().nullable(),
+                  nextPage: z.number().nullable(),
+                  pageCount: z.number(),
+                  totalCount: z.number(),
+                }),
               }),
             ),
           },
@@ -294,6 +305,7 @@ app.openapi(
   }),
   async (c) => {
     const { shopId, manufacturerId } = c.req.valid('param');
+    const { page, limit } = c.req.valid('query');
 
     const shop = await prisma.shop.findUnique({
       where: {
@@ -307,23 +319,7 @@ app.openapi(
       include: {
         partnerManufacturers: {
           include: {
-            manufacturer: {
-              include: {
-                handlingProducts: {
-                  include: {
-                    product: {
-                      include: {
-                        categories: {
-                          include: {
-                            category: true,
-                          },
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
+            manufacturer: true,
           },
         },
       },
@@ -335,25 +331,41 @@ app.openapi(
 
     const partnerManufacturers = shop.partnerManufacturers;
     if (partnerManufacturers.length === 0) {
-      return c.jsonT(AppResponse.failure('PartnerManufacturerが見つかりません'), 404);
+      return c.jsonT(AppResponse.failure('PartnerManufacturerではありません'), 500);
     }
 
-    const partnerManufacturer = partnerManufacturers[0];
-
-    const manufacturer = partnerManufacturer.manufacturer;
+    const [products, meta] = await prisma.manufacturerHandlingProducts
+      .paginate({
+        where: {
+          manufacturerId,
+        },
+        include: {
+          product: {
+            include: {
+              categories: {
+                include: {
+                  category: true,
+                },
+              },
+            },
+          },
+        },
+      })
+      .withPages({
+        limit: safeParseInt(limit) ?? 9999,
+        page: safeParseInt(page) ?? 1,
+      });
 
     return c.jsonT(
       AppResponse.success({
-        id: manufacturer.id,
-        name: manufacturer.name,
-        description: manufacturer.description,
-        handlingProducts: manufacturer.handlingProducts.map((v) => ({
+        products: products.map((v) => ({
           id: v.product.id,
           name: v.product.name,
           description: v.product.description,
           categories: v.product.categories.map((v) => ({ id: v.category.id, name: v.category.name })),
           stock: v.stock,
         })),
+        pageMeta: meta,
       }),
     );
   },

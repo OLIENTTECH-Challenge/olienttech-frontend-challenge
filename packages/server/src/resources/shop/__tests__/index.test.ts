@@ -126,12 +126,29 @@ describe('GET /:shopId/partner-manufacturers', () => {
   });
 });
 
-describe('GET /:shopId/partner-manufacturers/:manufacturerId', () => {
+describe('GET /:shopId/partner-manufacturers/:manufacturerId/products', () => {
   const ShopFactory = defineShopFactory();
   const ManufacturerFactory = defineManufacturerFactory();
+  const ProductFactory = defineProductFactory();
 
   test('正常系', async () => {
-    const manufacturers = await ManufacturerFactory.createList(3);
+    const products = await ProductFactory.createList(3);
+
+    const manufacturers = await ManufacturerFactory.createList([
+      {
+        handlingProducts: {
+          create: products.map((product) => ({
+            price: 100,
+            stock: 100,
+            product: {
+              connect: {
+                id: product.id,
+              },
+            },
+          })),
+        },
+      },
+    ]);
 
     const shop = await ShopFactory.create({
       partnerManufacturers: {
@@ -150,7 +167,7 @@ describe('GET /:shopId/partner-manufacturers/:manufacturerId', () => {
       role: Role.Shop,
     });
 
-    const res = await app.request(`/${shop.id}/partner-manufacturers/${manufacturers[0].id}`, {
+    const res = await app.request(`/${shop.id}/partner-manufacturers/${manufacturers[0].id}/products`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -161,9 +178,8 @@ describe('GET /:shopId/partner-manufacturers/:manufacturerId', () => {
 
     if (isSuccessResponse(json)) {
       expect(res.status).toBe(200);
-      expect(json.data).toHaveProperty('id');
-      expect(json.data).toHaveProperty('name');
-      expect(json.data).toHaveProperty('description');
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      expect(json.data.products).toHaveLength(3);
     } else {
       if (isErrorResponse(json)) {
         console.error(json.message);
