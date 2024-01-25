@@ -83,19 +83,28 @@ app.use('/:manufacturerId/*', async (c, next) => {
 
   // トークンがセットされていないとき
   if (token === undefined) {
-    return c.json(AppResponse.failure('Unauthorized'), 401);
+    return c.json(AppResponse.failure('Token not set'), 401);
   }
 
   const payload = await verify(token);
 
   // 適切なロールでないとき
   if (payload.role !== Role.Manufacturer) {
-    return c.json(AppResponse.failure('Unauthorized'), 401);
+    return c.json(AppResponse.failure('Not an appropriate roll'), 401);
+  }
+
+  const manufacturer = await prisma.manufacturer.findUnique({
+    where: { id: manufacturerId },
+  });
+
+  // 製造会社が存在しないとき
+  if (!manufacturer) {
+    return c.json(AppResponse.failure('Not Found'), 404);
   }
 
   // 自分のIDでないとき
   if (payload.id !== manufacturerId) {
-    return c.json(AppResponse.failure('Unauthorized'), 401);
+    return c.json(AppResponse.failure('Not your ID'), 401);
   }
 
   await next();
@@ -145,19 +154,19 @@ app.openapi(
   async (c) => {
     const { manufacturerId } = c.req.valid('param');
 
-    const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
+    const manufacturer = await prisma.manufacturer.findUnique({
       where: { id: manufacturerId },
     });
 
-    if (!manufacturerOnPrisma) {
+    if (!manufacturer) {
       return c.jsonT(AppResponse.failure('Not found'), 404);
     }
 
     return c.jsonT(
       AppResponse.success({
-        id: manufacturerOnPrisma.id,
-        name: manufacturerOnPrisma.name,
-        description: manufacturerOnPrisma.description,
+        id: manufacturer.id,
+        name: manufacturer.name,
+        description: manufacturer.description,
       }),
     );
   },
@@ -166,7 +175,7 @@ app.openapi(
 app.openapi(
   createRoute({
     method: 'get',
-    description: '製造会社情報を取得する',
+    description: '製造会社の取り扱いしている商品一覧を取得する',
     path: '/{manufacturerId}/handling-products',
     tags: ['manufacturer'],
     security: [
@@ -218,7 +227,7 @@ app.openapi(
   async (c) => {
     const { manufacturerId } = c.req.param();
 
-    const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
+    const manufacturer = await prisma.manufacturer.findUnique({
       where: { id: manufacturerId },
       include: {
         handlingProducts: {
@@ -237,11 +246,11 @@ app.openapi(
       },
     });
 
-    if (!manufacturerOnPrisma) {
-      return c.jsonT(AppResponse.failure('Not found'), 404);
+    if (!manufacturer) {
+      return c.jsonT(AppResponse.failure('Not found manufacturer'), 404);
     }
 
-    const handlingProducts = manufacturerOnPrisma.handlingProducts.map(({ stock, price, product }) => ({
+    const handlingProducts = manufacturer.handlingProducts.map(({ stock, price, product }) => ({
       id: product.id,
       name: product.name,
       description: product.description,

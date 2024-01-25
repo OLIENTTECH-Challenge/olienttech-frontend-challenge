@@ -11,7 +11,7 @@ app.openapi(
   createRoute({
     method: 'post',
     description: '販売会社でログインする',
-    path: '/singin',
+    path: '/signin',
     tags: ['shop'],
     request: {
       body: {
@@ -81,19 +81,28 @@ app.use('/:shopId/*', async (c, next) => {
 
   // トークンがセットされていないとき
   if (token === undefined) {
-    return c.json(AppResponse.failure('Unauthorized'), 401);
+    return c.json(AppResponse.failure('Token not set'), 401);
   }
 
   const payload = await verify(token);
 
   // 適切なロールでないとき
   if (payload.role !== Role.Shop) {
-    return c.json(AppResponse.failure('Unauthorized'), 401);
+    return c.json(AppResponse.failure('Not an appropriate roll'), 401);
+  }
+
+  const shop = await prisma.shop.findUnique({
+    where: { id: shopId },
+  });
+
+  // 販売会社が存在しないとき
+  if (!shop) {
+    return c.json(AppResponse.failure('Not Found'), 404);
   }
 
   // 自分のIDでないとき
   if (payload.id !== shopId) {
-    return c.json(AppResponse.failure('Unauthorized'), 401);
+    return c.json(AppResponse.failure('Not your ID'), 401);
   }
 
   await next();
@@ -473,6 +482,17 @@ app.openapi(
 
     if (items.filter((item) => item.quantity <= 0).length > 0) {
       return c.jsonT(AppResponse.failure('quantityは0以上で入力してください'), 422);
+    }
+
+    const shop = await prisma.shop.findUnique({
+      where: { id: shopId },
+      include: {
+        partnerManufacturers: true,
+      },
+    });
+    const partnerManufacturers = shop?.partnerManufacturers ?? [];
+    if (!partnerManufacturers.find((v) => v.manufacturerId === manufacturerId)) {
+      return c.jsonT(AppResponse.failure('PartnerManufacturerではありません'), 500);
     }
 
     await prisma.order.create({
