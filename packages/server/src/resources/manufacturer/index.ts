@@ -205,7 +205,6 @@ app.openapi(
                       name: z.string(),
                     }),
                   ),
-                  image: z.string(),
                   stock: z.number(),
                   price: z.number(),
                 }),
@@ -258,7 +257,6 @@ app.openapi(
         id: category.id,
         name: category.name,
       })),
-      image: 'https://github.com/Alesion30',
       price,
       stock,
     }));

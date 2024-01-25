@@ -74,7 +74,6 @@ type FetchHandlingProductsResponse = {
   name: string;
   description: string;
   categories: { id: string; name: string }[];
-  image: string;
   price: number;
   stock: number;
 }[];

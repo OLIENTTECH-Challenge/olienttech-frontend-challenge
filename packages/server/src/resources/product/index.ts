@@ -23,7 +23,6 @@ app.openapi(
                   id: z.string(),
                   name: z.string(),
                   description: z.string(),
-                  image: z.string(),
                   categories: z.array(
                     z.object({
                       id: z.string(),
@@ -65,8 +64,6 @@ app.openapi(
         id: category.id,
         name: category.name,
       })),
-      // NOTE: 仮で画像を設定
-      image: 'https://github.com/Alesion30',
     }));
 
     return c.jsonT(AppResponse.success(products));
