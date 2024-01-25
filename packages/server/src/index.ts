@@ -1,6 +1,5 @@
 import { cors } from 'hono/cors';
 import { serve } from '@hono/node-server';
-import adminRoute from './resources/admin';
 import manufacturerRoute from './resources/manufacturer';
 import shopRoute from './resources/shop';
 import productRoute from './resources/product';
@@ -120,7 +119,7 @@ app.openapi(
 // );
 
 // 管理者
-app.route('/admin', adminRoute);
+// app.route('/admin', adminRoute);
 
 // 販売会社
 app.route('/shops', shopRoute);
