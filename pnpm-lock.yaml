@@ -170,16 +170,16 @@ importers:
         version: 1.2.3
       '@hono/swagger-ui':
         specifier: ^0.2.1
-        version: 0.2.1(hono@3.10.1)
+        version: 0.2.1(hono@4.0.0)
       '@hono/zod-openapi':
         specifier: ^0.9.5
-        version: 0.9.5(hono@3.10.1)(zod@3.22.4)
+        version: 0.9.5(hono@4.0.0)(zod@3.22.4)
       '@prisma/client':
         specifier: 5.6.0
         version: 5.6.0(prisma@5.6.0)
       hono:
-        specifier: ^3.10.1
-        version: 3.10.1
+        specifier: ^4.0.0
+        version: 4.0.0
       prisma-extension-pagination:
         specifier: ^0.6.0
         version: 0.6.0(@prisma/client@5.6.0)
@@ -2134,15 +2134,15 @@ packages:
     engines: {node: '>=18.14.1'}
     dev: false
 
-  /@hono/swagger-ui@0.2.1(hono@3.10.1):
+  /@hono/swagger-ui@0.2.1(hono@4.0.0):
     resolution: {integrity: sha512-wBxVMRe3/v8xH4o6icmwztiIq0DG0s7+jHVMHVUAoFFCWEQNL2iskMmQtrhSDtsFmBZUeUFQUaaJ6Ir6DOmHLA==}
     peerDependencies:
       hono: '*'
     dependencies:
-      hono: 3.10.1
+      hono: 4.0.0
     dev: false
 
-  /@hono/zod-openapi@0.9.5(hono@3.10.1)(zod@3.22.4):
+  /@hono/zod-openapi@0.9.5(hono@4.0.0)(zod@3.22.4):
     resolution: {integrity: sha512-Px8QEIr5RyDeHQn51Ihnwtl//foFvd/F6yBq6o/3pVMUpoV6X4JZ+srgUrOX2VRrInpLVEP/NaroXlfvarwIxA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -2150,18 +2150,18 @@ packages:
       zod: 3.*
     dependencies:
       '@asteasolutions/zod-to-openapi': 5.5.0(zod@3.22.4)
-      '@hono/zod-validator': 0.1.11(hono@3.10.1)(zod@3.22.4)
-      hono: 3.10.1
+      '@hono/zod-validator': 0.1.11(hono@4.0.0)(zod@3.22.4)
+      hono: 4.0.0
       zod: 3.22.4
     dev: false
 
-  /@hono/zod-validator@0.1.11(hono@3.10.1)(zod@3.22.4):
+  /@hono/zod-validator@0.1.11(hono@4.0.0)(zod@3.22.4):
     resolution: {integrity: sha512-PQXeHUP0+36qpRt8yfeD7N2jbK3ETlGvSN6dMof/HwUC/APRokQRjpXZm4rrlG71Ft0aWE01+Bm4XejqPie5Uw==}
     peerDependencies:
       hono: '>=3.9.0'
       zod: ^3.19.1
     dependencies:
-      hono: 3.10.1
+      hono: 4.0.0
       zod: 3.22.4
     dev: false
 
@@ -7456,8 +7456,8 @@ packages:
       function-bind: 1.1.2
     dev: true
 
-  /hono@3.10.1:
-    resolution: {integrity: sha512-4jPKCmYWLAoCMpmvOU+xNOQYdcNftip7sM/IsO8EPyGAtjk9fGNyUchG6huSzLrY449WDNGFPetVs5doepNnlA==}
+  /hono@4.0.0:
+    resolution: {integrity: sha512-8dKhuBBpRZEodUttQhrSFJ6PQqHRjXHyeeegfxOf132pvgbf0tOb9qqb7q7eYwAWpOcYrsUOsWdJ0sQIIovhZg==}
     engines: {node: '>=16.0.0'}
     dev: false
 
