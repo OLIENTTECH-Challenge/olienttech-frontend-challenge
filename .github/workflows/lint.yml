@@ -26,5 +26,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Run bootstrap
+        run: pnpm run task bootstrap
+
       - name: Run lint
         run: pnpm lint
