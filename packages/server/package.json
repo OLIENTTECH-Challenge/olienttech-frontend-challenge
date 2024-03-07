@@ -5,34 +5,24 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "serve": "tsx src/index.ts",
-    "test": "DATABASE_URL='file:./test.db' jest",
-    "prisma": "prisma",
-    "prisma:gen": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio --browser none",
-    "prisma:seed": "prisma db seed",
-    "prisma:reset": "prisma migrate reset --force",
-    "prisma:studio:test": "DATABASE_URL='file:./test.db' prisma studio --browser none",
-    "prisma:reset:test": "DATABASE_URL='file:./test.db' prisma migrate reset --force --skip-seed"
-  },
-  "prisma": {
-    "seed": "node --loader ts-node/esm prisma/seed.ts"
+    "test": "DATABASE_URL='file:../database/test.db' jest",
+    "db:reset:test": "DATABASE_URL='file:./test.db' pnpm -F @olienttech/database prisma migrate reset --force --skip-seed"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",
     "@hono/swagger-ui": "^0.2.1",
     "@hono/zod-openapi": "^0.9.5",
-    "@prisma/client": "5.6.0",
     "hono": "^3.10.1",
     "prisma-extension-pagination": "^0.6.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@olienttech/database": "workspace:*",
     "@olienttech/model": "workspace:*",
     "@olienttech/tsconfig": "workspace:*",
-    "@quramy/prisma-fabbrica": "^2.0.2",
-    "prisma": "^5.6.0",
-    "ts-node": "^10.9.1",
+    "@quramy/jest-prisma": "^1.8.0",
+    "@quramy/jest-prisma-node": "^1.8.0",
+    "@types/jest": "^29.5.12",
     "tsx": "^3.12.2"
   }
 }

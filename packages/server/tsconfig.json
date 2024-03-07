@@ -4,9 +4,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "types": ["@types/jest"],
     "allowJs": true
   },
-  "include": ["src", "jest.config.ts", "prisma"],
-  "exclude": ["src/__generated__"],
+  "include": ["src", "jest.config.ts"],
   "extends": "@olienttech/tsconfig/hono"
 }
