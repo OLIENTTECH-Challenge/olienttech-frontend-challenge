@@ -23,6 +23,10 @@
     {
       "name": "server",
       "path": "packages/server"
+    },
+    {
+      "name": "database",
+      "path": "packages/database"
     }
   ],
   "launch": {
@@ -63,12 +67,10 @@
       "stylelint.config.cjs": ".stylelintignore",
       "tsconfig.json": "tsconfig.tsbuildinfo"
     },
-    "jest.autoRun": "off",
+    "jest.runMode": "on-demand",
     "jest.disabledWorkspaceFolders": ["root"],
     "jest.jestCommandLine": "pnpm run test",
-    // "prettier.configPath": "prettier.config.js",
     "prettier.requireConfig": true,
-    // "stylelint.configFile": "stylelint.config.cjs",
     "stylelint.enable": true,
     "cSpell.words": ["selectbox"]
   }
