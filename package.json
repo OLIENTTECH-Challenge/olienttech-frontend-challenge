@@ -12,6 +12,7 @@
     "task": "task",
     "workspace/client": "pnpm -F @olienttech/client",
     "workspace/server": "pnpm -F @olienttech/server",
+    "workspace/database": "pnpm -F @olienttech/database",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "serve": "turbo run serve",
@@ -26,6 +27,7 @@
     "lint:stylelint": "stylelint '**/*.css'"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
     "@go-task/cli": "^3.32.0",
     "@jest/globals": "^29.7.0",
     "@types/node": "^20.9.1",

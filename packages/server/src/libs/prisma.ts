@@ -1,4 +1,4 @@
-import { PrismaClient } from '@/__generated__/prisma-client-js';
+import { PrismaClient } from '@olienttech/database';
 import { pagination } from 'prisma-extension-pagination';
 
 export const prisma = new PrismaClient().$extends(

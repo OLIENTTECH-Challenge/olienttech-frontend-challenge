@@ -4,4 +4,4 @@ tasks:
   bootstrap:
     cmds:
       - pnpm install
-      - pnpm -F @olienttech/server prisma migrate reset --force
+      - pnpm -F @olienttech/database prisma migrate reset --force

@@ -1,0 +1,27 @@
+{
+  "name": "@olienttech/database",
+  "private": true,
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "db:reset": "prisma migrate reset --force",
+    "db:reset:test": "DATABASE_URL='file:./test.db' prisma migrate reset --force --skip-seed",
+    "db:studio": "prisma studio --browser none",
+    "prisma": "prisma"
+  },
+  "prisma": {
+    "seed": "node --loader ts-node/esm seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "5.6.0"
+  },
+  "devDependencies": {
+    "@olienttech/tsconfig": "workspace:*",
+    "@quramy/prisma-fabbrica": "^2.0.2",
+    "prisma": "^5.6.0",
+    "ts-node": "^10.9.1"
+  }
+}

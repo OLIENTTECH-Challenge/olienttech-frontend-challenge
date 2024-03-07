@@ -1,14 +1,12 @@
-import { defineProductCategoryFactory, defineProductFactory, initialize } from '@/__generated__/fabbrica';
-import { prisma } from '@/libs/prisma';
-import { cleanupTestDB } from '@/libs/utils/prisma';
-import { beforeEach, describe, expect, test } from '@jest/globals';
+import { defineProductCategoryFactory, defineProductFactory } from '@olienttech/database';
+import { describe, expect, test } from '@jest/globals';
 import app from '..';
 import { isErrorResponse, isSuccessResponse } from '@olienttech/model';
 
-beforeEach(async () => {
-  initialize({ prisma });
-
-  await cleanupTestDB();
+jest.mock('@/libs/prisma.ts', () => {
+  return {
+    prisma: jestPrisma.client,
+  };
 });
 
 describe('GET: /products', () => {

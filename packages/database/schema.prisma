@@ -3,11 +3,14 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/__generated__/prisma-client-js"
+  // output   = "./__generated__/prisma-client-js"
 }
 
 generator fabbrica {
-  provider = "prisma-fabbrica"
+  provider    = "prisma-fabbrica"
+  output      = "./__generated__/prisma-fabbrica"
+  tsconfig    = "./tsconfig.json"
+  noTranspile = true
 }
 
 datasource db {

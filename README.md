@@ -68,7 +68,7 @@ Storybook is an essential tool for developing and testing UI components. To run 
 
 Prisma Studio is a database visualization tool. To run it:
 
-1. Start Prisma Studio: `pnpm run workspace/server prisma studio`
+1. Start Prisma Studio: `pnpm run workspace/database prisma studio`
 2. Access UI: Open http://localhost:5555 in your browser to view.
 
 ## Conclusion

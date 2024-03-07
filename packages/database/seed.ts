@@ -1,7 +1,7 @@
 import { products } from './data/products.js';
 import { manufacturers } from './data/manufacturers.js';
 import { shops } from './data/shops.js';
-import { PrismaClient } from '../src/__generated__/prisma-client-js/index.js';
+import { PrismaClient } from '@prisma/client';
 
 const nonNullable = <T>(value: T): value is NonNullable<T> => value != null;
 const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min;
