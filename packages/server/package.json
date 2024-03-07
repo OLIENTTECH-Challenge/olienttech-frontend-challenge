@@ -23,6 +23,6 @@
     "@quramy/jest-prisma": "^1.8.0",
     "@quramy/jest-prisma-node": "^1.8.0",
     "@types/jest": "^29.5.12",
-    "tsx": "^3.12.2"
+    "tsx": "^4.0.0"
   }
 }
