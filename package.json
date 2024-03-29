@@ -16,6 +16,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "serve": "turbo run serve",
+    "test": "turbo run test",
     "format": "run-p format:*",
     "format:prettier": "prettier . -w",
     "format:eslint": "eslint . --report-unused-disable-directives --max-warnings 0 --fix",
