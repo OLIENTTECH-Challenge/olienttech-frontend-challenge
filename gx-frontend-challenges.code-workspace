@@ -35,7 +35,7 @@
         "name": "localhost に対して Chrome を起動する",
         "request": "launch",
         "type": "chrome",
-        "url": "http://localhost:5173",
+        "url": "http://localhost:3000",
         "webRoot": "${workspaceFolder}"
       }
     ],
