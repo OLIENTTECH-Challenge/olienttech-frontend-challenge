@@ -113,6 +113,7 @@ export const ProductListPage = () => {
           />
           <Button
             variant='outlined'
+            type='submit'
             onClick={() => {
               targetProductId.current = item.id;
             }}

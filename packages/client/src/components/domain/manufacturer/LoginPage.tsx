@@ -37,7 +37,9 @@ export const ManufacturerLoginPage = () => {
       <form method='post' className={styles.form} onSubmit={handleSubmit}>
         <TextInput name='id' type='text' placeholder='製造会社ID' required />
         <TextInput name='password' type='password' placeholder='パスワード' required />
-        <Button variant='filled'>ログイン</Button>
+        <Button variant='filled' type='submit'>
+          ログイン
+        </Button>
       </form>
     </div>
   );

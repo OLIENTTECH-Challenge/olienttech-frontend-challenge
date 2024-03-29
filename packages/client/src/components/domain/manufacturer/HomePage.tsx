@@ -39,7 +39,7 @@ export const ManufacturerHomePage = () => {
             <h3>{manufacturer.name}</h3>
             <p>{manufacturer.description}</p>
             <div className={styles.logoutButton}>
-              <Button variant='outlined' onClick={logout}>
+              <Button type='button' variant='outlined' onClick={logout}>
                 ログアウト
               </Button>
             </div>
