@@ -26,10 +26,11 @@ export const Table = <T extends object>({ columns, data, onClick }: TableProps<T
       <tbody className={styles.tbody}>
         {data.map((item, i) => (
           <tr
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             key={`row_${i}`}
             className={styles.tr}
             data-is-clickable={onClick ? 'true' : 'false'}
-            onClick={() => onClick?.(item)}
+            onKeyUp={() => onClick?.(item)}
           >
             {columns.map((column) => (
               <td key={column.header} className={styles.td}>

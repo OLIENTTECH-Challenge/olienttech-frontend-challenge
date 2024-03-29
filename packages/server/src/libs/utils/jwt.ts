@@ -1,6 +1,6 @@
+import type { Role } from '@olienttech/model';
 import { sign as honoJwtSign, verify as honoJwtVerify } from 'hono/jwt';
 import { JWT_SECRET } from '../constants/env';
-import { Role } from '@olienttech/model';
 
 export type JwtPayload = {
   id: string;

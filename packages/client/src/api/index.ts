@@ -1,5 +1,5 @@
 import { APP_API_URL } from '@/libs/constants';
-import { Role, SuccessResponse } from '@olienttech/model';
+import type { Role, SuccessResponse } from '@olienttech/model';
 
 export const verify = async (token: string) => {
   const res = await fetch(`${APP_API_URL}/verify`, {

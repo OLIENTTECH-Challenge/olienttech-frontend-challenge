@@ -1,4 +1,4 @@
-name: Running Lint
+name: Running Code Check
 
 on:
   workflow_dispatch:
@@ -26,8 +26,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run bootstrap
-        run: pnpm run task bootstrap
+      - name: Generate Prisma Client
+        run: pnpm -F @olienttech/database prisma generate
 
-      - name: Run lint
-        run: pnpm lint
+      - name: Run Check
+        run: pnpm check

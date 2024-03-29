@@ -1,7 +1,7 @@
-import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
-import { useState, useEffect } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
-import { Column, Table } from '@/components/case/Table';
+import { type Column, Table } from '@/components/case/Table';
+import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './OrderPage.module.css';
 
@@ -25,9 +25,9 @@ const useOrder = (orderId: string) => {
 
 export const OrderPage = () => {
   const params = useParams();
-  const orderId = params['orderId'];
+  const orderId = params.orderId;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // biome-ignore lint/style/noNonNullAssertion: <explanation>
   const { order } = useOrder(orderId!);
   const items = order?.items ?? [];
 

@@ -1,5 +1,5 @@
+import util from 'node:util';
 import 'ts-node/register';
-import util from 'util';
 
 const setup = async () => {
   if (!process.env.DATABASE_URL) {
@@ -7,7 +7,7 @@ const setup = async () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-  const exec = util.promisify(require('child_process').exec);
+  const exec = util.promisify(require('node:child_process').exec);
   await exec(
     `DATABASE_URL='${process.env.DATABASE_URL}' pnpm -F @olienttech/database prisma migrate reset --force --skip-seed`,
   );

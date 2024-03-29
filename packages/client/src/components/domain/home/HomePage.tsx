@@ -1,7 +1,7 @@
-import styles from './HomePage.module.css';
 import { LinkCard } from '@/components/base/LinkCard';
 import { Container } from '@/components/case/Container';
 import { HomeHeader } from '@/components/common/HomeHeader';
+import styles from './HomePage.module.css';
 
 type Reference = {
   title: string;
@@ -60,8 +60,8 @@ export const HomePage = () => {
               <p>参考リンク集</p>
             </div>
             <div className={styles.referenceContents}>
-              {references.map((reference, i) => (
-                <LinkCard key={i} {...reference} />
+              {references.map((reference) => (
+                <LinkCard key={reference.title} {...reference} />
               ))}
             </div>
           </div>

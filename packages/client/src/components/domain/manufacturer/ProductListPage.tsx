@@ -1,12 +1,12 @@
-import { TextInput } from '@/components/base/TextInput';
-import { Column, Table } from '@/components/case/Table';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import styles from './ProductListPage.module.css';
-import { Check } from 'lucide-react';
-import toast from 'react-hot-toast';
 import * as manufacturerApi from '@/api/manufacturer';
-import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
 import { Button } from '@/components/base/Button';
+import { TextInput } from '@/components/base/TextInput';
+import { type Column, Table } from '@/components/case/Table';
+import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
+import { Check } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
+import styles from './ProductListPage.module.css';
 
 type Response = Awaited<ReturnType<typeof manufacturerApi.fetchHandlingProducts>>;
 
@@ -111,7 +111,12 @@ export const ProductListPage = () => {
             defaultValue={item.stock}
             required
           />
-          <Button variant='outlined' onClick={() => (targetProductId.current = item.id)}>
+          <Button
+            variant='outlined'
+            onClick={() => {
+              targetProductId.current = item.id;
+            }}
+          >
             <Check />
           </Button>
         </div>

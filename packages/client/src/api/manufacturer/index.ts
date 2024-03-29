@@ -1,5 +1,5 @@
 import { APP_API_URL } from '@/libs/constants';
-import { SuccessResponse } from '@olienttech/model';
+import type { SuccessResponse } from '@olienttech/model';
 
 type SigninRequest = {
   id: string;
@@ -22,16 +22,16 @@ export const signin = async (req: SigninRequest) => {
 
   await new Promise((resolve) => setTimeout(resolve, 2000)); // NOTE: トーストの挙動を試すために, わざと処理待ちしている
 
-  if (res.ok) {
-    const json = (await res.json()) as SuccessResponse<{ id: string; name: string; token: string }>;
-
-    // NOTE: トークンをCookieにセット
-    document.cookie = `token=${json.data.token}; path=/`;
-
-    return json.data;
-  } else {
+  if (!res.ok) {
     throw new Error();
   }
+
+  const json = (await res.json()) as SuccessResponse<{ id: string; name: string; token: string }>;
+
+  // NOTE: トークンをCookieにセット
+  document.cookie = `token=${json.data.token}; path=/`;
+
+  return json.data;
 };
 
 type FetchManufactureRequest = {

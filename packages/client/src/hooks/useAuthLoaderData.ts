@@ -1,4 +1,4 @@
-import { Role } from '@olienttech/model';
+import type { Role } from '@olienttech/model';
 import { useLoaderData } from 'react-router-dom';
 
 type AuthLoaderData = {
@@ -8,7 +8,6 @@ type AuthLoaderData = {
 };
 
 export const useAuthLoaderData = () => {
-  const data = useLoaderData() as AuthLoaderData | null;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return data!;
+  const data = useLoaderData() as AuthLoaderData;
+  return data;
 };

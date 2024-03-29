@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import styles from './Breadcrumb.module.css';
 import { ChevronRight } from 'lucide-react';
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './Breadcrumb.module.css';
 
 type BreadcrumbProps = {
   items: { href: string; title: string }[];

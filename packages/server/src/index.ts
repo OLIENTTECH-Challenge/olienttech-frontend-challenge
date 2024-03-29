@@ -1,15 +1,15 @@
-import { cors } from 'hono/cors';
 import { serve } from '@hono/node-server';
-import manufacturerRoute from './resources/manufacturer';
-import shopRoute from './resources/shop';
-import productRoute from './resources/product';
 import { swaggerUI } from '@hono/swagger-ui';
-import { createHonoApp } from './libs/hono';
 import { createRoute, z } from '@hono/zod-openapi';
-import { ErrorResponseSchema, SuccessResponseSchema } from './libs/utils/schema';
 import { AppResponse, Role } from '@olienttech/model';
-import { verify } from './libs/utils/jwt';
+import { cors } from 'hono/cors';
+import { createHonoApp } from './libs/hono';
 import { prisma } from './libs/prisma';
+import { verify } from './libs/utils/jwt';
+import { ErrorResponseSchema, SuccessResponseSchema } from './libs/utils/schema';
+import manufacturerRoute from './resources/manufacturer';
+import productRoute from './resources/product';
+import shopRoute from './resources/shop';
 
 const app = createHonoApp();
 
