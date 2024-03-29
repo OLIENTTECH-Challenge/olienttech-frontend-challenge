@@ -5,11 +5,11 @@
   "main": "./index.ts",
   "types": "./index.ts",
   "scripts": {
+    "dev": "prisma studio --browser none",
     "db:generate": "prisma generate",
     "db:push": "prisma db push --skip-generate",
     "db:reset": "prisma migrate reset --force",
     "db:reset:test": "DATABASE_URL='file:./test.db' prisma migrate reset --force --skip-seed",
-    "db:studio": "prisma studio --browser none",
     "prisma": "prisma"
   },
   "prisma": {
