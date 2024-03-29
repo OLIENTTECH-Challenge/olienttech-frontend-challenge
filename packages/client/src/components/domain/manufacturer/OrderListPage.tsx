@@ -1,7 +1,7 @@
-import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
-import { useState, useEffect } from 'react';
 import * as manufacturerApi from '@/api/manufacturer';
-import { Column, Table } from '@/components/case/Table';
+import { type Column, Table } from '@/components/case/Table';
+import { useAuthLoaderData } from '@/hooks/useAuthLoaderData';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './OrderListPage.module.css';
 

@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './Button.module.css';
 import { classNames } from '@/libs/utils';
+import type React from 'react';
+import styles from './Button.module.css';
 
 type HTMLButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -10,11 +10,11 @@ type ButtonProps = {
 } & Pick<HTMLButtonProps, 'children' | 'onClick'>;
 
 export const Button = ({ children, variant, onClick, isLoading }: ButtonProps) => {
-  const buttonClass = isLoading ? `${styles.button} ${styles['loading']}` : styles.button;
+  const buttonClass = isLoading ? `${styles.button} ${styles.loading}` : styles.button;
 
   return (
-    <button className={classNames(buttonClass, styles[variant])} onClick={onClick} disabled={isLoading}>
-      {isLoading ? <div className={styles.spinner}></div> : children}
+    <button type='button' className={classNames(buttonClass, styles[variant])} onClick={onClick} disabled={isLoading}>
+      {isLoading ? <div className={styles.spinner} /> : children}
     </button>
   );
 };

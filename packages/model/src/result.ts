@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export type AppResponse<T = any> = SuccessResponse<T> | ErrorResponse;
 
 export const AppResponse = {
@@ -11,6 +10,7 @@ export const AppResponse = {
   },
 } as const;
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export type SuccessResponse<T = any> = {
   __typename__: 'SuccessResponse';
   data: T;
@@ -27,7 +27,7 @@ export const isSuccessResponse = (response: unknown): response is SuccessRespons
     typeof response === 'object' &&
     response !== null &&
     '__typename__' in response &&
-    response['__typename__'] === 'SuccessResponse'
+    response.__typename__ === 'SuccessResponse'
   );
 };
 
@@ -36,6 +36,6 @@ export const isErrorResponse = (response: unknown): response is ErrorResponse =>
     typeof response === 'object' &&
     response !== null &&
     '__typename__' in response &&
-    response['__typename__'] === 'ErrorResponse'
+    response.__typename__ === 'ErrorResponse'
   );
 };

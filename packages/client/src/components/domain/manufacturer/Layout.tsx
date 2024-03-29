@@ -1,12 +1,12 @@
+import { Breadcrumb } from '@/components/case/Breadcrumb';
 import { Container } from '@/components/case/Container';
 import { HomeHeader } from '@/components/common/HomeHeader';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import styles from './Layout.module.css';
-import { Breadcrumb } from '@/components/case/Breadcrumb';
 
 export const ManufacturerLayout = () => {
   const params = useParams();
-  const orderId = params['orderId'];
+  const orderId = params.orderId;
 
   const location = useLocation();
   const isLoginPage = location.pathname.includes('login');

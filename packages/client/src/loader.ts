@@ -1,6 +1,6 @@
-import { Role } from '@olienttech/model';
-import { LoaderFunction, redirect } from 'react-router-dom';
 import * as api from '@/api';
+import { Role } from '@olienttech/model';
+import { type LoaderFunction, redirect } from 'react-router-dom';
 
 export const manufacturerAuthLoader: LoaderFunction = async () => {
   const token = document.cookie

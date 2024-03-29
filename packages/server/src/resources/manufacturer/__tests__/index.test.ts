@@ -1,15 +1,15 @@
-import { describe, test, expect } from '@jest/globals';
-import app from '..';
+import { prisma } from '@/libs/prisma';
+import { sign } from '@/libs/utils/jwt';
+import { describe, expect, test } from '@jest/globals';
 import {
   defineManufacturerFactory,
   defineManufacturerHandlingProductsFactory,
-  defineProductFactory,
   defineOrderFactory,
+  defineProductFactory,
   defineShopFactory,
 } from '@olienttech/database';
 import { Role, isErrorResponse, isSuccessResponse } from '@olienttech/model';
-import { sign } from '@/libs/utils/jwt';
-import { prisma } from '@/libs/prisma';
+import app from '..';
 
 jest.mock('@/libs/prisma.ts', () => {
   return {

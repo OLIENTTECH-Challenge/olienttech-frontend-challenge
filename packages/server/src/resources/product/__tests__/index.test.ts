@@ -1,7 +1,7 @@
-import { defineProductCategoryFactory, defineProductFactory } from '@olienttech/database';
 import { describe, expect, test } from '@jest/globals';
-import app from '..';
+import { defineProductCategoryFactory, defineProductFactory } from '@olienttech/database';
 import { isErrorResponse, isSuccessResponse } from '@olienttech/model';
+import app from '..';
 
 jest.mock('@/libs/prisma.ts', () => {
   return {
