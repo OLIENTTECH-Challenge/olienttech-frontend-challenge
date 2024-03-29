@@ -1,16 +1,10 @@
 pre-commit:
   parallel: true
   commands:
-    prettier:
-      glob: '*.{json,yml,ts,tsx,js,jsx}'
+    biome:
+      glob: '*.{ts,tsx,js,jsx,cjs,json,jsonc}'
       run: |
-        pnpm prettier -w {staged_files} || exit 1
-        git add {staged_files}
-
-    eslint:
-      glob: '*.{ts,tsx,js,jsx,cjs}'
-      run: |
-        pnpm eslint --fix {staged_files} || exit 1
+        pnpm biome check --apply {staged_files} || exit 1
         git add {staged_files}
 
     stylelint:

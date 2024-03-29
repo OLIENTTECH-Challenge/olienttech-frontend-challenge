@@ -27,6 +27,7 @@
     "lint:stylelint": "stylelint '**/*.css'"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.3",
     "@eslint/eslintrc": "^3.0.2",
     "@go-task/cli": "^3.32.0",
     "@jest/globals": "^29.7.0",
