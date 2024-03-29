@@ -1,7 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.6.3/schema.json",
   "files": {
-    "ignore": ["*.css.d.ts", "__generated__"]
+    "ignore": ["*.css.d.ts", "__generated__", "dist"]
   },
   "organizeImports": {
     "enabled": true
