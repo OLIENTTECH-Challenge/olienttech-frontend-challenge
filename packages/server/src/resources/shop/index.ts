@@ -33,6 +33,8 @@ app.openapi(
           'application/json': {
             schema: SuccessResponseSchema(
               z.object({
+                id: z.string(),
+                name: z.string(),
                 token: z.string(),
               }),
             ),
@@ -69,7 +71,7 @@ app.openapi(
       role: Role.Shop,
     });
 
-    return c.jsonT(AppResponse.success({ token }));
+    return c.jsonT(AppResponse.success({ id, name: shopOnPrisma.name, token }));
   },
 );
 

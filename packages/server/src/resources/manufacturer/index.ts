@@ -53,10 +53,10 @@ app.openapi(
   async (c) => {
     const { id, password } = c.req.valid('json');
 
-    const manufacturer = await prisma.manufacturer.findUnique({
+    const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
       where: { id },
     });
-    if (manufacturer === null) {
+    if (manufacturerOnPrisma === null) {
       return c.jsonT(AppResponse.failure('Not found'), 404);
     }
 
@@ -70,7 +70,7 @@ app.openapi(
       role: Role.Manufacturer,
     });
 
-    return c.jsonT(AppResponse.success({ id, name: manufacturer.name, token }));
+    return c.jsonT(AppResponse.success({ id, name: manufacturerOnPrisma.name, token }));
   },
 );
 
