@@ -494,19 +494,51 @@ app.openapi(
     const { shopId } = c.req.valid('param');
     const { manufacturerId, items } = c.req.valid('json');
 
-    if (items.filter((item) => item.quantity <= 0).length > 0) {
-      return c.jsonT(AppResponse.failure('quantityは0以上で入力してください'), 422);
+    if (items.length === 0) {
+      return c.jsonT(AppResponse.failure('商品が選択されていません'), 422);
     }
 
-    const shop = await prisma.shop.findUnique({
+    const manufacturerOnPrisma = await prisma.manufacturer.findUnique({
+      where: { id: manufacturerId },
+      include: {
+        handlingProducts: true,
+      },
+    });
+    if (manufacturerOnPrisma === null) {
+      return c.jsonT(AppResponse.failure('指定した製造会社が存在しません'), 403);
+    }
+
+    const handlingProducts = manufacturerOnPrisma.handlingProducts;
+
+    const shopOnPrisma = await prisma.shop.findUnique({
       where: { id: shopId },
       include: {
         partnerManufacturers: true,
       },
     });
-    const partnerManufacturers = shop?.partnerManufacturers ?? [];
-    if (!partnerManufacturers.find((v) => v.manufacturerId === manufacturerId)) {
-      return c.jsonT(AppResponse.failure('PartnerManufacturerではありません'), 500);
+
+    const partnerManufacturers = shopOnPrisma?.partnerManufacturers ?? [];
+    const hasPartnerManufacturer = !!partnerManufacturers.find((v) => v.manufacturerId === manufacturerId);
+    if (!hasPartnerManufacturer) {
+      return c.jsonT(AppResponse.failure('無効な製造会社です'), 403);
+    }
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+
+      if (item.quantity <= 0) {
+        return c.jsonT(AppResponse.failure('quantityは0以上で入力してください'), 422);
+      }
+
+      const handlingProduct = handlingProducts.find((v) => v.productId === item.productId);
+
+      if (handlingProduct === undefined) {
+        return c.jsonT(AppResponse.failure('取り扱い商品ではありません'), 422);
+      }
+
+      if (handlingProduct.stock < item.quantity) {
+        return c.jsonT(AppResponse.failure('在庫数より大きい数を指定できません'), 422);
+      }
     }
 
     await prisma.order.create({

@@ -233,7 +233,20 @@ describe('/:shopId/orders', () => {
   const ProductFactory = defineProductFactory();
 
   test('正常系', async () => {
-    const manufacturer = await ManufacturerFactory.create();
+    const products = await ProductFactory.createList(3);
+    const manufacturer = await ManufacturerFactory.create({
+      handlingProducts: {
+        create: products.map((product) => ({
+          price: 100,
+          stock: 100,
+          product: {
+            connect: {
+              id: product.id,
+            },
+          },
+        })),
+      },
+    });
     const shop = await ShopFactory.create({
       partnerManufacturers: {
         create: {
@@ -245,7 +258,6 @@ describe('/:shopId/orders', () => {
         },
       },
     });
-    const products = await ProductFactory.createList(3);
 
     const token = await sign({
       id: shop.id,
@@ -341,6 +353,7 @@ describe('/:shopId/orders', () => {
 
     const payload = {
       manufacturerId: manufacturer.id,
+      items: [],
     };
 
     const res = await app.request(`/${shop.id}/orders`, {
@@ -353,6 +366,37 @@ describe('/:shopId/orders', () => {
     });
 
     expect(res.status).toBe(422);
+  });
+
+  test('異常系: 存在しない製造会社を指定するとき', async () => {
+    const shop = await ShopFactory.create();
+
+    const token = await sign({
+      id: shop.id,
+      role: Role.Shop,
+    });
+    const product = await ProductFactory.create();
+
+    const payload = {
+      manufacturerId: 'hoge', // NOTE: 存在しない製造会社のID
+      items: [
+        {
+          productId: product.id,
+          quantity: 0,
+        },
+      ],
+    };
+
+    const res = await app.request(`/${shop.id}/orders`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    expect(res.status).toBe(403);
   });
 
   test('異常系: パートナーではない製造会社を指定するとき', async () => {
@@ -388,6 +432,101 @@ describe('/:shopId/orders', () => {
       body: JSON.stringify(payload),
     });
 
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(403);
+  });
+
+  test('異常系: 取り扱い商品ではないとき', async () => {
+    const manufacturer = await ManufacturerFactory.create();
+    const shop = await ShopFactory.create({
+      partnerManufacturers: {
+        create: {
+          manufacturer: {
+            connect: {
+              id: manufacturer.id,
+            },
+          },
+        },
+      },
+    });
+
+    const token = await sign({
+      id: shop.id,
+      role: Role.Shop,
+    });
+
+    const payload = {
+      manufacturerId: manufacturer.id,
+      items: [
+        {
+          productId: 'hoge', // NOTE: 存在しない商品のID
+          quantity: 0,
+        },
+      ],
+    };
+
+    const res = await app.request(`/${shop.id}/orders`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    expect(res.status).toBe(422);
+  });
+
+  test('異常系: 在庫が足りないとき', async () => {
+    const product = await ProductFactory.create();
+    const manufacturer = await ManufacturerFactory.create({
+      handlingProducts: {
+        create: {
+          price: 100,
+          stock: 0,
+          product: {
+            connect: {
+              id: product.id,
+            },
+          },
+        },
+      },
+    });
+    const shop = await ShopFactory.create({
+      partnerManufacturers: {
+        create: {
+          manufacturer: {
+            connect: {
+              id: manufacturer.id,
+            },
+          },
+        },
+      },
+    });
+
+    const token = await sign({
+      id: shop.id,
+      role: Role.Shop,
+    });
+
+    const payload = {
+      manufacturerId: manufacturer.id,
+      items: [
+        {
+          productId: product.id,
+          quantity: 1000,
+        },
+      ],
+    };
+
+    const res = await app.request(`/${shop.id}/orders`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    expect(res.status).toBe(422);
   });
 });
